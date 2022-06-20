@@ -100,9 +100,7 @@ _modules/*
 
 # Netbeans
 nbproject/
-build/
 nbbuild/
-dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
