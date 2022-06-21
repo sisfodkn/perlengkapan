@@ -34,7 +34,11 @@
                 </li>
                 <li class="nav-header">Data & Informasi</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link <?php if (in_array($activeMenu, ['struktur-umum', 'struktur-dipa', 'struktur-realisasi'])) echo "active" ?>">
+                    <a href="#" class="nav-link <?php if (in_array($activeMenu, [
+                                                    'struktur-umum',
+                                                    'struktur-dipa',
+                                                    'struktur-realisasi'
+                                                ])) echo "active" ?>">
                         <i class="nav-icon fa-solid fa-folder-tree"></i>
                         <p>
                             Struktur Anggaran
@@ -63,7 +67,23 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link <?php if (in_array($activeMenu, ['utama-pegawai', 'utama-jabatan', 'utama-unit', 'utama-kegiatan', 'utama-user'])) echo "active" ?>">
+                    <a href="#" class="nav-link <?php if (in_array($activeMenu, [
+                                                    'utama-pegawai',
+                                                    'utama-pegawai-data',
+                                                    'utama-pegawai-tambah',
+                                                    'utama-jabatan',
+                                                    'utama-jabatan-data',
+                                                    'utama-jabatan-tambah',
+                                                    'utama-unit',
+                                                    'utama-unit-data',
+                                                    'utama-unit-tambah',
+                                                    'utama-kegiatan',
+                                                    'utama-kegiatan-data',
+                                                    'utama-kegiatan-tambah',
+                                                    'utama-user',
+                                                    'utama-user-data',
+                                                    'utama-user-tambah'
+                                                ])) echo "active" ?>">
                         <i class="nav-icon fa-solid fa-users"></i>
                         <p>
                             Data Utama
@@ -179,7 +199,18 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link <?php if (in_array($activeMenu, ['randis-pendahuluan', 'randis-data', 'randis-distribusi', 'randis-jenis'])) echo "active" ?>">
+                    <a href="#" class="nav-link <?php if (in_array($activeMenu, [
+                                                    'randis-pendahuluan',
+                                                    'randis-data',
+                                                    'randis-data-data',
+                                                    'randis-data-tambah',
+                                                    'randis-distribusi',
+                                                    'randis-distribusi-data',
+                                                    'randis-distribusi-tambah',
+                                                    'randis-jenis',
+                                                    'randis-jenis-data',
+                                                    'randis-jenis-tambah'
+                                                ])) echo "active" ?>">
                         <i class="nav-icon fa-solid fa-car"></i>
                         <p>
                             Data Kendaraan Dinas
@@ -197,19 +228,203 @@
                             <a href="#" class="nav-link <?php if ($activeMenu == 'randis-data') echo "active" ?>">
                                 <i class="far fa-dot-circle nav-icon"></i>
                                 <p>Kendaraan Dinas</p>
+                                <i class="right fas fa-angle-left"></i>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <?php if ($activeMenu == 'randis-data-data') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Data Randis</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <?php if ($activeMenu == 'randis-data-tambah') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tambah Randis</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link <?php if ($activeMenu == 'randis-distribusi') echo "active" ?>">
                                 <i class="far fa-dot-circle nav-icon"></i>
                                 <p>Distribusi Randis</p>
+                                <i class="right fas fa-angle-left"></i>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <?php if ($activeMenu == 'randis-distribusi-data') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Data Distribusi Randis</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <?php if ($activeMenu == 'randis-distribusi-tambah') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tambah Distribusi Randis</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link <?php if ($activeMenu == 'randis-jenis') echo "active" ?>">
                                 <i class="far fa-dot-circle nav-icon"></i>
                                 <p>Jenis Operasional</p>
+                                <i class="right fas fa-angle-left"></i>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <?php if ($activeMenu == 'randis-jenis-data') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Data Jenis Ops</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <?php if ($activeMenu == 'randis-jenis-tambah') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tambah Jenis Ops</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link <?php if (in_array($activeMenu, [
+                                                    'bmn-pendahuluan',
+                                                    'bmn-gedung',
+                                                    'bmn-gedung-data',
+                                                    'bmn-gedung-tambah',
+                                                    'bmn-ruangan',
+                                                    'bmn-ruangan-data',
+                                                    'bmn-ruangan-tambah',
+                                                    'bmn-alat',
+                                                    'bmn-alat-data',
+                                                    'bmn-alat-tambah',
+                                                    'bmn-distribusi',
+                                                    'bmn-distribusi-data',
+                                                    'bmn-distribusi-tambah',
+                                                    'bmn-kategori-ruangan',
+                                                    'bmn-kategori-ruangan-data',
+                                                    'bmn-kategori-ruangan-tambah',
+                                                ])) echo "active" ?>">
+                        <i class="nav-icon fa-solid fa-folder-tree"></i>
+                        <p>
+                            Data BMN
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link <?php if ($activeMenu == 'bmn-pendahuluan') echo "active" ?>">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Pendahuluan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link <?php if ($activeMenu == 'bmn-gedung') echo "active" ?>">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Gedung</p>
+                                <i class="right fas fa-angle-left"></i>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <?php if ($activeMenu == 'bmn-gedung-data') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Data Gedung</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <?php if ($activeMenu == 'bmn-gedung-tambah') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tambah Gedung</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link <?php if ($activeMenu == 'bmn-ruangan') echo "active" ?>">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Ruangan</p>
+                                <i class="right fas fa-angle-left"></i>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <?php if ($activeMenu == 'bmn-ruangan-data') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Data Ruangan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <?php if ($activeMenu == 'bmn-ruangan-tambah') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tambah Ruangan</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link <?php if ($activeMenu == 'bmn-alat') echo "active" ?>">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Peralatan & Mesin</p>
+                                <i class="right fas fa-angle-left"></i>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <?php if ($activeMenu == 'bmn-alat-data') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Data Peralatan & Mesin</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <?php if ($activeMenu == 'bmn-alat-tambah') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tambah Peralatan & Mesin</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link <?php if ($activeMenu == 'bmn-distribusi') echo "active" ?>">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Distribusi Alat & Mesin</p>
+                                <i class="right fas fa-angle-left"></i>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <?php if ($activeMenu == 'bmn-distribusi-data') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Data Dist Alat & Mesin</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <?php if ($activeMenu == 'bmn-distribusi-tambah') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tambah Dist Alat & Mesin</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link <?php if ($activeMenu == 'bmn-kategori-ruangan') echo "active" ?>">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Kategori Ruangan</p>
+                                <i class="right fas fa-angle-left"></i>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <?php if ($activeMenu == 'bmn-kategori-ruangan-data') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Data Kat Ruangan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <?php if ($activeMenu == 'bmn-kategori-ruangan-tambah') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tambah Kat Ruangan</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
