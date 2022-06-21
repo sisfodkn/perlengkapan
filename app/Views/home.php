@@ -1,7 +1,8 @@
 <?php
-echo view('base/header.php');
-echo view('base/navbar.php');
-echo view('base/sidebar.php');
+$data['activeMenu'] = $activeMenu;
+echo view('base/header');
+echo view('base/navbar');
+echo view('base/sidebar', $data);
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -607,5 +608,5 @@ echo view('base/sidebar.php');
 <!-- /.content-wrapper -->
 
 <?php
-echo view('base/footer.php');
+echo view('base/footer');
 ?>

@@ -11,6 +11,7 @@ class HomeController extends BaseController
     }
     public function index()
     {
-        return view("home");
+        $data['activeMenu'] = 'dashboard';
+        return view("home", $data);
     }
 }

@@ -20,12 +20,12 @@ class UsersController extends BaseController
 
             $rules = [
                 'username' => 'required|max_length[20]|',
-                'password' => 'required|max_length[100]|validateUser[username,password]',
+                'password' => 'required|max_length[100]|validateUsers[username,password]',
             ];
 
             $errors = [
                 'password' => [
-                    'validateUser' => "Username & Password salah",
+                    'validateUsers' => "Username & Password salah",
                 ],
             ];
 

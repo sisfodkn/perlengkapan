@@ -6,7 +6,7 @@ use App\Models\UsersModel;
 
 class Usersrules
 {
-    public function validateUser(string $str, string $fields, array $data)
+    public function validateUsers(string $str, string $fields, array $data)
     {
         $model = new UsersModel();
         $user = $model->where('username', $data['username'])
