@@ -46,6 +46,89 @@
 <script src="<?php echo base_url(); ?>/dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo base_url(); ?>/dist/js/pages/dashboard.js"></script>
+
+<!-- DataTables  & Plugins -->
+<script src="<?php echo base_url(); ?>/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url(); ?>/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>/plugins/jszip/jszip.min.js"></script>
+<script src="<?php echo base_url(); ?>/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="<?php echo base_url(); ?>/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="<?php echo base_url(); ?>/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="<?php echo base_url(); ?>/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo base_url(); ?>/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- Page specific script -->
+<script>
+    $(function() {
+        $('#tablePegawai').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
+
+<!-- jquery-validation -->
+<script src="<?php echo base_url(); ?>/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="<?php echo base_url(); ?>/plugins/jquery-validation/additional-methods.min.js"></script>
+<!-- Page specific script -->
+<script>
+    $(function() {
+        $('#inputJabatanForm').validate({
+            rules: {
+                namaJabatan: {
+                    required: true
+                }
+            },
+            messages: {
+                namaJabatan: {
+                    required: "Nama Jabatan wajib diisi!"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+        $('#inputUnitForm').validate({
+            rules: {
+                namaUnit: {
+                    required: true
+                }
+            },
+            messages: {
+                namaUnit: {
+                    required: "Nama Unit wajib diisi!"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+    });
+</script>
 </body>
 
 </html>

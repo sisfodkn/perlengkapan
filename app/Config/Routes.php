@@ -35,12 +35,27 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+// Users
 $routes->match(['get', 'post'], 'login', 'UsersController::login', ["filter" => "noauth"]);
 $routes->get("/", "HomeController::index", ["filter" => "auth"]);
 $routes->get('logout', 'UsersController::logout');
 
-// $routes->get('/', 'Home::index', ['filter' => 'usersAuth']);
-// $routes->get('/login', 'User::login');
+// Data Pegawai
+$routes->get("/data-pegawai", "PegawaiController::index", ["filter" => "auth"]);
+
+// Data Jabatan
+$routes->get("/data-jabatan", "JabatanController::index", ["filter" => "auth"]);
+$routes->get("/input-jabatan", "JabatanController::add", ["filter" => "auth"]);
+$routes->get("/input-jabatan/(:any)", "JabatanController::edit/$1", ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'save-jabatan', 'JabatanController::save/', ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'save-jabatan/(:any)', 'JabatanController::save/$1', ["filter" => "auth"]);
+
+// Data Unit Kerja
+$routes->get("/data-unit", "UnitController::index", ["filter" => "auth"]);
+$routes->get("/input-unit", "UnitController::add", ["filter" => "auth"]);
+$routes->get("/input-unit/(:any)", "UnitController::edit/$1", ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'save-unit', 'UnitController::save/', ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'save-unit/(:any)', 'UnitController::save/$1', ["filter" => "auth"]);
 
 /*
  * --------------------------------------------------------------------
