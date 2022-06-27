@@ -95,6 +95,10 @@
                     'utama-unit-tambah',
                     'utama-unit-ubah'
                 ];
+                $menuAtk = [
+                    'utama-atk-data',
+                    'utama-atk-tambah'
+                ];
                 $menuKegiatan = [
                     'utama-kegiatan-data',
                     'utama-kegiatan-tambah'
@@ -172,6 +176,27 @@
                                     <a style="padding-left: 40px;" href="<?php echo base_url('input-unit'); ?>" class="nav-link <?php if ($activeMenu == 'utama-unit-tambah') echo "active" ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Tambah Unit Kerja</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item <?php if (in_array($activeMenu, $menuAtk)) echo "menu-open" ?>">
+                            <a style="padding-left: 30px;" class="nav-link <?php if (in_array($activeMenu, $menuAtk)) echo "active" ?>">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>ATK</p>
+                                <i class="right fas fa-angle-left"></i>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a style="padding-left: 40px;" href="<?php echo base_url('data-atk'); ?>" class="nav-link <?php if ($activeMenu == 'utama-atk-data') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Data ATK</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a style="padding-left: 40px;" href="#" class="nav-link <?php if ($activeMenu == 'utama-atk-tambah') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tambah ATK</p>
                                     </a>
                                 </li>
                             </ul>
