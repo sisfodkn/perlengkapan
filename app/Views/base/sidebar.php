@@ -10,6 +10,59 @@
         <span class="brand-text font-weight-light" style="padding-left: 50px;">Terpadu</span>
     </a>
 
+
+    <?php
+    $menuUtama = [
+        'utama-pegawai-data',
+        'utama-pegawai-tambah',
+        'utama-jabatan-data',
+        'utama-jabatan-tambah',
+        'utama-jabatan-ubah',
+        'utama-unit-data',
+        'utama-unit-tambah',
+        'utama-unit-ubah',
+        'utama-atk-data',
+        'utama-atk-tambah',
+        'utama-atk-ubah',
+        'utama-kegiatan-data',
+        'utama-kegiatan-tambah',
+        'utama-user-data',
+        'utama-user-tambah'
+    ];
+    $menuPegawai = [
+        'utama-pegawai-data',
+        'utama-pegawai-tambah'
+    ];
+    $menuJabatan = [
+        'utama-jabatan-data',
+        'utama-jabatan-tambah',
+        'utama-jabatan-ubah'
+    ];
+    $menuUnit = [
+        'utama-unit-data',
+        'utama-unit-tambah',
+        'utama-unit-ubah'
+    ];
+    $menuAtk = [
+        'utama-atk-data',
+        'utama-atk-tambah',
+        'utama-atk-ubah'
+    ];
+    $menuKegiatan = [
+        'utama-kegiatan-data',
+        'utama-kegiatan-tambah'
+    ];
+    $menuUser = [
+        'utama-user-data',
+        'utama-user-tambah'
+    ];
+
+    $menuPengadaan = [
+        'pengadaan-atk-permintaan',
+        'pengadaan-atk-riwayat'
+    ];
+    ?>
+
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
@@ -66,48 +119,6 @@
                         </li>
                     </ul>
                 </li>
-                <?php
-                $menuUtama = [
-                    'utama-pegawai-data',
-                    'utama-pegawai-tambah',
-                    'utama-jabatan-data',
-                    'utama-jabatan-tambah',
-                    'utama-jabatan-ubah',
-                    'utama-unit-data',
-                    'utama-unit-tambah',
-                    'utama-unit-ubah',
-                    'utama-kegiatan-data',
-                    'utama-kegiatan-tambah',
-                    'utama-user-data',
-                    'utama-user-tambah'
-                ];
-                $menuPegawai = [
-                    'utama-pegawai-data',
-                    'utama-pegawai-tambah'
-                ];
-                $menuJabatan = [
-                    'utama-jabatan-data',
-                    'utama-jabatan-tambah',
-                    'utama-jabatan-ubah'
-                ];
-                $menuUnit = [
-                    'utama-unit-data',
-                    'utama-unit-tambah',
-                    'utama-unit-ubah'
-                ];
-                $menuAtk = [
-                    'utama-atk-data',
-                    'utama-atk-tambah'
-                ];
-                $menuKegiatan = [
-                    'utama-kegiatan-data',
-                    'utama-kegiatan-tambah'
-                ];
-                $menuUser = [
-                    'utama-user-data',
-                    'utama-user-tambah'
-                ];
-                ?>
                 <li class="nav-item <?php if (in_array($activeMenu, $menuUtama)) echo "menu-open" ?>">
                     <a href="#" class="nav-link <?php if (in_array($activeMenu, $menuUtama)) echo "active" ?>">
                         <i class="nav-icon fa-solid fa-users"></i>
@@ -188,13 +199,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a style="padding-left: 40px;" href="<?php echo base_url('data-atk'); ?>" class="nav-link <?php if ($activeMenu == 'utama-atk-data') echo "active" ?>">
+                                    <a style="padding-left: 40px;" href="<?php echo base_url('data-atk'); ?>" class="nav-link <?php if (in_array($activeMenu, ['utama-atk-data', 'utama-atk-ubah'])) echo "active" ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Data ATK</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a style="padding-left: 40px;" href="#" class="nav-link <?php if ($activeMenu == 'utama-atk-tambah') echo "active" ?>">
+                                    <a style="padding-left: 40px;" href="<?php echo base_url('input-atk'); ?>" class="nav-link <?php if ($activeMenu == 'utama-atk-tambah') echo "active" ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Tambah ATK</p>
                                     </a>
@@ -472,6 +483,25 @@
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-header">Permintaan Layanan</li>
+                <li class="nav-item <?php if (in_array($activeMenu, $menuPengadaan)) echo "menu-open" ?>">
+                    <a href="#" class="nav-link <?php if (in_array($activeMenu, $menuUtama)) echo "active" ?>">
+                        <i class="nav-icon fa-solid fa-users"></i>
+                        <p>
+                            Pengadaan
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item <?php if ($activeMenu == 'pengadaan-atk') echo "menu-open" ?>">
+                            <a style="padding-left: 30px;" href="<?php echo base_url('pengadaan-atk'); ?>" class="nav-link <?php if ($activeMenu == 'pengadaan-atk') echo "active" ?>">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>ATK</p>
+                                <i class="right fas fa-angle-left"></i>
+                            </a>
                         </li>
                     </ul>
                 </li>

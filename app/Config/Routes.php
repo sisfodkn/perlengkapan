@@ -57,6 +57,17 @@ $routes->get("/input-unit/(:any)", "UnitController::edit/$1", ["filter" => "auth
 $routes->match(['get', 'post'], 'save-unit', 'UnitController::save/', ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-unit/(:any)', 'UnitController::save/$1', ["filter" => "auth"]);
 
+// Data ATK
+$routes->get("/data-atk", "AtkController::index", ["filter" => "auth"]);
+$routes->get("/input-atk", "AtkController::add", ["filter" => "auth"]);
+$routes->get("/input-atk/(:any)", "AtkController::edit/$1", ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'save-atk', 'AtkController::save/', ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'save-atk/(:any)', 'AtkController::save/$1', ["filter" => "auth"]);
+
+// Data ATK
+$routes->get("/permintaan-atk", "PengadaanAtkController::permintaan", ["filter" => "auth"]);
+$routes->get("/riwayat-atk", "PengadaanAtkController::index", ["filter" => "auth"]);
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
