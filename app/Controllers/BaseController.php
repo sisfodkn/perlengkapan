@@ -49,4 +49,18 @@ abstract class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
     }
+
+    public function decrypt($id)
+    {
+        // Non-NULL Initialization Vector for decryption 
+        $decryption_iv = '1234567891011121';
+        // Storing the decryption key 
+        $decryption_key = "SisfoDKN";
+        // Storingthe cipher method 
+        $ciphering = "AES-128-CTR";
+        // Using OpenSSl Encryption method 
+        $options   = 0;
+        // Using openssl_decrypt() function to decrypt the data 
+        return openssl_decrypt($id, $ciphering, $decryption_key, $options, $decryption_iv);
+    }
 }
