@@ -39,17 +39,17 @@ echo view('base/sidebar', $data);
                         <form id="inputUnitForm" class="form-horizontal" action="<?= $activeMenu == 'utama-unit-ubah' ? base_url("save-unit/$id") : base_url('save-unit') ?>" method="post">
                             <div class="card-body">
                                 <div class="form-group row">
-                                    <label for="namaUnit" class="col-sm-2 col-form-label">Nama Unit</label>
+                                    <label for="namaUnit" class="col-sm-2 col-form-label"><?= $prop->namaUnit; ?></label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="namaUnit" name="namaUnit" value="<?php if ($activeMenu == 'utama-unit-ubah') echo $unit['nama_unit']; ?>" placeholder="Nama Unit">
+                                        <input type="text" class="form-control" id="namaUnit" name="namaUnit" value="<?php if ($activeMenu == 'utama-unit-ubah') echo $unit['nama_unit']; ?>" placeholder="<?= $prop->namaUnit; ?>">
                                     </div>
                                 </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="reset" class="btn btn-secondary">Reset</button>
+                                <button type="submit" class="btn btn-primary"><?= $prop->submit; ?></button>
+                                <button type="reset" class="btn btn-secondary"><?= $prop->reset; ?></button>
                             </div>
                         </form>
                     </div>

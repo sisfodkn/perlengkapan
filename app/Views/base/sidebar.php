@@ -58,8 +58,8 @@
     ];
 
     $menuPengadaan = [
-        'pengadaan-atk-permintaan',
-        'pengadaan-atk-riwayat'
+        'pengadaan-atk',
+        'pengadaan-cetakan'
     ];
     ?>
 
@@ -488,7 +488,7 @@
                 </li>
                 <li class="nav-header">Permintaan Layanan</li>
                 <li class="nav-item <?php if (in_array($activeMenu, $menuPengadaan)) echo "menu-open" ?>">
-                    <a href="#" class="nav-link <?php if (in_array($activeMenu, $menuUtama)) echo "active" ?>">
+                    <a href="#" class="nav-link <?php if (in_array($activeMenu, $menuPengadaan)) echo "active" ?>">
                         <i class="nav-icon fa-solid fa-users"></i>
                         <p>
                             Pengadaan
@@ -496,11 +496,16 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item <?php if ($activeMenu == 'pengadaan-atk') echo "menu-open" ?>">
+                        <li class="nav-item">
                             <a style="padding-left: 30px;" href="<?php echo base_url('pengadaan-atk'); ?>" class="nav-link <?php if ($activeMenu == 'pengadaan-atk') echo "active" ?>">
                                 <i class="far fa-dot-circle nav-icon"></i>
                                 <p>ATK</p>
-                                <i class="right fas fa-angle-left"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a style="padding-left: 30px;" href="<?php echo base_url('pengadaan-cetakan'); ?>" class="nav-link <?php if ($activeMenu == 'pengadaan-cetakan') echo "active" ?>">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Cetakan</p>
                             </a>
                         </li>
                     </ul>

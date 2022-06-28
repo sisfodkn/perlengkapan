@@ -38,6 +38,7 @@ echo view('base/sidebar', $data);
                                 <thead>
                                     <tr>
                                         <th>Nama ATK</th>
+                                        <th>Kategori ATK</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -59,6 +60,7 @@ echo view('base/sidebar', $data);
                                     ?>
                                         <tr>
                                             <td><?= $row['nama_atk']; ?></td>
+                                            <td><?= $row['kategori_atk']; ?></td>
                                             <td class="text-center">
                                                 <a title="Edit" href="<?= base_url("input-atk/$idEncryption"); ?>" class="btn btn-info btn-sm">Edit</a>
                                                 <a title="Hapus" href="<?= base_url("atk/delete/$idEncryption"); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus <?= $row['nama_atk']; ?> ?')">Hapus</a>

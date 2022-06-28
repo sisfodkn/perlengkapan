@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\DataUtama;
 
 use App\Controllers\BaseController;
 use App\Models\JabatanModel;
@@ -56,19 +56,5 @@ class JabatanController extends BaseController
             ]);
         }
         return redirect()->to(base_url("data-jabatan"));
-    }
-
-    public function decrypt($id)
-    {
-        // Non-NULL Initialization Vector for decryption 
-        $decryption_iv = '1234567891011121';
-        // Storing the decryption key 
-        $decryption_key = "SisfoDKN";
-        // Storingthe cipher method 
-        $ciphering = "AES-128-CTR";
-        // Using OpenSSl Encryption method 
-        $options   = 0;
-        // Using openssl_decrypt() function to decrypt the data 
-        return openssl_decrypt($id, $ciphering, $decryption_key, $options, $decryption_iv);
     }
 }

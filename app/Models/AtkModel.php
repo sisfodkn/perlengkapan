@@ -15,7 +15,8 @@ class AtkModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'nama_atk'
+        'nama_atk',
+        'kategori_atk'
     ];
 
     // Dates
