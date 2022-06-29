@@ -1,12 +1,18 @@
 <?php
 
-namespace App\Controllers\DataUtama;
+namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\UsersModel;
 
 class UsersController extends BaseController
 {
+    function __construct()
+    {
+        $this->prop = new \Config\Properties();
+    }
+
+
     public function index()
     {
         //
@@ -57,7 +63,8 @@ class UsersController extends BaseController
         $data = [
             'id' => $user['id'],
             'username' => $user['username'],
-            "role" => $user['role'],
+            'role' => $user['role'],
+            'props' => $this->prop,
             'isLoggedIn' => true,
         ];
 
