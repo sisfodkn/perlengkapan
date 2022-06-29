@@ -127,6 +127,29 @@
                 $(element).removeClass('is-invalid');
             }
         });
+        $('#inputSubUnitForm').validate({
+            rules: {
+                namaSubUnit: {
+                    required: true
+                }
+            },
+            messages: {
+                namaSubUnit: {
+                    required: "Nama Sub Unit wajib diisi!"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
         $('#inputAtkForm').validate({
             rules: {
                 namaAtk: {

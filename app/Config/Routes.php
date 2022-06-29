@@ -57,6 +57,13 @@ $routes->get("/input-unit/(:any)", "DataUtama\UnitController::edit/$1", ["filter
 $routes->match(['get', 'post'], 'save-unit', 'DataUtama\UnitController::save/', ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-unit/(:any)', 'DataUtama\UnitController::save/$1', ["filter" => "auth"]);
 
+// Data Sub Unit Kerja
+$routes->get("/data-subunit", "DataUtama\SubUnitController::index", ["filter" => "auth"]);
+$routes->get("/input-subunit", "DataUtama\SubUnitController::add", ["filter" => "auth"]);
+$routes->get("/input-subunit/(:any)", "DataUtama\SubUnitController::edit/$1", ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'save-subunit', 'DataUtama\SubUnitController::save/', ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'save-subunit/(:any)', 'DataUtama\SubUnitController::save/$1', ["filter" => "auth"]);
+
 // Data ATK
 $routes->get("/data-atk", "DataUtama\AtkController::index", ["filter" => "auth"]);
 $routes->get("/input-atk", "DataUtama\AtkController::add", ["filter" => "auth"]);

@@ -9,4 +9,5 @@ class Properties extends BaseConfig
     public $submit = "Submit";
     public $reset = "Reset";
     public $namaUnit = "Nama Unit";
+    public $namaSubUnit = "Nama Sub Unit";
 }

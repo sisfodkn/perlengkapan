@@ -21,6 +21,9 @@
         'utama-unit-data',
         'utama-unit-tambah',
         'utama-unit-ubah',
+        'utama-subunit-data',
+        'utama-subunit-tambah',
+        'utama-subunit-ubah',
         'utama-atk-data',
         'utama-atk-tambah',
         'utama-atk-ubah',
@@ -42,6 +45,11 @@
         'utama-unit-data',
         'utama-unit-tambah',
         'utama-unit-ubah'
+    ];
+    $menuSubUnit = [
+        'utama-subunit-data',
+        'utama-subunit-tambah',
+        'utama-subunit-ubah'
     ];
     $menuAtk = [
         'utama-atk-data',
@@ -187,6 +195,27 @@
                                     <a style="padding-left: 40px;" href="<?php echo base_url('input-unit'); ?>" class="nav-link <?php if ($activeMenu == 'utama-unit-tambah') echo "active" ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Tambah Unit Kerja</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item <?php if (in_array($activeMenu, $menuSubUnit)) echo "menu-open" ?>">
+                            <a style="padding-left: 30px;" class="nav-link <?php if (in_array($activeMenu, $menuSubUnit)) echo "active" ?>">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Sub Unit Kerja</p>
+                                <i class="right fas fa-angle-left"></i>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a style="padding-left: 40px;" href="<?php echo base_url('data-subunit'); ?>" class="nav-link <?php if (in_array($activeMenu, ['utama-subunit-data', 'utama-subunit-ubah'])) echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Data Sub Unit Kerja</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a style="padding-left: 40px;" href="<?php echo base_url('input-subunit'); ?>" class="nav-link <?php if ($activeMenu == 'utama-subunit-tambah') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tambah Sub Unit Kerja</p>
                                     </a>
                                 </li>
                             </ul>
