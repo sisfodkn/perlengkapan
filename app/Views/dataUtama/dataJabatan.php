@@ -37,7 +37,7 @@ echo view('base/sidebar', $data);
                             <table id="tableJabatan" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Nama Jabatan</th>
+                                        <th><?= session()->get('props')->nama_jabatan; ?></th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -59,8 +59,8 @@ echo view('base/sidebar', $data);
                                         <tr>
                                             <td><?= $row['nama_jabatan']; ?></td>
                                             <td class="text-center">
-                                                <a title="Edit" href="<?= base_url("input-jabatan/$idEncryption"); ?>" class="btn btn-info btn-sm">Edit</a>
-                                                <a title="Hapus" href="<?= base_url("jabatan/delete/$idEncryption"); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus <?= $row['nama_jabatan']; ?> ?')">Hapus</a>
+                                                <a title="Edit" href="<?= base_url("input-jabatan/$idEncryption"); ?>" class="btn btn-info btn-sm"><?= session()->get('props')->tombol_edit; ?></a>
+                                                <a title="Hapus" href="<?= base_url("jabatan/delete/$idEncryption"); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus <?= $row['nama_jabatan']; ?> ?')"><?= session()->get('props')->tombol_delete; ?></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

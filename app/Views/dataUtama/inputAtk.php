@@ -47,13 +47,13 @@ echo view('base/sidebar', $data);
                         <form id="inputAtkForm" class="form-horizontal" action="<?= $id != null ? base_url("save-atk/$id") : base_url('save-atk') ?>" method="post">
                             <div class="card-body">
                                 <div class="form-group row">
-                                    <label for="namaAtk" class="col-sm-2 col-form-label">Nama ATK</label>
+                                    <label for="namaAtk" class="col-sm-2 col-form-label"><?= session()->get('props')->nama_atk; ?></label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="namaAtk" name="namaAtk" value="<?php if ($nama != null) echo $nama; ?>" placeholder="Nama ATK">
+                                        <input type="text" class="form-control" id="namaAtk" name="namaAtk" value="<?php if ($nama != null) echo $nama; ?>" placeholder="<?= session()->get('props')->nama_atk; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="kategoriAtk" class="col-sm-2 col-form-label">Kategori ATK</label>
+                                    <label for="kategoriAtk" class="col-sm-2 col-form-label"><?= session()->get('props')->kategori_atk; ?></label>
                                     <div class="col-sm-10">
                                         <select class="form-control" id="kategoriAtk" name="kategoriAtk" aria-label="Kategori">
                                             <option value="ATK" <?php if ($kategori == 'ATK') echo 'selected'; ?>>ATK</option>
@@ -65,8 +65,8 @@ echo view('base/sidebar', $data);
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="reset" class="btn btn-secondary">Reset</button>
+                                <button type="submit" class="btn btn-primary"><?= session()->get('props')->tombol_submit; ?></button>
+                                <button type="reset" class="btn btn-secondary"><?= session()->get('props')->tombol_reset; ?></button>
                             </div>
                         </form>
                     </div>

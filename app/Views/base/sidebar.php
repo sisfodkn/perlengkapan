@@ -15,6 +15,7 @@
     $menuUtama = [
         'utama-pegawai-data',
         'utama-pegawai-tambah',
+        'utama-pegawai-ubah',
         'utama-jabatan-data',
         'utama-jabatan-tambah',
         'utama-jabatan-ubah',
@@ -150,7 +151,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a style="padding-left: 40px;" href="#" class="nav-link <?php if ($activeMenu == 'utama-pegawai-tambah') echo "active" ?>">
+                                    <a style="padding-left: 40px;" href="<?php echo base_url('input-pegawai'); ?>" class="nav-link <?php if ($activeMenu == 'utama-pegawai-tambah') echo "active" ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Tambah Pegawai</p>
                                     </a>

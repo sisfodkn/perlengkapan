@@ -81,6 +81,53 @@
 <!-- Page specific script -->
 <script>
     $(function() {
+        $('#inputPegawaiForm').validate({
+            rules: {
+                nip: {
+                    required: true
+                },
+                namaPegawai: {
+                    required: true
+                },
+                pangkat: {
+                    required: true
+                },
+                jabatan: {
+                    required: true
+                },
+                unit: {
+                    required: true
+                }
+            },
+            messages: {
+                nip: {
+                    required: "NIP/NRP wajib diisi!"
+                },
+                namaPegawai: {
+                    required: "Nama Pegawai wajib diisi!"
+                },
+                pangkat: {
+                    required: "Pangkat wajib diisi!"
+                },
+                jabatan: {
+                    required: "Jabatan wajib diisi!"
+                },
+                unit: {
+                    required: "Unit Kerja wajib diisi!"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
         $('#inputJabatanForm').validate({
             rules: {
                 namaJabatan: {

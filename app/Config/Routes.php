@@ -42,6 +42,10 @@ $routes->get('logout', 'UsersController::logout');
 
 // Data Pegawai
 $routes->get("/data-pegawai", "DataUtama\PegawaiController::index", ["filter" => "auth"]);
+$routes->get("/input-pegawai", "DataUtama\PegawaiController::add", ["filter" => "auth"]);
+$routes->get("/input-pegawai/(:any)", "DataUtama\PegawaiController::edit/$1", ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'save-pegawai', 'DataUtama\PegawaiController::save/', ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'save-pegawai/(:any)', 'DataUtama\PegawaiController::save/$1', ["filter" => "auth"]);
 
 // Data Jabatan
 $routes->get("/data-jabatan", "DataUtama\JabatanController::index", ["filter" => "auth"]);

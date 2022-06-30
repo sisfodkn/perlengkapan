@@ -35,11 +35,12 @@ echo view('base/sidebar', $data);
                             <table id="tablePegawai" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>NIP/NRP</th>
-                                        <th>Nama</th>
-                                        <th>Pangkat</th>
-                                        <th>Jabatan</th>
-                                        <th>Unit Kerja</th>
+                                        <th><?= session()->get('props')->nip; ?></th>
+                                        <th><?= session()->get('props')->nama_pegawai; ?></th>
+                                        <th><?= session()->get('props')->pangkat; ?></th>
+                                        <th><?= session()->get('props')->jabatan; ?></th>
+                                        <th><?= session()->get('props')->unit_kerja; ?></th>
+                                        <th><?= session()->get('props')->subunit_kerja; ?></th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -64,9 +65,10 @@ echo view('base/sidebar', $data);
                                             <td><?= $row->pangkat; ?></td>
                                             <td><?= $row->nama_jabatan; ?></td>
                                             <td><?= $row->nama_unit; ?></td>
+                                            <td><?= $row->nama_subunit; ?></td>
                                             <td class="text-center">
-                                                <a title="Edit" href="<?= base_url("pegawai/edit/$idEncryption"); ?>" class="btn btn-info btn-sm">Edit</a>
-                                                <a title="Hapus" href="<?= base_url("pegawai/delete/$idEncryption"); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus NIP/NRP <?= $row->nip_nrp ?> ?')">Hapus</a>
+                                                <a title="Edit" href="<?= base_url("input-pegawai/$idEncryption"); ?>" class="btn btn-info btn-sm"><?= session()->get('props')->tombol_edit; ?></a>
+                                                <a title="Hapus" href="<?= base_url("pegawai/delete/$idEncryption"); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus NIP/NRP <?= $row->nip_nrp ?> ?')"><?= session()->get('props')->tombol_delete; ?></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

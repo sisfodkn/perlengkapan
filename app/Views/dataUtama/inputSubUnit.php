@@ -39,17 +39,17 @@ echo view('base/sidebar', $data);
                         <form id="inputSubUnitForm" class="form-horizontal" action="<?= $activeMenu == 'utama-subunit-ubah' ? base_url("save-subunit/$id") : base_url('save-subunit') ?>" method="post">
                             <div class="card-body">
                                 <div class="form-group row">
-                                    <label for="namaSubUnit" class="col-sm-2 col-form-label"><?= session()->get('props')->namaSubUnit; ?></label>
+                                    <label for="namaSubUnit" class="col-sm-2 col-form-label"><?= session()->get('props')->nama_subunit; ?></label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="namaSubUnit" name="namaSubUnit" value="<?php if ($activeMenu == 'utama-subunit-ubah') echo $subUnit['nama_subunit']; ?>" placeholder="<?= session()->get('props')->namaSubUnit; ?>">
+                                        <input type="text" class="form-control" id="namaSubUnit" name="namaSubUnit" value="<?php if ($activeMenu == 'utama-subunit-ubah') echo $subUnit['nama_subunit']; ?>" placeholder="<?= session()->get('props')->nama_subunit; ?>">
                                     </div>
                                 </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary"><?= session()->get('props')->submit; ?></button>
-                                <button type="reset" class="btn btn-secondary"><?= session()->get('props')->reset; ?></button>
+                                <button type="submit" class="btn btn-primary"><?= session()->get('props')->tombol_submit; ?></button>
+                                <button type="reset" class="btn btn-secondary"><?= session()->get('props')->tombol_reset; ?></button>
                             </div>
                         </form>
                     </div>

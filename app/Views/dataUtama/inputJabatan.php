@@ -39,17 +39,17 @@ echo view('base/sidebar', $data);
                         <form id="inputJabatanForm" class="form-horizontal" action="<?= $activeMenu == 'utama-jabatan-ubah' ? base_url("save-jabatan/$id") : base_url('save-jabatan') ?>" method="post">
                             <div class="card-body">
                                 <div class="form-group row">
-                                    <label for="namaJabatan" class="col-sm-2 col-form-label">Nama Jabatan</label>
+                                    <label for="namaJabatan" class="col-sm-2 col-form-label"><?= session()->get('props')->nama_jabatan; ?></label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="namaJabatan" name="namaJabatan" value="<?php if ($activeMenu == 'utama-jabatan-ubah') echo $jabatan['nama_jabatan']; ?>" placeholder="Nama Jabatan">
+                                        <input type="text" class="form-control" id="namaJabatan" name="namaJabatan" value="<?php if ($activeMenu == 'utama-jabatan-ubah') echo $jabatan['nama_jabatan']; ?>" placeholder="<?= session()->get('props')->nama_jabatan; ?>">
                                     </div>
                                 </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="reset" class="btn btn-secondary">Reset</button>
+                                <button type="submit" class="btn btn-primary"><?= session()->get('props')->tombol_submit; ?></button>
+                                <button type="reset" class="btn btn-secondary"><?= session()->get('props')->tombol_reset; ?></button>
                             </div>
                         </form>
                     </div>

@@ -15,11 +15,12 @@ class PegawaiModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'nip',
-        'nama',
+        'nip_nrp',
+        'nama_pegawai',
         'pangkat',
-        'jabatan',
-        'unit'
+        'id_jabatan',
+        'id_unit',
+        'id_subunit'
     ];
 
     // Dates
@@ -54,10 +55,13 @@ class PegawaiModel extends Model
             pegawai.nama_pegawai,
             pegawai.pangkat,
             jabatan.nama_jabatan,
-            unit.nama_unit
+            unit.nama_unit,
+            sub_unit.nama_subunit
         FROM pegawai
         JOIN jabatan ON pegawai.id_jabatan = jabatan.id
-        JOIN unit ON pegawai.id_unit = unit.id");
+        JOIN unit ON pegawai.id_unit = unit.id
+        LEFT JOIN sub_unit ON pegawai.id_subunit = sub_unit.id
+        ORDER BY pegawai.id_unit");
         return $query->getResult();
     }
 }
