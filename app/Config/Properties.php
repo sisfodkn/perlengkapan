@@ -24,4 +24,8 @@ class Properties extends BaseConfig
     public $nama_subunit = "Nama Sub Unit";
     public $nama_atk = "Nama ATK";
     public $kategori_atk = "Kategori ATK";
+    public $username = "Username";
+    public $password = "Password";
+    public $ulangPassword = "Ulangi Password";
+    public $role = "Role";
 }

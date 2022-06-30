@@ -43,4 +43,28 @@ class UsersModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getAll()
+    {
+        $query = $this->db->query("SELECT
+            users.id,
+            users.username,
+            users.role,
+            pegawai.nama_pegawai
+        FROM users
+        JOIN pegawai ON users.id_pegawai = pegawai.id");
+        return $query->getResult();
+    }
+    public function getById($id)
+    {
+        $query = $this->db->query("SELECT
+            users.id,
+            users.username,
+            users.role,
+            pegawai.nama_pegawai
+        FROM users
+        JOIN pegawai ON users.id_pegawai = pegawai.id
+        WHERE users.id = '$id'");
+        return $query->getFirstRow();
+    }
 }

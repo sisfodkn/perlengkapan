@@ -1,21 +1,52 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\DataUtama;
 
 use App\Controllers\BaseController;
 use App\Models\UsersModel;
+use App\Models\PegawaiModel;
 
 class UsersController extends BaseController
 {
     function __construct()
     {
-        $this->prop = new \Config\Properties();
+        $this->usersModel = new UsersModel;
+        $this->pegawaiModel = new PegawaiModel;
     }
 
 
     public function index()
     {
-        //
+        $data = [
+            'activeMenu'    => 'utama-user-data',
+            'users'       => $this->usersModel->getAll()
+        ];
+        return view("dataUtama/dataUser", $data);
+    }
+
+    public function add()
+    {
+        $data = [
+            'activeMenu'    => 'utama-user-tambah',
+            'listPegawai' => $this->pegawaiModel->findColumn('nama_pegawai')
+        ];
+        return view('dataUtama/inputUser', $data);
+    }
+
+    public function edit($id)
+    {
+        $idDecryption = $this->decrypt($id);
+        $dataUser = $this->usersModel->getById($idDecryption);
+
+        if (empty($dataUser)) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Data User Tidak ditemukan !');
+        }
+        $data = [
+            'activeMenu'    => 'utama-user-ubah',
+            'user'     => $dataUser
+        ];
+
+        return view('dataUtama/inputUser', $data);
     }
 
     public function login()
@@ -43,9 +74,7 @@ class UsersController extends BaseController
                     "validation" => $this->validator,
                 ]);
             } else {
-                $model = new UsersModel();
-
-                $user = $model->where('username', $this->request->getVar('username'))
+                $user = $this->usersModel->where('username', $this->request->getVar('username'))
                     ->first();
 
                 // Stroing session values

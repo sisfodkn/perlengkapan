@@ -35,7 +35,8 @@
     ];
     $menuPegawai = [
         'utama-pegawai-data',
-        'utama-pegawai-tambah'
+        'utama-pegawai-tambah',
+        'utama-pegawai-ubah'
     ];
     $menuJabatan = [
         'utama-jabatan-data',
@@ -145,7 +146,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a style="padding-left: 40px;" href="<?php echo base_url('data-pegawai'); ?>" class="nav-link <?php if ($activeMenu == 'utama-pegawai-data') echo "active" ?>">
+                                    <a style="padding-left: 40px;" href="<?php echo base_url('data-pegawai'); ?>" class="nav-link <?php if (in_array($activeMenu, ['utama-pegawai-data', 'utama-pegawai-ubah'])) echo "active" ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Data Pegawai</p>
                                     </a>
@@ -277,7 +278,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a style="padding-left: 40px;" href="#" class="nav-link <?php if ($activeMenu == 'utama-user-tambah') echo "active" ?>">
+                                    <a style="padding-left: 40px;" href="<?php echo base_url('input-user'); ?>" class="nav-link <?php if ($activeMenu == 'utama-user-tambah') echo "active" ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Tambah User</p>
                                     </a>

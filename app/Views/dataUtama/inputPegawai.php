@@ -41,24 +41,24 @@ if ($activeMenu == 'utama-pegawai-ubah') $flagUbah = true;
                         <!-- /.card-header -->
                         <!-- form start -->
                         <?php if ($activeMenu == 'utama-pegawai-ubah') $id = $pegawai['id'] ?>
-                        <form id="inputPegawaiForm" class="form-horizontal" action="<?= $flagUbah == true ? base_url("save-pegawai/$id") : base_url('save-pegawai') ?>" method="post">
+                        <form id="inputPegawaiForm" class="form-horizontal" action="<?= $flagUbah ? base_url("save-pegawai/$id") : base_url('save-pegawai') ?>" method="post">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="nip" class="col-sm-2 col-form-label"><?= session()->get('props')->nip; ?></label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="nip" name="nip" value="<?php if ($flagUbah == true) echo $pegawai['nip_nrp']; ?>" placeholder="<?= session()->get('props')->nip; ?>">
+                                        <input type="text" class="form-control" id="nip" name="nip" value="<?php if ($flagUbah) echo $pegawai['nip_nrp']; ?>" placeholder="<?= session()->get('props')->nip; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="namaPegawai" class="col-sm-2 col-form-label"><?= session()->get('props')->nama_pegawai; ?></label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="namaPegawai" name="namaPegawai" value="<?php if ($flagUbah == true) echo $pegawai['nama_pegawai']; ?>" placeholder="<?= session()->get('props')->nama_pegawai; ?>">
+                                        <input type="text" class="form-control" id="namaPegawai" name="namaPegawai" value="<?php if ($flagUbah) echo $pegawai['nama_pegawai']; ?>" placeholder="<?= session()->get('props')->nama_pegawai; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="pangkat" class="col-sm-2 col-form-label"><?= session()->get('props')->pangkat; ?></label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="pangkat" name="pangkat" value="<?php if ($flagUbah == true) echo $pegawai['pangkat']; ?>" placeholder="<?= session()->get('props')->pangkat; ?>">
+                                        <input type="text" class="form-control" id="pangkat" name="pangkat" value="<?php if ($flagUbah) echo $pegawai['pangkat']; ?>" placeholder="<?= session()->get('props')->pangkat; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -69,10 +69,7 @@ if ($activeMenu == 'utama-pegawai-ubah') $flagUbah = true;
                                             <?php
                                             foreach ($listJabatan as $dataJabatan) :
                                             ?>
-                                                <option value="<?= $dataJabatan['id']; ?>" <?php
-                                                                                            if ($flagUbah == true) {
-                                                                                                $pegawai['id_jabatan'] === $dataJabatan['id'] ? 'selected' : ''
-                                                                                            ?> <?php } ?>><?= $dataJabatan['nama_jabatan']; ?></option>
+                                                <option value="<?= $dataJabatan['id']; ?>" <?php if ($flagUbah) echo $pegawai['id_jabatan'] == $dataJabatan['id'] ? 'selected' : '' ?>><?= $dataJabatan['nama_jabatan']; ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -85,7 +82,7 @@ if ($activeMenu == 'utama-pegawai-ubah') $flagUbah = true;
                                             <?php
                                             foreach ($listUnit as $dataUnit) :
                                             ?>
-                                                <option value="<?= $dataUnit['id']; ?>" <?php if ($flagUbah == true) $pegawai['id_unit'] == $dataUnit['id'] ? 'selected' : '' ?>><?= $dataUnit['nama_unit']; ?></option>
+                                                <option value="<?= $dataUnit['id']; ?>" <?php if ($flagUbah) echo $pegawai['id_unit'] == $dataUnit['id'] ? 'selected' : '' ?>><?= $dataUnit['nama_unit']; ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -98,7 +95,7 @@ if ($activeMenu == 'utama-pegawai-ubah') $flagUbah = true;
                                             <?php
                                             foreach ($listSubUnit as $dataSubUnit) :
                                             ?>
-                                                <option value="<?= $dataSubUnit['id']; ?>" <?php if ($flagUbah == true) $pegawai['id_subunit'] == $dataSubUnit['id'] ? 'selected' : '' ?>><?= $dataSubUnit['nama_subunit']; ?></option>
+                                                <option value="<?= $dataSubUnit['id']; ?>" <?php if ($flagUbah) echo $pegawai['id_subunit'] == $dataSubUnit['id'] ? 'selected' : '' ?>><?= $dataSubUnit['nama_subunit']; ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>

@@ -36,9 +36,9 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 // Users
-$routes->match(['get', 'post'], 'login', 'UsersController::login', ["filter" => "noauth"]);
+$routes->match(['get', 'post'], 'login', 'DataUtama\UsersController::login', ["filter" => "noauth"]);
 $routes->get("/", "HomeController::index", ["filter" => "auth"]);
-$routes->get('logout', 'UsersController::logout');
+$routes->get('logout', 'DataUtama\UsersController::logout');
 
 // Data Pegawai
 $routes->get("/data-pegawai", "DataUtama\PegawaiController::index", ["filter" => "auth"]);
@@ -74,6 +74,15 @@ $routes->get("/input-atk", "DataUtama\AtkController::add", ["filter" => "auth"])
 $routes->get("/input-atk/(:any)", "DataUtama\AtkController::edit/$1", ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-atk', 'DataUtama\AtkController::save/', ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-atk/(:any)', 'DataUtama\AtkController::save/$1', ["filter" => "auth"]);
+
+// Data Kegiatan
+
+// Data User
+$routes->get("/data-user", "DataUtama\UsersController::index", ["filter" => "auth"]);
+$routes->get("/input-user", "DataUtama\UsersController::add", ["filter" => "auth"]);
+$routes->get("/input-user/(:any)", "DataUtama\UsersController::edit/$1", ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'save-user', 'DataUtama\UsersController::save/', ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'save-user/(:any)', 'DataUtama\UsersController::save/$1', ["filter" => "auth"]);
 
 // Permintaan ATK
 $routes->get("/pengadaan-atk", "PengadaanAtkController::index", ["filter" => "auth"]);
