@@ -10,6 +10,7 @@ class UsersController extends BaseController
 {
     function __construct()
     {
+        $this->prop = new \Config\Properties();
         $this->usersModel = new UsersModel;
         $this->pegawaiModel = new PegawaiModel;
     }
