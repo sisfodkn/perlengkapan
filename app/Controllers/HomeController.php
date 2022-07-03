@@ -14,4 +14,14 @@ class HomeController extends BaseController
         $data['activeMenu'] = 'dashboard';
         return view("home", $data);
     }
+    public function randis()
+    {
+        $data['activeMenu'] = 'randis-pendahuluan';
+        return view("blank", $data);
+    }
+    public function bmn()
+    {
+        $data['activeMenu'] = 'bmn-pendahuluan';
+        return view("blank", $data);
+    }
 }
