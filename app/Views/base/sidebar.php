@@ -532,5 +532,6 @@
         </nav>
         <!-- /.sidebar-menu -->
     </div>
+    <hr />
     <!-- /.sidebar -->
 </aside>

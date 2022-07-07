@@ -149,7 +149,7 @@ $routes->get("/pengadaan-cetakan-req", "Pengadaan\ReqCetakanController::index", 
 
 // Permintaan Layanan - Pengadaan
 $routes->get("/pengadaan-atk", "Pengadaan\AtkController::index", ["filter" => "auth"]);
-$routes->get("/save-pengadaan-atk", "Pengadaan\AtkController::save", ["filter" => "auth"]);
+$routes->match(['get', 'post'], '/save-pengadaan-atk', "Pengadaan\AtkController::save", ["filter" => "auth"]);
 $routes->get("/pengadaan-cetakan", "Pengadaan\CetakanController::index", ["filter" => "auth"]);
 
 // Permintaan Layanan - Permintaan

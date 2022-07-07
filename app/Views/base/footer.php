@@ -126,15 +126,18 @@
 <!-- Page specific script -->
 <script>
     $(function() {
+        //Date and time picker
+        $('#tglPengajuan').datetimepicker({
+            icons: {
+                time: 'far fa-clock'
+            }
+        });
         $('#inputPegawaiForm').validate({
             rules: {
                 nip: {
                     required: true
                 },
                 namaPegawai: {
-                    required: true
-                },
-                pangkat: {
                     required: true
                 },
                 jabatan: {
@@ -150,9 +153,6 @@
                 },
                 namaPegawai: {
                     required: "Nama Pegawai wajib diisi!"
-                },
-                pangkat: {
-                    required: "Pangkat wajib diisi!"
                 },
                 jabatan: {
                     required: "Jabatan wajib diisi!"

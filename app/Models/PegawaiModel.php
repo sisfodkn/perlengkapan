@@ -65,6 +65,16 @@ class PegawaiModel extends Model
         return $query->getResult();
     }
 
+    public function getPegawaiNoUsers()
+    {
+        $query = $this->db->query("SELECT *
+        FROM pegawai
+        WHERE id NOT IN (
+            SELECT users.id_pegawai
+            FROM users )");
+        return $query->getResult();
+    }
+
     public function getCountAll()
     {
         $query = $this->db->query("SELECT

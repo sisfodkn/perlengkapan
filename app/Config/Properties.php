@@ -28,6 +28,12 @@ class Properties extends BaseConfig
     public $password = "Password";
     public $ulangPassword = "Ulangi Password";
     public $role = "Role";
+    public $kegiatan = "Kegiatan";
+    public $tgl_pengajuan = "Tanggal Pengajuan";
+    public $tgl_persetujuan = "Tanggal Persetujuan";
+    public $daftar_permintaan = "Daftar Permintaan";
+    public $tipe_pengadaan = "Tipe Pengadaan";
+    public $jenis_kegiatan = "Jenis Kegiatan";
 
     // Menu Anggaran
     public $menuAnggaranUmum = 'anggaran-umum';

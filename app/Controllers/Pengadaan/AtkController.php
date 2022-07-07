@@ -3,26 +3,40 @@
 namespace App\Controllers\Pengadaan;
 
 use App\Controllers\BaseController;
-use App\Models\UsersModel;
-use App\Models\PegawaiModel;
+use App\Models\PermintaanPengadaanModel;
 
 class AtkController extends BaseController
 {
     function __construct()
     {
-        $this->usersModel = new UsersModel;
-        $this->pegawaiModel = new PegawaiModel;
+        $this->permintaanPengadaanModel = new PermintaanPengadaanModel;
     }
 
     public function index()
     {
-        $this->usersModel->getById(session()->get('id'));
-        $iduser = session()->get('id');
-        $data['activeMenu'] = 'pengadaan-atk';
-        return view("blank", $data);
+        $data = [
+            'activeMenu' => 'pengadaan-atk'
+        ];
+        return view("pengadaan/inputPengadaanATK", $data);
     }
 
     public function save()
     {
+        $idPegawai = session()->get('id_pegawai');
+        $idUnit = session()->get('id_unit');
+        $idSubunit = session()->get('id_subunit');
+        $kegiatan = $this->request->getVar('kegiatan');
+        $isiPermintaan = $this->request->getVar('daftarPermintaan');
+        $tglPengajuan = date_create($this->request->getVar('tglPengajuan'));
+        $this->permintaanPengadaanModel->insert([
+            'id_pegawai' => $idPegawai,
+            'id_unit' => $idUnit,
+            'id_subunit' => $idSubunit,
+            'tipe_pengadaan' => 'ATK',
+            'jenis_kegiatan' => $kegiatan,
+            'isi_permintaan' => $isiPermintaan,
+            'tgl_pengajuan' => date_format($tglPengajuan, "Y/m/d H:i:s")
+        ]);
+        return redirect()->to(base_url("/"));
     }
 }

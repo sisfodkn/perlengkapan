@@ -76,10 +76,14 @@ class UsersModel extends Model
             users.id,
             users.username,
             users.role,
+            users.id_pegawai,
             pegawai.nip_nrp,
             pegawai.nama_pegawai,
+            pegawai.id_jabatan,
             jabatan.nama_jabatan,
+            pegawai.id_unit,
             unit.nama_unit,
+            pegawai.id_subunit,
             sub_unit.nama_subunit
         FROM users
         JOIN        pegawai     ON users.id_pegawai = pegawai.id

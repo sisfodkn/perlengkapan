@@ -36,7 +36,7 @@ if ($activeMenu == 'utama-user-ubah') $flagUbah = true;
         <div class="container-fluid">
             <div class="row">
                 <!-- left column -->
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="card card-info">
                         <div class="card-header">
                         </div>
@@ -54,26 +54,31 @@ if ($activeMenu == 'utama-user-ubah') $flagUbah = true;
                                     <div class="form-group row">
                                         <label for="username" class="col-sm-2 col-form-label"><?= session()->get('props')->username; ?></label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="username" name="username" value="<?php if ($flagUbah) echo $users->username; ?>" placeholder="<?= session()->get('props')->username; ?>">
+                                            <input type="text" class="form-control" id="username" name="username" value="<?= $users->username; ?>" placeholder="<?= session()->get('props')->username; ?>" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="pegawai" class="col-sm-2 col-form-label"><?= session()->get('props')->nama_pegawai; ?></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="pegawai" name="pegawai" value="<?= $users->nama_pegawai; ?>" placeholder="<?= session()->get('props')->nama_pegawai; ?>" disabled>
+                                        </div>
+                                    </div>
+                                <?php else : ?>
+                                    <div class="form-group row">
+                                        <label for="pegawai" class="col-sm-2 col-form-label"><?= session()->get('props')->nama_pegawai; ?></label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" id="pegawai" name="pegawai" aria-label="<?= session()->get('props')->nama_pegawai; ?>">
+                                                <option value=""></option>
+                                                <?php
+                                                foreach ($listPegawai as $dataPegawai) :
+                                                ?>
+                                                    <option value="<?= $dataPegawai->id ?>"><?= $dataPegawai->nama_pegawai; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </div>
                                     </div>
                                 <?php endif ?>
-
-                                <div class="form-group row">
-                                    <label for="pegawai" class="col-sm-2 col-form-label"><?= session()->get('props')->nama_pegawai; ?></label>
-                                    <div class="col-sm-10">
-
-                                        <select class="form-control" id="pegawai" name="pegawai" aria-label="<?= session()->get('props')->nama_pegawai; ?>">
-                                            <option value=""></option>
-                                            <?php
-                                            foreach ($listPegawai as $dataPegawai) :
-                                            ?>
-                                                <option value="<?= $dataPegawai['id']; ?>" <?php if ($flagUbah) echo $users['id_jabatan'] == $dataPegawai['id'] ? 'selected' : '' ?>><?= $dataPegawai['nama_pegawai']; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                        <input type="text" class="form-control" id="pegawai" name="pegawai" value="<?php if ($flagUbah) echo $users->nama_pegawai; ?>" placeholder="<?= session()->get('props')->nama_pegawai; ?>">
-                                    </div>
-                                </div>
 
                                 <div class="form-group row">
                                     <label for="password" class="col-sm-2 col-form-label"><?= session()->get('props')->password; ?></label>

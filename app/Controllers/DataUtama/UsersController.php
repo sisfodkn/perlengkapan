@@ -29,7 +29,7 @@ class UsersController extends BaseController
     {
         $data = [
             'activeMenu'    => 'utama-user-tambah',
-            'listPegawai' => $this->pegawaiModel->findColumn('nama_pegawai')
+            'listPegawai' => $this->pegawaiModel->getPegawaiNoUsers()
         ];
         return view('dataUtama/inputUser', $data);
     }
@@ -48,6 +48,30 @@ class UsersController extends BaseController
         ];
 
         return view('dataUtama/inputUser', $data);
+    }
+
+    public function save($id)
+    {
+        $idPegawai = $this->request->getVar('pegawai');
+        $pegawai = $this->pegawaiModel->find($idPegawai);
+        $password = $this->request->getVar('password');
+        $role = $this->request->getVar('role');
+        if ($id == NULL) {
+            $this->usersModel->insert([
+                'username' => $pegawai['nip_nrp'],
+                'password' => password_hash($password, PASSWORD_DEFAULT),
+                'role' => $role,
+                'id_pegawai' => $idPegawai
+            ]);
+        } else {
+            $this->usersModel->update($id, [
+                'username' => $pegawai['nip_nrp'],
+                'password' => password_hash($password, PASSWORD_DEFAULT),
+                'role' => $role,
+                'id_pegawai' => $idPegawai
+            ]);
+        }
+        return redirect()->to(base_url("data-user"));
     }
 
     public function login()
@@ -93,10 +117,14 @@ class UsersController extends BaseController
             'id'            => $users->id,
             'username'      => $users->username,
             'role'          => $users->role,
+            'id_pegawai'    => $users->id_pegawai,
             'nip'           => $users->nip_nrp,
             'nama_pegawai'  => $users->nama_pegawai,
+            'id_jabatan'    => $users->id_jabatan,
             'nama_jabatan'  => $users->nama_jabatan,
+            'id_unit'       => $users->id_unit,
             'nama_unit'     => $users->nama_unit,
+            'id_subunit'    => $users->id_subunit,
             'nama_subunit'  => $users->nama_subunit,
             'props'         => $this->prop,
             'isLoggedIn'    => true,
