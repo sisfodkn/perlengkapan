@@ -39,6 +39,7 @@ class Properties extends BaseConfig
         'anggaran-realisasi',
     ];
 
+    // Menu Utama
     public $menuPegawai = [
         'utama-pegawai-data',
         'utama-pegawai-tambah',
@@ -98,6 +99,7 @@ class Properties extends BaseConfig
         'utama-user-ubah',
     ];
 
+    // Menu Randis
     public $menuKendaraan = [
         'randis-kendaraan-data',
         'randis-kendaraan-tambah',
@@ -126,6 +128,7 @@ class Properties extends BaseConfig
         'randis-jenisops-ubah',
     ];
 
+    // Menu BMN
     public $menuGedung = [
         'bmn-gedung-data',
         'bmn-gedung-tambah',
@@ -168,5 +171,31 @@ class Properties extends BaseConfig
         'bmn-katruangan-data',
         'bmn-katruangan-tambah',
         'bmn-katruangan-ubah',
+    ];
+
+    // Menu Pengadaan masuk
+    public $menuPengadaanReq = [
+        'pengadaan-atk-req',
+        'pengadaan-cetakan-req'
+    ];
+
+    // Menu Pengadaan
+    public $menuPengadaan = [
+        'pengadaan-atk',
+        'pengadaan-cetakan'
+    ];
+
+    // Menu Permintaan
+    public $menuPermintaan = [
+        'permintaan-rupat',
+        'permintaan-alat',
+        'permintaan-randis'
+    ];
+
+    // Menu Pemeliharaan
+    public $menuPemeliharaan = [
+        'pemeliharaan-gedung',
+        'pemeliharaan-randis',
+        'pemeliharaan-alat'
     ];
 }

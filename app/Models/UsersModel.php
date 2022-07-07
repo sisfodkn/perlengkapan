@@ -17,7 +17,8 @@ class UsersModel extends Model
     protected $allowedFields    = [
         'username',
         'password',
-        'role'
+        'role',
+        'id_pegawai'
     ];
 
     // Dates
@@ -55,6 +56,7 @@ class UsersModel extends Model
         JOIN pegawai ON users.id_pegawai = pegawai.id");
         return $query->getResult();
     }
+
     public function getById($id)
     {
         $query = $this->db->query("SELECT
@@ -65,6 +67,26 @@ class UsersModel extends Model
         FROM users
         JOIN pegawai ON users.id_pegawai = pegawai.id
         WHERE users.id = '$id'");
+        return $query->getFirstRow();
+    }
+
+    public function getByUsername($username)
+    {
+        $query = $this->db->query("SELECT 
+            users.id,
+            users.username,
+            users.role,
+            pegawai.nip_nrp,
+            pegawai.nama_pegawai,
+            jabatan.nama_jabatan,
+            unit.nama_unit,
+            sub_unit.nama_subunit
+        FROM users
+        JOIN        pegawai     ON users.id_pegawai = pegawai.id
+        LEFT JOIN   jabatan     ON pegawai.id_jabatan = jabatan.id
+        LEFT JOIN   unit        ON pegawai.id_unit = unit.id
+        LEFT JOIN   sub_unit    ON pegawai.id_subunit = sub_unit.id
+        WHERE users.username = '$username'");
         return $query->getFirstRow();
     }
 }

@@ -37,14 +37,14 @@ class UsersController extends BaseController
     public function edit($id)
     {
         $idDecryption = $this->decrypt($id);
-        $dataUser = $this->usersModel->getById($idDecryption);
+        $dataUsers = $this->usersModel->getById($idDecryption);
 
-        if (empty($dataUser)) {
+        if (empty($dataUsers)) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Data User Tidak ditemukan !');
         }
         $data = [
             'activeMenu'    => 'utama-user-ubah',
-            'user'     => $dataUser
+            'users'     => $dataUsers
         ];
 
         return view('dataUtama/inputUser', $data);
@@ -75,11 +75,10 @@ class UsersController extends BaseController
                     "validation" => $this->validator,
                 ]);
             } else {
-                $user = $this->usersModel->where('username', $this->request->getVar('username'))
-                    ->first();
+                $users = $this->usersModel->getByUsername($this->request->getVar('username'));
 
                 // Stroing session values
-                $this->setUserSession($user);
+                $this->setUserSession($users);
 
                 // Redirecting to dashboard after login
                 return redirect()->to(base_url('/'));
@@ -88,14 +87,19 @@ class UsersController extends BaseController
         return view('login');
     }
 
-    private function setUserSession($user)
+    private function setUserSession($users)
     {
         $data = [
-            'id' => $user['id'],
-            'username' => $user['username'],
-            'role' => $user['role'],
-            'props' => $this->prop,
-            'isLoggedIn' => true,
+            'id'            => $users->id,
+            'username'      => $users->username,
+            'role'          => $users->role,
+            'nip'           => $users->nip_nrp,
+            'nama_pegawai'  => $users->nama_pegawai,
+            'nama_jabatan'  => $users->nama_jabatan,
+            'nama_unit'     => $users->nama_unit,
+            'nama_subunit'  => $users->nama_subunit,
+            'props'         => $this->prop,
+            'isLoggedIn'    => true,
         ];
 
         session()->set($data);

@@ -64,4 +64,12 @@ class PegawaiModel extends Model
         ORDER BY pegawai.id_unit");
         return $query->getResult();
     }
+
+    public function getCountAll()
+    {
+        $query = $this->db->query("SELECT
+            count(*) AS total
+        FROM pegawai");
+        return $query->getFirstRow();
+    }
 }

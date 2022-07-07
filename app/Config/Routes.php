@@ -77,7 +77,11 @@ $routes->get("/input-atk/(:any)", "DataUtama\AtkController::edit/$1", ["filter" 
 $routes->match(['get', 'post'], 'save-atk', 'DataUtama\AtkController::save/', ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-atk/(:any)', 'DataUtama\AtkController::save/$1', ["filter" => "auth"]);
 // Data Kegiatan
-
+$routes->get("/data-kegiatan", "DataUtama\KegiatanController::index", ["filter" => "auth"]);
+$routes->get("/input-kegiatan", "DataUtama\KegiatanController::add", ["filter" => "auth"]);
+$routes->get("/input-kegiatan/(:any)", "DataUtama\KegiatanController::edit/$1", ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'save-kegiatan', 'DataUtama\KegiatanController::save/', ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'save-kegiatan/(:any)', 'DataUtama\KegiatanController::save/$1', ["filter" => "auth"]);
 // Data User
 $routes->get("/data-user", "DataUtama\UsersController::index", ["filter" => "auth"]);
 $routes->get("/input-user", "DataUtama\UsersController::add", ["filter" => "auth"]);
@@ -139,9 +143,24 @@ $routes->get("/input-katruangan/(:any)", "DataBMN\KatRuanganController::edit/$1"
 $routes->match(['get', 'post'], 'save-katruangan', 'DataBMN\KatRuanganController::save/', ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-katruangan/(:any)', 'DataBMN\KatRuanganController::save/$1', ["filter" => "auth"]);
 
-// Permintaan ATK
-$routes->get("/pengadaan-atk", "PengadaanAtkController::index", ["filter" => "auth"]);
-$routes->get("/pengadaan-cetakan", "PengadaanCetakanController::index", ["filter" => "auth"]);
+// Permintaan Masuk - Pengadaan
+$routes->get("/pengadaan-atk-req", "Pengadaan\ReqAtkController::index", ["filter" => "auth"]);
+$routes->get("/pengadaan-cetakan-req", "Pengadaan\ReqCetakanController::index", ["filter" => "auth"]);
+
+// Permintaan Layanan - Pengadaan
+$routes->get("/pengadaan-atk", "Pengadaan\AtkController::index", ["filter" => "auth"]);
+$routes->get("/save-pengadaan-atk", "Pengadaan\AtkController::save", ["filter" => "auth"]);
+$routes->get("/pengadaan-cetakan", "Pengadaan\CetakanController::index", ["filter" => "auth"]);
+
+// Permintaan Layanan - Permintaan
+$routes->get("/permintaan-rupat", "Permintaan\RupatController::index", ["filter" => "auth"]);
+$routes->get("/permintaan-alat", "Permintaan\AlatController::index", ["filter" => "auth"]);
+$routes->get("/permintaan-randis", "Permintaan\RandisController::index", ["filter" => "auth"]);
+
+// Permintaan Layanan - Pemeliharaan
+$routes->get("/pemeliharaan-gedung", "Pemeliharaan\GedungController::index", ["filter" => "auth"]);
+$routes->get("/pemeliharaan-randis", "Pemeliharaan\RandisController::index", ["filter" => "auth"]);
+$routes->get("/pemeliharaan-alat", "Pemeliharaan\AlatController::index", ["filter" => "auth"]);
 
 /*
  * --------------------------------------------------------------------

@@ -42,20 +42,36 @@ if ($activeMenu == 'utama-user-ubah') $flagUbah = true;
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <?php if ($activeMenu == 'utama-user-ubah') $id = $user->id ?>
+                        <?php
+                        $role = null;
+                        if ($activeMenu == 'utama-user-ubah') {
+                            $id = $users->id;
+                            $role = $users->role;
+                        } ?>
                         <form id="inputUserForm" class="form-horizontal" action="<?= $flagUbah ? base_url("save-user/$id") : base_url('save-user') ?>" method="post">
                             <div class="card-body">
-                                <div class="form-group row">
-                                    <label for="username" class="col-sm-2 col-form-label"><?= session()->get('props')->username; ?></label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="username" name="username" value="<?php if ($flagUbah) echo $user->username; ?>" placeholder="<?= session()->get('props')->username; ?>">
+                                <?php if ($flagUbah) : ?>
+                                    <div class="form-group row">
+                                        <label for="username" class="col-sm-2 col-form-label"><?= session()->get('props')->username; ?></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="username" name="username" value="<?php if ($flagUbah) echo $users->username; ?>" placeholder="<?= session()->get('props')->username; ?>">
+                                        </div>
                                     </div>
-                                </div>
+                                <?php endif ?>
 
                                 <div class="form-group row">
                                     <label for="pegawai" class="col-sm-2 col-form-label"><?= session()->get('props')->nama_pegawai; ?></label>
                                     <div class="col-sm-10">
-                                        <input type="autocomplete" class="form-control" id="pegawai" name="pegawai" value="<?php if ($flagUbah) echo $user->nama_pegawai; ?>" placeholder="<?= session()->get('props')->nama_pegawai; ?>">
+
+                                        <select class="form-control" id="pegawai" name="pegawai" aria-label="<?= session()->get('props')->nama_pegawai; ?>">
+                                            <option value=""></option>
+                                            <?php
+                                            foreach ($listPegawai as $dataPegawai) :
+                                            ?>
+                                                <option value="<?= $dataPegawai['id']; ?>" <?php if ($flagUbah) echo $users['id_jabatan'] == $dataPegawai['id'] ? 'selected' : '' ?>><?= $dataPegawai['nama_pegawai']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <input type="text" class="form-control" id="pegawai" name="pegawai" value="<?php if ($flagUbah) echo $users->nama_pegawai; ?>" placeholder="<?= session()->get('props')->nama_pegawai; ?>">
                                     </div>
                                 </div>
 
@@ -65,10 +81,27 @@ if ($activeMenu == 'utama-user-ubah') $flagUbah = true;
                                         <input type="password" class="form-control" id="password" name="password" value="" placeholder="<?= session()->get('props')->password; ?>">
                                     </div>
                                 </div>
+                                <?php if ($flagUbah) : ?>
+                                    <div class="form-group row">
+                                        <label for="ulangPassword" class="col-sm-2 col-form-label"><?= session()->get('props')->ulangPassword; ?></label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="ulangPassword" name="ulangPassword" value="" placeholder="<?= session()->get('props')->ulangPassword; ?>">
+                                        </div>
+                                    </div>
+                                <?php endif ?>
+
                                 <div class="form-group row">
-                                    <label for="ulangPassword" class="col-sm-2 col-form-label"><?= session()->get('props')->ulangPassword; ?></label>
+                                    <label for="role" class="col-sm-2 col-form-label"><?= session()->get('props')->role; ?></label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="ulangPassword" name="ulangPassword" value="" placeholder="<?= session()->get('props')->ulangPassword; ?>">
+                                        <select class="form-control" id="role" name="role" aria-label="Role">
+                                            <option value="User" <?php if ($role == 'User') echo 'selected'; ?>>User</option>
+                                            <option value="Administrator" <?php if ($role == 'Administrator') echo 'selected'; ?>>Administrator</option>
+                                            <option value="Karoum" <?php if ($role == 'Karoum') echo 'selected'; ?>>Karoum</option>
+                                            <option value="Kabag PPBJ" <?php if ($role == 'Kabag PPBJ') echo 'selected'; ?>>Kabag PPBJ</option>
+                                            <option value="Sub Pengadaan" <?php if ($role == 'Sub Pengadaan') echo 'selected'; ?>>Sub Pengadaan</option>
+                                            <option value="Sub BMN" <?php if ($role == 'Sub BMN') echo 'selected'; ?>>Sub BMN</option>
+                                            <option value="Sub Rumga" <?php if ($role == 'Sub Rumga') echo 'selected'; ?>>Sub Rumga</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -93,5 +126,5 @@ if ($activeMenu == 'utama-user-ubah') $flagUbah = true;
 <!-- /.content-wrapper -->
 
 <?php
-echo view('base/footer', $data);
+echo view('base/footer');
 ?>
