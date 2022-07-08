@@ -29,6 +29,15 @@ class Properties extends BaseConfig
     public $ulangPassword = "Ulangi Password";
     public $role = "Role";
 
+    // Role
+    public $roleAdmin = "Administrator";
+    public $roleUser = "User";
+    public $roleKaro = "Karoum";
+    public $roleKabag = "Kabag PPBJ";
+    public $roleSubPengadaan = "Sub Pengadaan";
+    public $roleSubBMN = "Sub BMN";
+    public $roleSubRumga = "Sub Rumga";
+
     // Menu Anggaran
     public $menuAnggaranUmum = 'anggaran-umum';
     public $menuAnggaranDipa = 'anggaran-dipa';
