@@ -64,4 +64,22 @@ class PegawaiModel extends Model
         ORDER BY pegawai.id_unit");
         return $query->getResult();
     }
+
+    public function getPegawaiNoUsers()
+    {
+        $query = $this->db->query("SELECT *
+        FROM pegawai
+        WHERE id NOT IN (
+            SELECT users.id_pegawai
+            FROM users )");
+        return $query->getResult();
+    }
+
+    public function getCountAll()
+    {
+        $query = $this->db->query("SELECT
+            count(*) AS total
+        FROM pegawai");
+        return $query->getFirstRow();
+    }
 }

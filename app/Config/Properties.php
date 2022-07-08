@@ -28,6 +28,12 @@ class Properties extends BaseConfig
     public $password = "Password";
     public $ulangPassword = "Ulangi Password";
     public $role = "Role";
+    public $kegiatan = "Kegiatan";
+    public $tgl_pengajuan = "Tanggal Pengajuan";
+    public $tgl_persetujuan = "Tanggal Persetujuan";
+    public $daftar_permintaan = "Daftar Permintaan";
+    public $tipe_pengadaan = "Tipe Pengadaan";
+    public $jenis_kegiatan = "Jenis Kegiatan";
 
     // Role
     public $roleAdmin = "Administrator";
@@ -48,6 +54,7 @@ class Properties extends BaseConfig
         'anggaran-realisasi',
     ];
 
+    // Menu Utama
     public $menuPegawai = [
         'utama-pegawai-data',
         'utama-pegawai-tambah',
@@ -107,6 +114,7 @@ class Properties extends BaseConfig
         'utama-user-ubah',
     ];
 
+    // Menu Randis
     public $menuKendaraan = [
         'randis-kendaraan-data',
         'randis-kendaraan-tambah',
@@ -135,6 +143,7 @@ class Properties extends BaseConfig
         'randis-jenisops-ubah',
     ];
 
+    // Menu BMN
     public $menuGedung = [
         'bmn-gedung-data',
         'bmn-gedung-tambah',
@@ -177,5 +186,31 @@ class Properties extends BaseConfig
         'bmn-katruangan-data',
         'bmn-katruangan-tambah',
         'bmn-katruangan-ubah',
+    ];
+
+    // Menu Pengadaan masuk
+    public $menuPengadaanReq = [
+        'pengadaan-atk-req',
+        'pengadaan-cetakan-req'
+    ];
+
+    // Menu Pengadaan
+    public $menuPengadaan = [
+        'pengadaan-atk',
+        'pengadaan-cetakan'
+    ];
+
+    // Menu Permintaan
+    public $menuPermintaan = [
+        'permintaan-rupat',
+        'permintaan-alat',
+        'permintaan-randis'
+    ];
+
+    // Menu Pemeliharaan
+    public $menuPemeliharaan = [
+        'pemeliharaan-gedung',
+        'pemeliharaan-randis',
+        'pemeliharaan-alat'
     ];
 }
