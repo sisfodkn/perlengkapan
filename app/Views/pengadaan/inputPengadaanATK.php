@@ -64,9 +64,12 @@ echo view('base/sidebar', $data);
                                     <label for="kegiatan" class="col-sm-2 col-form-label"><?= session()->get('props')->kegiatan; ?></label>
                                     <div class="col-sm-10">
                                         <select class="form-control" id="kegiatan" name="kegiatan" aria-label="Kegiatan">
-                                            <option value="Bulanan">Bulanan</option>
-                                            <option value="Rakertas">Rakertas</option>
-                                            <option value="Pokjasus">Pokjasus</option>
+                                            <option value=""></option>
+                                            <?php
+                                            foreach ($listKegiatan as $dataKegiatan) :
+                                            ?>
+                                                <option value="<?= $dataKegiatan['jenis_kegiatan']; ?>"><?= $dataKegiatan['jenis_kegiatan']; ?></option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>

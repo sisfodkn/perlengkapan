@@ -128,9 +128,7 @@
     $(function() {
         //Date and time picker
         $('#tglPengajuan').datetimepicker({
-            icons: {
-                time: 'far fa-clock'
-            }
+            format: 'L'
         });
         $('#inputPegawaiForm').validate({
             rules: {

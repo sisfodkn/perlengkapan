@@ -4,18 +4,21 @@ namespace App\Controllers\Pengadaan;
 
 use App\Controllers\BaseController;
 use App\Models\PermintaanPengadaanModel;
+use App\Models\KegiatanModel;
 
 class AtkController extends BaseController
 {
     function __construct()
     {
         $this->permintaanPengadaanModel = new PermintaanPengadaanModel;
+        $this->kegiatanModel = new KegiatanModel();
     }
 
     public function index()
     {
         $data = [
-            'activeMenu' => 'pengadaan-atk'
+            'activeMenu' => 'pengadaan-atk',
+            'listKegiatan' => $this->kegiatanModel->findAll(),
         ];
         return view("pengadaan/inputPengadaanATK", $data);
     }
@@ -35,7 +38,7 @@ class AtkController extends BaseController
             'tipe_pengadaan' => 'ATK',
             'jenis_kegiatan' => $kegiatan,
             'isi_permintaan' => $isiPermintaan,
-            'tgl_pengajuan' => date_format($tglPengajuan, "Y/m/d H:i:s")
+            'tgl_pengajuan' => date_format($tglPengajuan, "m/d/Y")
         ]);
         return redirect()->to(base_url("/"));
     }
