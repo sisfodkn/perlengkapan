@@ -38,7 +38,7 @@ class AtkController extends BaseController
             'tipe_pengadaan' => 'ATK',
             'jenis_kegiatan' => $kegiatan,
             'isi_permintaan' => $isiPermintaan,
-            'tgl_pengajuan' => date_format($tglPengajuan, "m/d/Y")
+            'tgl_pengajuan' => date_format($tglPengajuan, "Y/m/d H:i:s")
         ]);
         return redirect()->to(base_url("/"));
     }
