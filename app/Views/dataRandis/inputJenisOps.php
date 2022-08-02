@@ -12,12 +12,12 @@ echo view('base/sidebar', $data);
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><?php echo ($activeMenu == 'utama-unit-tambah') ? "Tambah" : "Ubah"; ?> Unit</h1>
+                    <h1><?php echo ($activeMenu == 'randis-jenisops-tambah') ? "Tambah" : "Ubah"; ?> Jenis Operasional</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Tambah Unit</li>
+                        <li class="breadcrumb-item active">Tambah Jenis Operasional</li>
                     </ol>
                 </div>
             </div>
@@ -35,13 +35,13 @@ echo view('base/sidebar', $data);
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <?php if ($activeMenu == 'utama-unit-ubah') $id = $unit['id'] ?>
-                        <form id="inputUnitForm" class="form-horizontal" action="<?= $activeMenu == 'utama-unit-ubah' ? base_url("save-unit/$id") : base_url('save-unit') ?>" method="post">
+                        <?php if ($activeMenu == 'randis-jenisops-ubah') $id = $jenisOps['id'] ?>
+                        <form id="inputJenisOpsForm" class="form-horizontal" action="<?= $activeMenu == 'randis-jenisops-ubah' ? base_url("save-jenisops/$id") : base_url('save-jenisops') ?>" method="post">
                             <div class="card-body">
                                 <div class="form-group row">
-                                    <label for="namaUnit" class="col-sm-2 col-form-label"><?= session()->get('props')->nama_unit; ?></label>
+                                    <label for="jenisOps" class="col-sm-2 col-form-label"><?= session()->get('props')->jenis_operasional; ?></label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="namaUnit" name="namaUnit" value="<?php if ($activeMenu == 'utama-unit-ubah') echo $unit['nama_unit']; ?>" placeholder="<?= session()->get('props')->nama_unit; ?>">
+                                        <input type="text" class="form-control" id="jenisOps" name="jenisOps" value="<?php if ($activeMenu == 'randis-jenisops-ubah') echo $jenisOps['jenis_operasional']; ?>" placeholder="<?= session()->get('props')->jenis_operasional; ?>">
                                     </div>
                                 </div>
                             </div>

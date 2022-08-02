@@ -19,6 +19,7 @@ class AtkController extends BaseController
         $data = [
             'activeMenu' => 'pengadaan-atk',
             'listKegiatan' => $this->kegiatanModel->findAll(),
+            'tgl' => date('m/d/Y'),
         ];
         return view("pengadaan/inputPengadaanATK", $data);
     }
@@ -38,7 +39,8 @@ class AtkController extends BaseController
             'tipe_pengadaan' => 'ATK',
             'jenis_kegiatan' => $kegiatan,
             'isi_permintaan' => $isiPermintaan,
-            'tgl_pengajuan' => date_format($tglPengajuan, "Y/m/d H:i:s")
+            'tgl_pengajuan' => date_format($tglPengajuan, "Y/m/d H:i:s"),
+            'status' => 'Belum Disetujui'
         ]);
         return redirect()->to(base_url("/"));
     }

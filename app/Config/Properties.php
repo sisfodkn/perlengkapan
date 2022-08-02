@@ -34,6 +34,13 @@ class Properties extends BaseConfig
     public $daftar_permintaan = "Daftar Permintaan";
     public $tipe_pengadaan = "Tipe Pengadaan";
     public $jenis_kegiatan = "Jenis Kegiatan";
+    public $jenis_operasional = "Jenis Operasional";
+    public $kendaraan = "Kendaraan";
+    public $nopol = "Plat Nomor";
+    public $tahun_pengadaan = "Tahun Pengadaan";
+    public $merk_kendaraan = "Merk Kendaraan";
+    public $tipe_kendaraan = "Tipe Kendaraan";
+    public $keterangan = "Keterangan";
 
     // Role
     public $roleAdmin = "Administrator";

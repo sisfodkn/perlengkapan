@@ -18,7 +18,7 @@ echo view('base/sidebar', $data);
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>">Dashboard</a></li>
                         <li class="breadcrumb-item active">Permintaan ATK</li>
                     </ol>
                 </div>
@@ -77,7 +77,7 @@ echo view('base/sidebar', $data);
                                 <div class="form-group row">
                                     <label for="tglPengajuan" class="col-sm-2 col-form-label"><?= session()->get('props')->tgl_pengajuan; ?></label>
                                     <div class="col-sm-10 input-group date" id="tglPengajuan" data-target-input="nearest">
-                                        <input type="text" id="tglPengajuan" name="tglPengajuan" class="form-control datetimepicker-input" data-target="#tglPengajuan" />
+                                        <input type="text" id="tglPengajuan" name="tglPengajuan" class="form-control datetimepicker-input" data-target="#tglPengajuan" value="<?php echo $tgl; ?>" />
                                         <div class="input-group-append" data-target="#tglPengajuan" data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>

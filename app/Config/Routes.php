@@ -147,20 +147,28 @@ $routes->match(['get', 'post'], 'save-katruangan/(:any)', 'DataBMN\KatRuanganCon
 $routes->get("/pengadaan-atk-req", "Pengadaan\ReqAtkController::index", ["filter" => "auth"]);
 $routes->get("/pengadaan-cetakan-req", "Pengadaan\ReqCetakanController::index", ["filter" => "auth"]);
 
-// Permintaan Layanan - Pengadaan
+// Permintaan User - Pengadaan
 $routes->get("/pengadaan-atk", "Pengadaan\AtkController::index", ["filter" => "auth"]);
 $routes->match(['get', 'post'], '/save-pengadaan-atk', "Pengadaan\AtkController::save", ["filter" => "auth"]);
 $routes->get("/pengadaan-cetakan", "Pengadaan\CetakanController::index", ["filter" => "auth"]);
 
-// Permintaan Layanan - Permintaan
+// Permintaan User - Permintaan
 $routes->get("/permintaan-rupat", "Permintaan\RupatController::index", ["filter" => "auth"]);
 $routes->get("/permintaan-alat", "Permintaan\AlatController::index", ["filter" => "auth"]);
 $routes->get("/permintaan-randis", "Permintaan\RandisController::index", ["filter" => "auth"]);
 
-// Permintaan Layanan - Pemeliharaan
+// Permintaan User - Pemeliharaan
 $routes->get("/pemeliharaan-gedung", "Pemeliharaan\GedungController::index", ["filter" => "auth"]);
 $routes->get("/pemeliharaan-randis", "Pemeliharaan\RandisController::index", ["filter" => "auth"]);
 $routes->get("/pemeliharaan-alat", "Pemeliharaan\AlatController::index", ["filter" => "auth"]);
+
+$routes->get('karyawan', 'Home::index');
+$routes->post('dt_users', 'Home::dt_users');
+$routes->get('karyawan_list', 'KaryawanController::index');
+$routes->post('karyawan_add', 'KaryawanController::karyawan_add');
+$routes->get('karyawan_edit/(:any)', 'KaryawanController::ajax_edit/$1');
+$routes->post('karyawan_update', 'KaryawanController::karyawan_update');
+$routes->post('karyawan_delete/(:any)', 'KaryawanController::karyawan_delete/$1');
 
 /*
  * --------------------------------------------------------------------

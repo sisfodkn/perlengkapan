@@ -12,12 +12,12 @@ echo view('base/sidebar', $data);
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Data ATK</h1>
+                    <h1 class="m-0">Data Jenis Operasional</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Data ATK</li>
+                        <li class="breadcrumb-item active">Data Jenis Operasional</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -34,18 +34,16 @@ echo view('base/sidebar', $data);
                         <div class="card-header">
                         </div>
                         <div class="card-body">
-                            <table id="tableATK" class="table table-bordered table-hover">
+                            <table id="tableJenisOps" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th><?= session()->get('props')->nama_atk; ?></th>
-                                        <th><?= session()->get('props')->kategori_atk; ?></th>
+                                        <th><?= session()->get('props')->jenis_operasional; ?></th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $no = 1;
-                                    foreach ($atk as $row) :
+                                    foreach ($jenisOps as $row) :
                                         // Storingthe cipher method 
                                         $ciphering = "AES-128-CTR";
                                         // Using OpenSSl Encryption method 
@@ -59,11 +57,10 @@ echo view('base/sidebar', $data);
                                         $idEncryption = openssl_encrypt($row['id'], $ciphering, $encryption_key, $options, $encryption_iv);
                                     ?>
                                         <tr>
-                                            <td><?= $row['nama_atk']; ?></td>
-                                            <td><?= $row['kategori_atk']; ?></td>
+                                            <td><?= $row['jenis_operasional']; ?></td>
                                             <td class="text-center">
-                                                <a title="Edit" href="<?= base_url("input-atk/$idEncryption"); ?>" class="btn btn-info btn-sm"><?= session()->get('props')->tombol_edit; ?></a>
-                                                <a title="Hapus" href="<?= base_url("atk/delete/$idEncryption"); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus <?= $row['nama_atk']; ?> ?')"><?= session()->get('props')->tombol_delete; ?></a>
+                                                <a title="Edit" href="<?= base_url("input-jenisops/$idEncryption"); ?>" class="btn btn-info btn-sm"><?= session()->get('props')->tombol_edit; ?></a>
+                                                <a title="Hapus" href="<?= base_url("jenisops/delete/$idEncryption"); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus <?= $row['jenis_operasional']; ?> ?')"><?= session()->get('props')->tombol_delete; ?></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

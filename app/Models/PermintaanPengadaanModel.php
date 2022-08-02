@@ -22,8 +22,8 @@ class PermintaanPengadaanModel extends Model
         'jenis_kegiatan',
         'isi_permintaan',
         'tgl_pengajuan',
-        'tgl_persetujuan',
-        'status_sub',
+        'tgl_persetujuan_subbag',
+        'tgl_persetujuan_bag',
         'status'
     ];
 
@@ -57,8 +57,7 @@ class PermintaanPengadaanModel extends Model
         FROM permintaan_pengadaan 
         WHERE id_unit = '$id_unit'
         AND id_subunit = '$id_subunit'
-        AND status_sub = 0
-        AND status = 0");
+        AND status = 'Belum Disetujui'");
         return $query->getFirstRow();
     }
 
@@ -76,8 +75,7 @@ class PermintaanPengadaanModel extends Model
         LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id
         WHERE permintaan_pengadaan.id_unit = '$id_unit'
         AND permintaan_pengadaan.id_subunit = '$id_subunit'
-        AND permintaan_pengadaan.status_sub = 0
-        AND permintaan_pengadaan.status = 0");
+        AND permintaan_pengadaan.status = 'Belum Disetujui'");
         return $query->getResult();
     }
 
@@ -88,8 +86,7 @@ class PermintaanPengadaanModel extends Model
         FROM permintaan_pengadaan 
         WHERE id_unit = '$id_unit'
         AND id_subunit = '$id_subunit'
-        AND status_sub = 1
-        AND status = 1");
+        AND status != 'Belum Disetujui'");
         return $query->getFirstRow();
     }
 
@@ -100,15 +97,15 @@ class PermintaanPengadaanModel extends Model
             permintaan_pengadaan.tipe_pengadaan,
             permintaan_pengadaan.jenis_kegiatan,
             permintaan_pengadaan.isi_permintaan,
-            permintaan_pengadaan.tgl_persetujuan
+            permintaan_pengadaan.tgl_persetujuan_subbag,
+            permintaan_pengadaan.tgl_persetujuan_bag
         FROM permintaan_pengadaan 
         LEFT JOIN pegawai ON permintaan_pengadaan.id_pegawai = pegawai.id
         LEFT JOIN unit ON permintaan_pengadaan.id_unit = unit.id
         LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id
         WHERE permintaan_pengadaan.id_unit = '$id_unit'
         AND permintaan_pengadaan.id_subunit = '$id_subunit'
-        AND permintaan_pengadaan.status_sub = 1
-        AND permintaan_pengadaan.status = 1");
+        AND permintaan_pengadaan.status != 'Belum Disetujui'");
         return $query->getResult();
     }
 }

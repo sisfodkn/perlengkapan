@@ -82,4 +82,35 @@ class PegawaiModel extends Model
         FROM pegawai");
         return $query->getFirstRow();
     }
+
+    public function getAllNoDist()
+    {
+        $query = $this->db->query("SELECT
+            pegawai.id,
+            pegawai.nama_pegawai,
+            jabatan.nama_jabatan,
+            unit.nama_unit
+        FROM pegawai
+        JOIN jabatan ON pegawai.id_jabatan = jabatan.id
+        JOIN unit ON pegawai.id_unit = unit.id
+        WHERE pegawai.id NOT IN (SELECT id_pegawai FROM distribusi_randis)
+        ORDER BY pegawai.nama_pegawai");
+        return $query->getResult();
+    }
+
+    public function getCurrentAndNoDist($currentId)
+    {
+        $query = $this->db->query("SELECT
+            pegawai.id,
+            pegawai.nama_pegawai,
+            jabatan.nama_jabatan,
+            unit.nama_unit
+        FROM pegawai
+        JOIN jabatan ON pegawai.id_jabatan = jabatan.id
+        JOIN unit ON pegawai.id_unit = unit.id
+        WHERE pegawai.id NOT IN (SELECT id_pegawai FROM distribusi_randis)
+        OR pegawai.id = '$currentId'
+        ORDER BY pegawai.nama_pegawai");
+        return $query->getResult();
+    }
 }

@@ -16,7 +16,7 @@ echo view('base/sidebar', $data);
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>">Dashboard</a></li>
                         <li class="breadcrumb-item active">Blank Page</li>
                     </ol>
                 </div><!-- /.col -->
