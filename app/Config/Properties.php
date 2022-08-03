@@ -42,6 +42,8 @@ class Properties extends BaseConfig
     public $tipe_kendaraan = "Tipe Kendaraan";
     public $keterangan = "Keterangan";
     public $nama_gedung = "Nama Gedung";
+    public $nama_ruangan = "Nama Ruangan";
+    public $kode_ruangan = "Kode Ruangan";
 
     // Role
     public $roleAdmin = "Administrator";
