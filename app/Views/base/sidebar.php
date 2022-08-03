@@ -3,11 +3,11 @@
     <!-- Brand Logo -->
     <a href="<?php echo base_url(); ?>" class="brand-link">
         <img src="<?php echo base_url(); ?>/dist/img/logo-wtn.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light" style="padding-left: 3px;">Layanan</span>
+        <span class="brand-text font-weight-light" style="padding-left: 3px;">SILAPER</span>
         <br />
-        <span class="brand-text font-weight-light" style="padding-left: 50px;">Perlengkapan</span>
+        <!-- <span class="brand-text font-weight-light" style="padding-left: 50px;">Perlengkapan</span>
         <br />
-        <span class="brand-text font-weight-light" style="padding-left: 50px;">Terpadu</span>
+        <span class="brand-text font-weight-light" style="padding-left: 50px;">Terpadu</span> -->
     </a>
 
     <!-- Sidebar -->

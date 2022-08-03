@@ -59,20 +59,22 @@ echo view('base/sidebar', $data);
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-warning">
-            <div class="inner">
-              <h3>44</h3>
+        <?php if (session()->get('role') == session()->get('props')->roleSubPengadaan) : ?>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3><?= $totalPengadaanMasuk->total; ?><sup style="font-size: 20px"> Permintaan</sup></h3>
 
-              <p>User Registrations</p>
+                <p>Permintaan Masuk</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="<?php echo base_url('pengadaan-atk-req'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
-        </div>
+        <?php endif; ?>
         <!-- ./col -->
         <div class="col-lg-3 col-6">
           <!-- small box -->
@@ -97,17 +99,27 @@ echo view('base/sidebar', $data);
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Permintaan Pengadaan Tertunda</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
               <table id="tableReqPengadaan" class="table table-bordered table-hover">
                 <thead>
                   <tr>
+                    <th><?= session()->get('props')->tgl_pengajuan; ?></th>
                     <th><?= session()->get('props')->nama_pegawai; ?></th>
                     <th><?= session()->get('props')->tipe_pengadaan; ?></th>
                     <th><?= session()->get('props')->jenis_kegiatan; ?></th>
                     <th><?= session()->get('props')->daftar_permintaan; ?></th>
-                    <th><?= session()->get('props')->tgl_pengajuan; ?></th>
+                    <th><?= session()->get('props')->status; ?></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -115,11 +127,12 @@ echo view('base/sidebar', $data);
                   foreach ($permintaan as $row) :
                   ?>
                     <tr>
+                      <td><?= date('d M Y', strtotime($row->tgl_pengajuan)); ?></td>
                       <td><?= $row->nama_pegawai; ?></td>
                       <td><?= $row->tipe_pengadaan; ?></td>
                       <td><?= $row->jenis_kegiatan; ?></td>
                       <td><?= $row->isi_permintaan; ?></td>
-                      <td><?= $row->tgl_pengajuan; ?></td>
+                      <td class="<?= $row->status == 'Disetujui Subbag Pengadaan' ? 'alert-warning' : 'alert-danger' ?>"><?= $row->status; ?></td>
                     </tr>
                   <?php endforeach; ?>
                 </tbody>
@@ -133,12 +146,22 @@ echo view('base/sidebar', $data);
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Permintaan Pengadaan Selesai</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="tableReqPengadaan" class="table table-bordered table-hover">
+              <table id="tableReqPengadaanDone" class="table table-bordered table-striped">
                 <thead>
                   <tr>
+                    <th><?= session()->get('props')->tgl_pengajuan; ?></th>
                     <th><?= session()->get('props')->nama_pegawai; ?></th>
                     <th><?= session()->get('props')->tipe_pengadaan; ?></th>
                     <th><?= session()->get('props')->jenis_kegiatan; ?></th>
@@ -151,11 +174,12 @@ echo view('base/sidebar', $data);
                   foreach ($selesai as $row) :
                   ?>
                     <tr>
+                      <td><?= date('d M Y', strtotime($row->tgl_pengajuan)); ?></td>
                       <td><?= $row->nama_pegawai; ?></td>
                       <td><?= $row->tipe_pengadaan; ?></td>
                       <td><?= $row->jenis_kegiatan; ?></td>
                       <td><?= $row->isi_permintaan; ?></td>
-                      <td><?= $row->tgl_persetujuan_bag; ?></td>
+                      <td><?= date('d M Y', strtotime($row->tgl_persetujuan_bag)); ?></td>
                     </tr>
                   <?php endforeach; ?>
                 </tbody>

@@ -17,10 +17,11 @@ class HomeController extends BaseController
     {
         $data = [
             'activeMenu'            => 'dashboard',
-            'permintaan'            => $this->permintaanPengadaanModel->getListPendingRequest(session()->get('id_unit'), session()->get('id_subunit')),
+            'permintaan'            => $this->permintaanPengadaanModel->getListPendingRequestUnit(session()->get('id_unit'), session()->get('id_subunit')),
             'totalReqPengadaan'     => $this->permintaanPengadaanModel->getPendingRequest(session()->get('id_unit'), session()->get('id_subunit')),
             'selesai'               => $this->permintaanPengadaanModel->getListCompleteRequest(session()->get('id_unit'), session()->get('id_subunit')),
-            'totalCompletePengadaan' => $this->permintaanPengadaanModel->getCompleteRequest(session()->get('id_unit'), session()->get('id_subunit'))
+            'totalCompletePengadaan' => $this->permintaanPengadaanModel->getCompleteRequest(session()->get('id_unit'), session()->get('id_subunit')),
+            'totalPengadaanMasuk'   => $this->permintaanPengadaanModel->getPendingRequest(session()->get('id_unit'), session()->get('id_subunit')),
         ];
         return view("home", $data);
     }

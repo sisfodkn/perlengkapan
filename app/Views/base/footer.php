@@ -63,6 +63,18 @@
 <!-- Page specific script -->
 <script>
     $(function() {
+        $("#tableReqPengadaan").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#tableReqPengadaan_wrapper .col-md-6:eq(0)');
+        $("#tableReqPengadaanDone").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#tableReqPengadaanDone_wrapper .col-md-6:eq(0)');
         $('#tablePegawai').DataTable({
             "paging": true,
             "lengthChange": false,

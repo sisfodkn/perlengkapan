@@ -99,13 +99,13 @@ if ($activeMenu == 'utama-user-ubah') $flagUbah = true;
                                     <label for="role" class="col-sm-2 col-form-label"><?= session()->get('props')->role; ?></label>
                                     <div class="col-sm-10">
                                         <select class="form-control" id="role" name="role" aria-label="Role">
-                                            <option value="<?= session()->get('roleUser'); ?>" <?php if ($role == session()->get('roleUser')) echo 'selected'; ?>><?= session()->get('roleUser'); ?></option>
-                                            <option value="<?= session()->get('roleAdmin'); ?>" <?php if ($role == session()->get('roleAdmin')) echo 'selected'; ?>><?= session()->get('roleAdmin'); ?></option>
-                                            <option value="<?= session()->get('roleKaro'); ?>" <?php if ($role == session()->get('roleKaro')) echo 'selected'; ?>><?= session()->get('roleKaro'); ?></option>
-                                            <option value="<?= session()->get('roleKabag'); ?>" <?php if ($role == session()->get('roleKabag')) echo 'selected'; ?>><?= session()->get('roleKabag'); ?></option>
-                                            <option value="<?= session()->get('roleSubPengadaan'); ?>" <?php if ($role == session()->get('roleSubPengadaan')) echo 'selected'; ?>><?= session()->get('roleSubPengadaan'); ?></option>
-                                            <option value="<?= session()->get('roleSubBMN'); ?>" <?php if ($role == session()->get('roleSubBMN')) echo 'selected'; ?>><?= session()->get('roleSubBMN'); ?></option>
-                                            <option value="<?= session()->get('roleSubRumga'); ?>" <?php if ($role == session()->get('roleSubRumga')) echo 'selected'; ?>><?= session()->get('roleSubRumga'); ?></option>
+                                            <option value="<?= session()->get('props')->roleUser; ?>" <?php if ($role == session()->get('props')->roleUser) echo 'selected'; ?>><?= session()->get('props')->roleUser; ?></option>
+                                            <option value="<?= session()->get('props')->roleAdmin; ?>" <?php if ($role == session()->get('props')->roleAdmin) echo 'selected'; ?>><?= session()->get('props')->roleAdmin; ?></option>
+                                            <option value="<?= session()->get('props')->roleKaro; ?>" <?php if ($role == session()->get('props')->roleKaro) echo 'selected'; ?>><?= session()->get('props')->roleKaro; ?></option>
+                                            <option value="<?= session()->get('props')->roleKabag; ?>" <?php if ($role == session()->get('props')->roleKabag) echo 'selected'; ?>><?= session()->get('props')->roleKabag; ?></option>
+                                            <option value="<?= session()->get('props')->roleSubPengadaan; ?>" <?php if ($role == session()->get('props')->roleSubPengadaan) echo 'selected'; ?>><?= session()->get('props')->roleSubPengadaan; ?></option>
+                                            <option value="<?= session()->get('props')->roleSubBMN; ?>" <?php if ($role == session()->get('props')->roleSubBMN) echo 'selected'; ?>><?= session()->get('props')->roleSubBMN; ?></option>
+                                            <option value="<?= session()->get('props')->roleSubRumga; ?>" <?php if ($role == session()->get('props')->roleSubRumga) echo 'selected'; ?>><?= session()->get('props')->roleSubRumga; ?></option>
                                         </select>
                                     </div>
                                 </div>

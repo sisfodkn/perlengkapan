@@ -145,6 +145,7 @@ $routes->match(['get', 'post'], 'save-katruangan/(:any)', 'DataBMN\KatRuanganCon
 
 // Permintaan Masuk - Pengadaan
 $routes->get("/pengadaan-atk-req", "Pengadaan\ReqAtkController::index", ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'atk-req-approve/(:any)', 'Pengadaan\ReqAtkController::save/$1', ["filter" => "auth"]);
 $routes->get("/pengadaan-cetakan-req", "Pengadaan\ReqCetakanController::index", ["filter" => "auth"]);
 
 // Permintaan User - Pengadaan
@@ -161,14 +162,6 @@ $routes->get("/permintaan-randis", "Permintaan\RandisController::index", ["filte
 $routes->get("/pemeliharaan-gedung", "Pemeliharaan\GedungController::index", ["filter" => "auth"]);
 $routes->get("/pemeliharaan-randis", "Pemeliharaan\RandisController::index", ["filter" => "auth"]);
 $routes->get("/pemeliharaan-alat", "Pemeliharaan\AlatController::index", ["filter" => "auth"]);
-
-$routes->get('karyawan', 'Home::index');
-$routes->post('dt_users', 'Home::dt_users');
-$routes->get('karyawan_list', 'KaryawanController::index');
-$routes->post('karyawan_add', 'KaryawanController::karyawan_add');
-$routes->get('karyawan_edit/(:any)', 'KaryawanController::ajax_edit/$1');
-$routes->post('karyawan_update', 'KaryawanController::karyawan_update');
-$routes->post('karyawan_delete/(:any)', 'KaryawanController::karyawan_delete/$1');
 
 /*
  * --------------------------------------------------------------------

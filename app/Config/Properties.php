@@ -11,6 +11,8 @@ class Properties extends BaseConfig
     public $tombol_reset = "Reset";
     public $tombol_edit = "Edit";
     public $tombol_delete = "Delete";
+    public $tombol_setuju = "Setuju";
+    public $tombol_tolak = "Tolak";
 
     // Label
     public $nip = "NIP / NRP";
@@ -44,6 +46,7 @@ class Properties extends BaseConfig
     public $nama_gedung = "Nama Gedung";
     public $nama_ruangan = "Nama Ruangan";
     public $kode_ruangan = "Kode Ruangan";
+    public $status = "Status";
 
     // Role
     public $roleAdmin = "Administrator";
