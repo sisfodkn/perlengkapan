@@ -30,7 +30,21 @@ echo view('base/sidebar', $data);
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <?php
+                    if (session()->getFlashData('success')) {
+                    ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?= session()->getFlashData('success') ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <div class="card card-danger">
+                        <div class="card-header">
+                        </div>
                         <div class="card-body">
                             <table id="tablePegawai" class="table table-bordered table-hover">
                                 <thead>
@@ -68,7 +82,7 @@ echo view('base/sidebar', $data);
                                             <td><?= $row->nama_subunit; ?></td>
                                             <td class="text-center">
                                                 <a title="Edit" href="<?= base_url("input-pegawai/$idEncryption"); ?>" class="btn btn-info btn-sm"><?= session()->get('props')->tombol_edit; ?></a>
-                                                <a title="Hapus" href="<?= base_url("pegawai/delete/$idEncryption"); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus NIP/NRP <?= $row->nip_nrp ?> ?')"><?= session()->get('props')->tombol_delete; ?></a>
+                                                <a title="Hapus" href="<?= base_url("delete-pegawai/$idEncryption"); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus <?= $row->nama_pegawai ?> ?')"><?= session()->get('props')->tombol_delete; ?></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

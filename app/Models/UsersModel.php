@@ -15,6 +15,7 @@ class UsersModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'id',
         'username',
         'password',
         'role',
@@ -53,11 +54,12 @@ class UsersModel extends Model
             users.role,
             pegawai.nama_pegawai
         FROM users
-        JOIN pegawai ON users.id_pegawai = pegawai.id");
+        JOIN pegawai ON users.id_pegawai = pegawai.id
+        WHERE users.username != 'admin'");
         return $query->getResult();
     }
 
-    public function getById($id)
+    public function findById($id)
     {
         $query = $this->db->query("SELECT
             users.id,
@@ -70,7 +72,7 @@ class UsersModel extends Model
         return $query->getFirstRow();
     }
 
-    public function getByUsername($username)
+    public function findByUsername($username)
     {
         $query = $this->db->query("SELECT 
             users.id,
@@ -91,6 +93,15 @@ class UsersModel extends Model
         LEFT JOIN   unit        ON pegawai.id_unit = unit.id
         LEFT JOIN   sub_unit    ON pegawai.id_subunit = sub_unit.id
         WHERE users.username = '$username'");
+        return $query->getFirstRow();
+    }
+
+    public function findByIdPegawai($id)
+    {
+        $query = $this->db->query("SELECT
+            users.id
+        FROM users
+        WHERE users.id_pegawai = '$id'");
         return $query->getFirstRow();
     }
 }

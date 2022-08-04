@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Permintaan;
+namespace App\Controllers\Peminjaman;
 
 use App\Controllers\BaseController;
 
@@ -8,7 +8,7 @@ class AlatController extends BaseController
 {
     public function index()
     {
-        $data['activeMenu'] = 'permintaan-alat';
+        $data['activeMenu'] = 'peminjaman-alat';
         return view("blank", $data);
     }
 }

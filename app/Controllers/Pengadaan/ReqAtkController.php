@@ -32,14 +32,14 @@ class ReqAtkController extends BaseController
             case session()->get('props')->roleSubPengadaan:
                 $this->permintaanPengadaanModel->update($idDecryption, [
                     'tgl_persetujuan_subbag' => $now,
-                    'status' => 'Disetujui Subbag Pengadaan'
+                    'status' => '1'
                 ]);
                 break;
             case session()->get('props')->roleKabag:
                 $this->permintaanPengadaanModel->update($idDecryption, [
                     'tgl_persetujuan_subbag' => $now,
                     'tgl_persetujuan_bag' => $now,
-                    'status' => 'Disetujui Kabag PPBJ'
+                    'status' => '2'
                 ]);
                 break;
         }

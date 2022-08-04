@@ -7,6 +7,7 @@ use App\Models\PegawaiModel;
 use App\Models\JabatanModel;
 use App\Models\UnitModel;
 use App\Models\SubUnitModel;
+use App\Models\UsersModel;
 
 class PegawaiController extends BaseController
 {
@@ -16,6 +17,7 @@ class PegawaiController extends BaseController
         $this->jabatanModel = new JabatanModel();
         $this->unitModel = new UnitModel();
         $this->subUnitModel = new SubUnitModel();
+        $this->usersModel = new UsersModel();
     }
 
     public function index()
@@ -84,6 +86,22 @@ class PegawaiController extends BaseController
                 'id_subunit' => $subUnit
             ]);
         }
+        return redirect()->to(base_url("data-pegawai"));
+    }
+
+    public function delete($id)
+    {
+        $idDecryption = $this->decrypt($id);
+        $dataPegawai = $this->pegawaiModel->find($idDecryption);
+        $dataUsers = $this->usersModel->findByIdPegawai($idDecryption);
+
+        $namaPegawai = $dataPegawai['nama_pegawai'];
+        if (!empty($dataUsers)) {
+            $this->usersModel->delete($dataUsers->id);
+        }
+        $this->pegawaiModel->delete($idDecryption);
+        session()->setFlashData("success", "Pegawai <b>$namaPegawai</b> berhasil dihapus.");
+
         return redirect()->to(base_url("data-pegawai"));
     }
 }

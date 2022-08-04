@@ -30,7 +30,7 @@ echo view('base/sidebar', $data);
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card card-warning">
                         <div class="card-header">
                             <h3 class="card-title">
                                 <h3 class="card-title">Permintaan Masuk</h3>
@@ -72,9 +72,9 @@ echo view('base/sidebar', $data);
                                             <td><?= $row->tipe_pengadaan; ?></td>
                                             <td><?= $row->jenis_kegiatan; ?></td>
                                             <td><?= $row->isi_permintaan; ?></td>
-                                            <td class="<?= $row->status == 'Disetujui Subbag Pengadaan' ? 'alert-warning' : 'alert-danger' ?>"><?= $row->status; ?></td>
+                                            <td class="<?= $row->status == '1' ? 'alert-warning' : 'alert-danger' ?>"><?= $row->keterangan; ?></td>
                                             <td class="text-center">
-                                                <a title="Disetujui" href="<?= base_url("atk-req-approve/$idEncryption"); ?>" class="btn btn-info btn-sm" onclick="return confirm('Apakah Anda yakin ingin Menyetujui ?')"><?= session()->get('props')->tombol_setuju; ?></a>
+                                                <a title="Disetujui" href="<?= base_url("atk-req-approve/$idEncryption"); ?>" class="btn btn-info btn-sm" onclick="return confirm('Anda yakin ingin Menyetujui ?')"><?= session()->get('props')->tombol_setuju; ?></a>
                                                 <a title="Ditolak" href="<?= base_url("atk-req-reject/$idEncryption"); ?>" class="btn btn-danger btn-sm"><?= session()->get('props')->tombol_tolak; ?></a>
                                             </td>
                                         </tr>
@@ -86,7 +86,7 @@ echo view('base/sidebar', $data);
                     </div>
                     <!-- /.card -->
 
-                    <div class="card">
+                    <div class="card card-success">
                         <div class="card-header">
                             <h3 class="card-title">
                                 <h3 class="card-title">Riwayat Permintaan Masuk</h3>
@@ -102,6 +102,7 @@ echo view('base/sidebar', $data);
                                         <th><?= session()->get('props')->tipe_pengadaan; ?></th>
                                         <th><?= session()->get('props')->jenis_kegiatan; ?></th>
                                         <th><?= session()->get('props')->daftar_permintaan; ?></th>
+                                        <th><?= session()->get('props')->tgl_persetujuan; ?></th>
                                         <th><?= session()->get('props')->status; ?></th>
                                     </tr>
                                 </thead>
@@ -116,7 +117,8 @@ echo view('base/sidebar', $data);
                                             <td><?= $rowRiwayat->tipe_pengadaan; ?></td>
                                             <td><?= $rowRiwayat->jenis_kegiatan; ?></td>
                                             <td><?= $rowRiwayat->isi_permintaan; ?></td>
-                                            <td class="<?= $rowRiwayat->status == 'Disetujui Subbag Pengadaan' ? 'alert-warning' : 'alert-success' ?>"><?= $rowRiwayat->status; ?></td>
+                                            <td><?= $rowRiwayat->tgl_persetujuan_bag; ?></td>
+                                            <td class="<?= $rowRiwayat->status == '1' ? 'alert-warning' : 'alert-success' ?>"><?= $rowRiwayat->keterangan; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

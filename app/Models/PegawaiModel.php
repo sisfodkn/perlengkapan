@@ -47,6 +47,33 @@ class PegawaiModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    public function findByJabatan($id)
+    {
+        $query = $this->db->query("SELECT 
+            nama_pegawai
+        FROM pegawai
+        WHERE id_jabatan = '$id'");
+        return $query->getResult();
+    }
+
+    public function findByUnit($id)
+    {
+        $query = $this->db->query("SELECT 
+            nama_pegawai
+        FROM pegawai
+        WHERE id_unit = '$id'");
+        return $query->getResult();
+    }
+
+    public function findBySubUnit($id)
+    {
+        $query = $this->db->query("SELECT 
+            nama_pegawai
+        FROM pegawai
+        WHERE id_subunit = '$id'");
+        return $query->getResult();
+    }
+
     public function getAll()
     {
         $query = $this->db->query("SELECT

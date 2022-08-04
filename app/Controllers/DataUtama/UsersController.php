@@ -37,7 +37,7 @@ class UsersController extends BaseController
     public function edit($id)
     {
         $idDecryption = $this->decrypt($id);
-        $dataUsers = $this->usersModel->getById($idDecryption);
+        $dataUsers = $this->usersModel->findById($idDecryption);
 
         if (empty($dataUsers)) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Data User Tidak ditemukan !');
@@ -52,6 +52,7 @@ class UsersController extends BaseController
 
     public function save($id)
     {
+        $username = $this->request->getVar('username');
         $idPegawai = $this->request->getVar('pegawai');
         $pegawai = $this->pegawaiModel->find($idPegawai);
         $password = $this->request->getVar('password');
@@ -65,10 +66,8 @@ class UsersController extends BaseController
             ]);
         } else {
             $this->usersModel->update($id, [
-                'username' => $pegawai['nip_nrp'],
                 'password' => password_hash($password, PASSWORD_DEFAULT),
-                'role' => $role,
-                'id_pegawai' => $idPegawai
+                'role' => $role
             ]);
         }
         return redirect()->to(base_url("data-user"));
@@ -99,7 +98,7 @@ class UsersController extends BaseController
                     "validation" => $this->validator,
                 ]);
             } else {
-                $users = $this->usersModel->getByUsername($this->request->getVar('username'));
+                $users = $this->usersModel->findByUsername($this->request->getVar('username'));
 
                 // Stroing session values
                 $this->setUserSession($users);

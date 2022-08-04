@@ -207,17 +207,24 @@ class Properties extends BaseConfig
         'pengadaan-cetakan-req'
     ];
 
+    // Menu Peminjaman masuk
+    public $menuPeminjamanReq = [
+        'peminjaman-rupat-req',
+        'peminjaman-alat-req',
+        'peminjaman-randis-req'
+    ];
+
     // Menu Pengadaan
     public $menuPengadaan = [
         'pengadaan-atk',
         'pengadaan-cetakan'
     ];
 
-    // Menu Permintaan
-    public $menuPermintaan = [
-        'permintaan-rupat',
-        'permintaan-alat',
-        'permintaan-randis'
+    // Menu Peminjaman
+    public $menuPeminjaman = [
+        'peminjaman-rupat',
+        'peminjaman-alat',
+        'peminjaman-randis'
     ];
 
     // Menu Pemeliharaan

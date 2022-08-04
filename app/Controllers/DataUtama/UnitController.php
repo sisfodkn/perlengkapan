@@ -3,6 +3,7 @@
 namespace App\Controllers\DataUtama;
 
 use App\Controllers\BaseController;
+use App\Models\PegawaiModel;
 use App\Models\UnitModel;
 
 class UnitController extends BaseController
@@ -10,6 +11,7 @@ class UnitController extends BaseController
     function __construct()
     {
         $this->unitModel = new UnitModel();
+        $this->pegawaiModel = new PegawaiModel();
     }
 
     public function index()
@@ -58,6 +60,26 @@ class UnitController extends BaseController
                 'nama_unit' => $namaUnit
             ]);
         }
+        return redirect()->to(base_url("data-unit"));
+    }
+
+    public function delete($id)
+    {
+        $idDecryption = $this->decrypt($id);
+        $dataUnit = $this->unitModel->find($idDecryption);
+        $dataPegawai = $this->pegawaiModel->findByUnit($dataUnit['id']);
+        $unit = $dataUnit['nama_unit'];
+        if (empty($dataPegawai)) {
+            $this->unitModel->delete($idDecryption);
+            session()->setFlashData("success", "Unit Kerja $unit berhasil dihapus.");
+        } else {
+            $nama = "";
+            foreach ($dataPegawai as $data) :
+                $nama = $nama . "- <b>" . $data->nama_pegawai . "</b><br/>";
+            endforeach;
+            session()->setFlashData("info", "Gagal dihapus!! <br/> Unit Kerja <b>$unit</b> masih digunakan oleh <br/>" . $nama);
+        }
+
         return redirect()->to(base_url("data-unit"));
     }
 }

@@ -4,12 +4,14 @@ namespace App\Controllers\DataUtama;
 
 use App\Controllers\BaseController;
 use App\Models\JabatanModel;
+use App\Models\PegawaiModel;
 
 class JabatanController extends BaseController
 {
     function __construct()
     {
         $this->jabatanModel = new JabatanModel();
+        $this->pegawaiModel = new PegawaiModel();
     }
 
     public function index()
@@ -55,6 +57,26 @@ class JabatanController extends BaseController
                 'nama_jabatan' => $namaJabatan
             ]);
         }
+        return redirect()->to(base_url("data-jabatan"));
+    }
+
+    public function delete($id)
+    {
+        $idDecryption = $this->decrypt($id);
+        $dataJabatan = $this->jabatanModel->find($idDecryption);
+        $dataPegawai = $this->pegawaiModel->findByJabatan($dataJabatan['id']);
+        $jabatan = $dataJabatan['nama_jabatan'];
+        if (empty($dataPegawai)) {
+            $this->jabatanModel->delete($idDecryption);
+            session()->setFlashData("success", "Jabatan $jabatan berhasil dihapus.");
+        } else {
+            $nama = "";
+            foreach ($dataPegawai as $data) :
+                $nama = $nama . "- <b>" . $data->nama_pegawai . "</b><br/>";
+            endforeach;
+            session()->setFlashData("info", "Gagal dihapus!! <br/> Jabatan <b>$jabatan</b> masih digunakan oleh <br/>" . $nama);
+        }
+
         return redirect()->to(base_url("data-jabatan"));
     }
 }

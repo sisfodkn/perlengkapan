@@ -50,6 +50,41 @@ class PermintaanPengadaanModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+    protected $where = "";
+
+    public function getAllPendingRequest()
+    {
+        switch (session()->get('role')) {
+            case session()->get('props')->roleSubPengadaan:
+                $where = "WHERE permintaan_pengadaan.tgl_persetujuan_subbag IS NULL";
+                break;
+            case session()->get('props')->roleKabag:
+                $where = "WHERE permintaan_pengadaan.tgl_persetujuan_subbag IS NULL
+                OR permintaan_pengadaan.tgl_persetujuan_bag IS NULL";
+                break;
+        }
+        $sql = "SELECT count(*) AS total 
+            FROM permintaan_pengadaan " . $where;
+        $query = $this->db->query("$sql");
+        return $query->getFirstRow();
+    }
+
+    public function getAllCompleteRequest()
+    {
+        switch (session()->get('role')) {
+            case session()->get('props')->roleSubPengadaan:
+                $where = "WHERE permintaan_pengadaan.tgl_persetujuan_subbag IS NOT NULL";
+                break;
+            case session()->get('props')->roleKabag:
+                $where = "WHERE permintaan_pengadaan.tgl_persetujuan_subbag IS NOT NULL
+                OR permintaan_pengadaan.tgl_persetujuan_bag IS NULL";
+                break;
+        }
+        $sql = "SELECT count(*) AS total 
+            FROM permintaan_pengadaan " . $where;
+        $query = $this->db->query("$sql");
+        return $query->getFirstRow();
+    }
 
     public function getPendingRequest($id_unit, $id_subunit)
     {
@@ -70,7 +105,17 @@ class PermintaanPengadaanModel extends Model
             permintaan_pengadaan.jenis_kegiatan,
             permintaan_pengadaan.isi_permintaan,
             permintaan_pengadaan.tgl_pengajuan,
-            permintaan_pengadaan.status
+            permintaan_pengadaan.status,
+            (CASE permintaan_pengadaan.status
+                WHEN 0 THEN
+                    'Belum Disetujui'
+                WHEN 1 THEN
+                    'Disetujui Subbag'
+                WHEN 2 THEN
+                    'Disetujui Kabag'
+                WHEN 3 THEN
+                    'Disetujui Karoum'
+            END) AS keterangan
         FROM permintaan_pengadaan 
         LEFT JOIN pegawai ON permintaan_pengadaan.id_pegawai = pegawai.id
         LEFT JOIN unit ON permintaan_pengadaan.id_unit = unit.id
@@ -100,7 +145,17 @@ class PermintaanPengadaanModel extends Model
             permintaan_pengadaan.jenis_kegiatan,
             permintaan_pengadaan.isi_permintaan,
             permintaan_pengadaan.tgl_pengajuan,
-            permintaan_pengadaan.status
+            permintaan_pengadaan.status,
+            (CASE permintaan_pengadaan.status
+                WHEN 0 THEN
+                    'Belum Disetujui'
+                WHEN 1 THEN
+                    'Disetujui Subbag'
+                WHEN 2 THEN
+                    'Disetujui Kabag'
+                WHEN 3 THEN
+                    'Disetujui Karoum'
+            END) AS keterangan
         FROM permintaan_pengadaan 
         LEFT JOIN pegawai ON permintaan_pengadaan.id_pegawai = pegawai.id
         LEFT JOIN unit ON permintaan_pengadaan.id_unit = unit.id
@@ -117,7 +172,7 @@ class PermintaanPengadaanModel extends Model
         LEFT JOIN pegawai ON permintaan_pengadaan.id_pegawai = pegawai.id
         LEFT JOIN unit ON permintaan_pengadaan.id_unit = unit.id
         LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id
-        WHERE permintaan_pengadaan.status = 'Belum Disetujui'");
+        WHERE permintaan_pengadaan.status = '0'");
         return $query->getResult();
     }
 
@@ -138,7 +193,18 @@ class PermintaanPengadaanModel extends Model
             permintaan_pengadaan.jenis_kegiatan,
             permintaan_pengadaan.isi_permintaan,
             permintaan_pengadaan.tgl_pengajuan,
-            permintaan_pengadaan.status
+            permintaan_pengadaan.tgl_persetujuan_bag,
+            permintaan_pengadaan.status,
+            (CASE permintaan_pengadaan.status
+                WHEN 0 THEN
+                    'Belum Disetujui'
+                WHEN 1 THEN
+                    'Disetujui Subbag'
+                WHEN 2 THEN
+                    'Disetujui Kabag'
+                WHEN 3 THEN
+                    'Disetujui Karoum'
+            END) AS keterangan
         FROM permintaan_pengadaan 
         LEFT JOIN pegawai ON permintaan_pengadaan.id_pegawai = pegawai.id
         LEFT JOIN unit ON permintaan_pengadaan.id_unit = unit.id
@@ -175,7 +241,17 @@ class PermintaanPengadaanModel extends Model
         WHERE permintaan_pengadaan.id_unit = '$id_unit'
         AND permintaan_pengadaan.id_subunit = '$id_subunit'
         AND permintaan_pengadaan.tgl_persetujuan_subbag IS NOT NULL
-        AND permintaan_pengadaan.tgl_persetujuan_bag IS NOT NULL");
+        AND permintaan_pengadaan.tgl_persetujuan_bag IS NOT NULL
+        ORDER BY permintaan_pengadaan.tgl_pengajuan DESC");
+        return $query->getResult();
+    }
+
+    public function findByKegiatan($jenis)
+    {
+        $query = $this->db->query("SELECT 
+            *
+        FROM permintaan_pengadaan
+        WHERE jenis_kegiatan = '$jenis'");
         return $query->getResult();
     }
 }

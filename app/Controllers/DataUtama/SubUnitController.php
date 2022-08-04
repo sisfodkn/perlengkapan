@@ -3,6 +3,7 @@
 namespace App\Controllers\DataUtama;
 
 use App\Controllers\BaseController;
+use App\Models\PegawaiModel;
 use App\Models\SubUnitModel;
 
 class SubUnitController extends BaseController
@@ -10,6 +11,7 @@ class SubUnitController extends BaseController
     function __construct()
     {
         $this->subUnitModel = new SubUnitModel();
+        $this->pegawaiModel = new PegawaiModel();
     }
 
     public function index()
@@ -58,6 +60,26 @@ class SubUnitController extends BaseController
                 'nama_subunit' => $namaSubUnit
             ]);
         }
+        return redirect()->to(base_url("data-subunit"));
+    }
+
+    public function delete($id)
+    {
+        $idDecryption = $this->decrypt($id);
+        $dataSubunit = $this->subUnitModel->find($idDecryption);
+        $dataPegawai = $this->pegawaiModel->findBySubUnit($dataSubunit['id']);
+        $subunit = $dataSubunit['nama_subunit'];
+        if (empty($dataPegawai)) {
+            $this->subUnitModel->delete($idDecryption);
+            session()->setFlashData("success", "Sub Unit Kerja $subunit berhasil dihapus.");
+        } else {
+            $nama = "";
+            foreach ($dataPegawai as $data) :
+                $nama = $nama . "- <b>" . $data->nama_pegawai . "</b><br/>";
+            endforeach;
+            session()->setFlashData("info", "Gagal dihapus!! <br/> Sub Unit Kerja <b>$subunit</b> masih digunakan oleh <br/>" . $nama);
+        }
+
         return redirect()->to(base_url("data-subunit"));
     }
 }

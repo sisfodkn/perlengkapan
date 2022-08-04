@@ -52,36 +52,42 @@ $routes->get("/input-pegawai", "DataUtama\PegawaiController::add", ["filter" => 
 $routes->get("/input-pegawai/(:any)", "DataUtama\PegawaiController::edit/$1", ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-pegawai', 'DataUtama\PegawaiController::save/', ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-pegawai/(:any)', 'DataUtama\PegawaiController::save/$1', ["filter" => "auth"]);
+$routes->get("/delete-pegawai/(:any)", "DataUtama\PegawaiController::delete/$1", ["filter" => "auth"]);
 // Data Jabatan
 $routes->get("/data-jabatan", "DataUtama\JabatanController::index", ["filter" => "auth"]);
 $routes->get("/input-jabatan", "DataUtama\JabatanController::add", ["filter" => "auth"]);
 $routes->get("/input-jabatan/(:any)", "DataUtama\JabatanController::edit/$1", ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-jabatan', 'DataUtama\JabatanController::save/', ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-jabatan/(:any)', 'DataUtama\JabatanController::save/$1', ["filter" => "auth"]);
+$routes->get("/delete-jabatan/(:any)", "DataUtama\JabatanController::delete/$1", ["filter" => "auth"]);
 // Data Unit Kerja
 $routes->get("/data-unit", "DataUtama\UnitController::index", ["filter" => "auth"]);
 $routes->get("/input-unit", "DataUtama\UnitController::add", ["filter" => "auth"]);
 $routes->get("/input-unit/(:any)", "DataUtama\UnitController::edit/$1", ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-unit', 'DataUtama\UnitController::save/', ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-unit/(:any)', 'DataUtama\UnitController::save/$1', ["filter" => "auth"]);
+$routes->get("/delete-unit/(:any)", "DataUtama\UnitController::delete/$1", ["filter" => "auth"]);
 // Data Sub Unit Kerja
 $routes->get("/data-subunit", "DataUtama\SubUnitController::index", ["filter" => "auth"]);
 $routes->get("/input-subunit", "DataUtama\SubUnitController::add", ["filter" => "auth"]);
 $routes->get("/input-subunit/(:any)", "DataUtama\SubUnitController::edit/$1", ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-subunit', 'DataUtama\SubUnitController::save/', ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-subunit/(:any)', 'DataUtama\SubUnitController::save/$1', ["filter" => "auth"]);
+$routes->get("/delete-subunit/(:any)", "DataUtama\SubUnitController::delete/$1", ["filter" => "auth"]);
 // Data ATK
 $routes->get("/data-atk", "DataUtama\AtkController::index", ["filter" => "auth"]);
 $routes->get("/input-atk", "DataUtama\AtkController::add", ["filter" => "auth"]);
 $routes->get("/input-atk/(:any)", "DataUtama\AtkController::edit/$1", ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-atk', 'DataUtama\AtkController::save/', ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-atk/(:any)', 'DataUtama\AtkController::save/$1', ["filter" => "auth"]);
+$routes->get("/delete-atk/(:any)", "DataUtama\AtkController::delete/$1", ["filter" => "auth"]);
 // Data Kegiatan
 $routes->get("/data-kegiatan", "DataUtama\KegiatanController::index", ["filter" => "auth"]);
 $routes->get("/input-kegiatan", "DataUtama\KegiatanController::add", ["filter" => "auth"]);
 $routes->get("/input-kegiatan/(:any)", "DataUtama\KegiatanController::edit/$1", ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-kegiatan', 'DataUtama\KegiatanController::save/', ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'save-kegiatan/(:any)', 'DataUtama\KegiatanController::save/$1', ["filter" => "auth"]);
+$routes->get("/delete-kegiatan/(:any)", "DataUtama\KegiatanController::delete/$1", ["filter" => "auth"]);
 // Data User
 $routes->get("/data-user", "DataUtama\UsersController::index", ["filter" => "auth"]);
 $routes->get("/input-user", "DataUtama\UsersController::add", ["filter" => "auth"]);
@@ -147,17 +153,20 @@ $routes->match(['get', 'post'], 'save-katruangan/(:any)', 'DataBMN\KatRuanganCon
 $routes->get("/pengadaan-atk-req", "Pengadaan\ReqAtkController::index", ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'atk-req-approve/(:any)', 'Pengadaan\ReqAtkController::save/$1', ["filter" => "auth"]);
 $routes->get("/pengadaan-cetakan-req", "Pengadaan\ReqCetakanController::index", ["filter" => "auth"]);
+// Permintaan Masuk - Peminjaman
+$routes->get("/peminjaman-rupat-req", "Peminjaman\ReqRupatController::index", ["filter" => "auth"]);
+$routes->get("/peminjaman-alat-req", "Peminjaman\ReqAlatController::index", ["filter" => "auth"]);
+$routes->get("/peminjaman-randis-req", "Peminjaman\ReqRandisController::index", ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'randis-req-approve/(:any)', 'Peminjaman\ReqRandisController::save/$1', ["filter" => "auth"]);
 
 // Permintaan User - Pengadaan
 $routes->get("/pengadaan-atk", "Pengadaan\AtkController::index", ["filter" => "auth"]);
 $routes->match(['get', 'post'], '/save-pengadaan-atk', "Pengadaan\AtkController::save", ["filter" => "auth"]);
 $routes->get("/pengadaan-cetakan", "Pengadaan\CetakanController::index", ["filter" => "auth"]);
-
-// Permintaan User - Permintaan
-$routes->get("/permintaan-rupat", "Permintaan\RupatController::index", ["filter" => "auth"]);
-$routes->get("/permintaan-alat", "Permintaan\AlatController::index", ["filter" => "auth"]);
-$routes->get("/permintaan-randis", "Permintaan\RandisController::index", ["filter" => "auth"]);
-
+// Permintaan User - Peminjaman
+$routes->get("/peminjaman-rupat", "Peminjaman\RupatController::index", ["filter" => "auth"]);
+$routes->get("/peminjaman-alat", "Peminjaman\AlatController::index", ["filter" => "auth"]);
+$routes->get("/peminjaman-randis", "Peminjaman\RandisController::index", ["filter" => "auth"]);
 // Permintaan User - Pemeliharaan
 $routes->get("/pemeliharaan-gedung", "Pemeliharaan\GedungController::index", ["filter" => "auth"]);
 $routes->get("/pemeliharaan-randis", "Pemeliharaan\RandisController::index", ["filter" => "auth"]);

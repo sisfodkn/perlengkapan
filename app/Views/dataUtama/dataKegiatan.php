@@ -30,7 +30,31 @@ echo view('base/sidebar', $data);
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-info">
+                    <?php
+                    if (session()->getFlashData('info')) {
+                    ?>
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            <?= session()->getFlashData('info') ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <?php
+                    if (session()->getFlashData('success')) {
+                    ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?= session()->getFlashData('success') ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <div class="card card-danger">
                         <div class="card-header">
                         </div>
                         <div class="card-body">
@@ -60,7 +84,7 @@ echo view('base/sidebar', $data);
                                             <td><?= $row['jenis_kegiatan']; ?></td>
                                             <td class="text-center">
                                                 <a title="Edit" href="<?= base_url("input-kegiatan/$idEncryption"); ?>" class="btn btn-info btn-sm"><?= session()->get('props')->tombol_edit; ?></a>
-                                                <a title="Hapus" href="<?= base_url("kegiatan/delete/$idEncryption"); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus <?= $row['jenis_kegiatan']; ?> ?')"><?= session()->get('props')->tombol_delete; ?></a>
+                                                <a title="Hapus" href="<?= base_url("delete-kegiatan/$idEncryption"); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus <?= $row['jenis_kegiatan']; ?> ?')"><?= session()->get('props')->tombol_delete; ?></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

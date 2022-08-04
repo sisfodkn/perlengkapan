@@ -43,21 +43,14 @@ class AtkController extends BaseController
         return view('dataUtama/inputAtk', $data);
     }
 
-    public function save($id)
+    public function delete($id)
     {
-        $namaAtk = $this->request->getVar('namaAtk');
-        $kategoriAtk = $this->request->getVar('kategoriAtk');
-        if ($id == NULL) {
-            $this->atkModel->insert([
-                'nama_atk' => $namaAtk,
-                'kategori_atk' => $kategoriAtk
-            ]);
-        } else {
-            $this->atkModel->update($id, [
-                'nama_atk' => $namaAtk,
-                'kategori_atk' => $kategoriAtk
-            ]);
-        }
+        $idDecryption = $this->decrypt($id);
+        $dataAtk = $this->atkModel->find($idDecryption);
+        $namaAtk = $dataAtk['nama_atk'];
+        $this->atkModel->delete($idDecryption);
+        session()->setFlashData("success", "ATK <b>$namaAtk</b> berhasil dihapus.");
+
         return redirect()->to(base_url("data-atk"));
     }
 }
