@@ -77,7 +77,7 @@ class PermintaanPengadaanModel extends Model
                 break;
             case session()->get('props')->roleKabag:
                 $where = "WHERE permintaan_pengadaan.tgl_persetujuan_subbag IS NOT NULL
-                OR permintaan_pengadaan.tgl_persetujuan_bag IS NULL";
+                OR permintaan_pengadaan.tgl_persetujuan_bag IS NOT NULL";
                 break;
         }
         $sql = "SELECT count(*) AS total 

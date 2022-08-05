@@ -32,6 +32,8 @@ class Properties extends BaseConfig
     public $role = "Role";
     public $kegiatan = "Kegiatan";
     public $tgl_pengajuan = "Tanggal Pengajuan";
+    public $tgl_peminjaman = "Tanggal Peminjaman";
+    public $tgl_pengembalian = "Tanggal Pengembalian";
     public $tgl_persetujuan = "Tanggal Persetujuan";
     public $daftar_permintaan = "Daftar Permintaan";
     public $tipe_pengadaan = "Tipe Pengadaan";
@@ -47,6 +49,8 @@ class Properties extends BaseConfig
     public $nama_ruangan = "Nama Ruangan";
     public $kode_ruangan = "Kode Ruangan";
     public $status = "Status";
+    public $randis = "Kendaraan Dinas";
+    public $keperluan = "Keperluan";
 
     // Role
     public $roleAdmin = "Administrator";

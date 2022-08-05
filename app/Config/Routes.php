@@ -163,10 +163,12 @@ $routes->match(['get', 'post'], 'randis-req-approve/(:any)', 'Peminjaman\ReqRand
 $routes->get("/pengadaan-atk", "Pengadaan\AtkController::index", ["filter" => "auth"]);
 $routes->match(['get', 'post'], '/save-pengadaan-atk', "Pengadaan\AtkController::save", ["filter" => "auth"]);
 $routes->get("/pengadaan-cetakan", "Pengadaan\CetakanController::index", ["filter" => "auth"]);
+$routes->match(['get', 'post'], '/save-pengadaan-cetakan', "Pengadaan\CetakanController::save", ["filter" => "auth"]);
 // Permintaan User - Peminjaman
 $routes->get("/peminjaman-rupat", "Peminjaman\RupatController::index", ["filter" => "auth"]);
 $routes->get("/peminjaman-alat", "Peminjaman\AlatController::index", ["filter" => "auth"]);
 $routes->get("/peminjaman-randis", "Peminjaman\RandisController::index", ["filter" => "auth"]);
+$routes->match(['get', 'post'], '/save-peminjaman-randis', "Peminjaman\RandisController::save", ["filter" => "auth"]);
 // Permintaan User - Pemeliharaan
 $routes->get("/pemeliharaan-gedung", "Pemeliharaan\GedungController::index", ["filter" => "auth"]);
 $routes->get("/pemeliharaan-randis", "Pemeliharaan\RandisController::index", ["filter" => "auth"]);

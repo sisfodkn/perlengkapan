@@ -91,4 +91,18 @@ class RandisModel extends Model
         ORDER BY kendaraan_dinas.id");
         return $query->getResult();
     }
+
+    public function findRandisPerkantoran()
+    {
+        $query = $this->db->query("SELECT
+            kendaraan_dinas.id,
+            kendaraan_dinas.nopol,
+            kendaraan_dinas.merk_kendaraan
+        FROM kendaraan_dinas
+        JOIN jenis_operasional ON kendaraan_dinas.id_jenis_operasional = jenis_operasional.id
+        WHERE kendaraan_dinas.id NOT IN (SELECT id_kendaraan_dinas FROM distribusi_randis)
+        AND kendaraan_dinas.id_jenis_operasional = 1
+        ORDER BY kendaraan_dinas.id");
+        return $query->getResult();
+    }
 }

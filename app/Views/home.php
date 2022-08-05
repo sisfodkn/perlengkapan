@@ -104,6 +104,36 @@ echo view('base/sidebar', $data);
             </div>
           </div>
           <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3><?= $totalReqPeminjamanRandis->total; ?><sup style="font-size: 20px"> Permintaan</sup></h3>
+
+                <p>Total Peminjaman Randis Tertunda</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3><?= $totalCompletePeminjamanRandis->total; ?><sup style="font-size: 20px"> Permintaan</sup></h3>
+
+                <p>Total Peminjaman Randis Selesai</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
         </div>
         <!-- /.row -->
         <!-- Main row -->
@@ -185,6 +215,96 @@ echo view('base/sidebar', $data);
                         <td><?= $row->jenis_kegiatan; ?></td>
                         <td><?= $row->isi_permintaan; ?></td>
                         <td><?= date('d M Y', strtotime($row->tgl_persetujuan_bag)); ?></td>
+                      </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <div class="col-12">
+            <div class="card card-warning">
+              <div class="card-header">
+                <h3 class="card-title">Peminjaman Randis Tertunda</h3>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="tableReqPeminjamanRandis" class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th><?= session()->get('props')->tgl_pengajuan; ?></th>
+                      <th><?= session()->get('props')->nama_pegawai; ?></th>
+                      <th><?= session()->get('props')->randis; ?></th>
+                      <th><?= session()->get('props')->tgl_peminjaman; ?></th>
+                      <th><?= session()->get('props')->tgl_pengembalian; ?></th>
+                      <th><?= session()->get('props')->keperluan; ?></th>
+                      <th><?= session()->get('props')->status; ?></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    foreach ($pinjamRandis as $row) :
+                    ?>
+                      <tr>
+                        <td><?= date('d M Y', strtotime($row->tgl_pengajuan)); ?></td>
+                        <td><?= $row->nama_pegawai; ?></td>
+                        <td><?= $row->nopol . ' - ' . $row->merk_kendaraan; ?></td>
+                        <td><?= $row->tgl_peminjaman; ?></td>
+                        <td><?= $row->tgl_pengembalian; ?></td>
+                        <td><?= $row->keperluan; ?></td>
+                        <td class="<?= $row->status == '1' ? 'alert-warning' : 'alert-danger' ?>"><?= $row->keterangan; ?></td>
+                      </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <div class="col-12">
+            <div class="card card-success collapsed-card">
+              <div class="card-header">
+                <h3 class="card-title">Peminjaman Randis Selesai</h3>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="tableReqPengadaanDone" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th><?= session()->get('props')->tgl_pengajuan; ?></th>
+                      <th><?= session()->get('props')->nama_pegawai; ?></th>
+                      <th><?= session()->get('props')->randis; ?></th>
+                      <th><?= session()->get('props')->tgl_peminjaman; ?></th>
+                      <th><?= session()->get('props')->tgl_pengembalian; ?></th>
+                      <th><?= session()->get('props')->keperluan; ?></th>
+                      <th><?= session()->get('props')->tgl_persetujuan; ?></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    foreach ($pinjamRandisSelesai as $row) :
+                    ?>
+                      <tr>
+                        <td><?= date('d M Y', strtotime($row->tgl_pengajuan)); ?></td>
+                        <td><?= $row->nama_pegawai; ?></td>
+                        <td><?= $row->nopol . ' - ' . $row->merk_kendaraan; ?></td>
+                        <td><?= $row->tgl_peminjaman; ?></td>
+                        <td><?= $row->tgl_pengembalian; ?></td>
+                        <td><?= $row->keperluan; ?></td>
+                        <td><?= date('d M Y', strtotime($row->tgl_persetujuan_karo)); ?></td>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>

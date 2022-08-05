@@ -145,6 +145,12 @@
         $('#tglPengajuan').datetimepicker({
             format: 'L'
         });
+        $('#tglPeminjaman').datetimepicker({
+            format: 'L'
+        });
+        $('#tglPengembalian').datetimepicker({
+            format: 'L'
+        });
         $('#inputPegawaiForm').validate({
             rules: {
                 nip: {
