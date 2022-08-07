@@ -39,6 +39,7 @@ $routes->set404Override();
 // Users
 $routes->match(['get', 'post'], 'login', 'DataUtama\UsersController::login', ["filter" => "noauth"]);
 $routes->get("/", "HomeController::index", ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'terima-distribusi-pengadaan/(:any)', 'HomeController::terima/$1', ["filter" => "auth"]);
 $routes->get('logout', 'DataUtama\UsersController::logout');
 
 // Struktur Anggaran

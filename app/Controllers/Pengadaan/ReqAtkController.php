@@ -3,6 +3,7 @@
 namespace App\Controllers\Pengadaan;
 
 use App\Controllers\BaseController;
+use App\Models\DistribusiPermintaanPengadaanModel;
 use App\Models\PermintaanPengadaanModel;
 
 class ReqAtkController extends BaseController
@@ -10,6 +11,7 @@ class ReqAtkController extends BaseController
     function __construct()
     {
         $this->permintaanPengadaanModel = new PermintaanPengadaanModel();
+        $this->distribusiPermintaanPengadaanModel = new DistribusiPermintaanPengadaanModel();
     }
 
     public function index()
@@ -33,12 +35,19 @@ class ReqAtkController extends BaseController
                     'tgl_persetujuan_subbag' => $now,
                     'status' => '1'
                 ]);
+                $this->distribusiPermintaanPengadaanModel->insert([
+                    'id_permintaan_pengadaan' => $idDecryption
+                ]);
                 break;
             case session()->get('props')->roleKabag:
                 $this->permintaanPengadaanModel->update($idDecryption, [
                     'tgl_persetujuan_subbag' => $now,
                     'tgl_persetujuan_bag' => $now,
                     'status' => '2'
+                ]);
+                $dataReq = $this->distribusiPermintaanPengadaanModel->findByReqId($idDecryption);
+                $this->distribusiPermintaanPengadaanModel->update($dataReq->id, [
+                    'status' => '0'
                 ]);
                 break;
         }

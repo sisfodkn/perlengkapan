@@ -46,11 +46,8 @@ echo view('base/sidebar', $data);
                                         <th><?= session()->get('props')->tipe_pengadaan; ?></th>
                                         <th><?= session()->get('props')->jenis_kegiatan; ?></th>
                                         <th><?= session()->get('props')->daftar_permintaan; ?></th>
-                                        <th><?= session()->get('props')->persetujuan; ?></th>
-                                        <th><?= session()->get('props')->tgl_kirim; ?></th>
-                                        <th><?= session()->get('props')->tgl_terkirim; ?></th>
-                                        <th><?= session()->get('props')->tgl_terima; ?></th>
-                                        <th><?= session()->get('props')->kirim; ?></th>
+                                        <th><?= session()->get('props')->status_persetujuan; ?></th>
+                                        <th><?= session()->get('props')->status_kirim; ?></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,16 +55,29 @@ echo view('base/sidebar', $data);
                                     foreach ($riwayatReqPengadaanList as $rowRiwayat) :
                                     ?>
                                         <tr>
+                                            <?php if (!empty($rowRiwayat->tgl_persetujuan_bag)) {
+                                                $tgl_persetujuan = date('d M Y', strtotime($rowRiwayat->tgl_persetujuan_bag));
+                                            } else if (!empty($rowRiwayat->tgl_persetujuan_subbag)) {
+                                                $tgl_persetujuan = date('d M Y', strtotime($rowRiwayat->tgl_persetujuan_subbag));
+                                            } else {
+                                                $tgl_persetujuan = "";
+                                            } ?>
+                                            <?php if (!empty($rowRiwayat->tgl_terima)) {
+                                                $tgl_distribusi = date('d M Y', strtotime($rowRiwayat->tgl_terima));
+                                            } else if (!empty($rowRiwayat->tgl_terkirim)) {
+                                                $tgl_distribusi = date('d M Y', strtotime($rowRiwayat->tgl_terkirim));
+                                            } else if (!empty($rowRiwayat->tgl_kirim)) {
+                                                $tgl_distribusi = date('d M Y', strtotime($rowRiwayat->tgl_kirim));
+                                            } else {
+                                                $tgl_distribusi = "";
+                                            } ?>
                                             <td><?= date('d M Y', strtotime($rowRiwayat->tgl_pengajuan)); ?></td>
                                             <td><?= $rowRiwayat->nama_subunit; ?></td>
                                             <td><?= $rowRiwayat->tipe_pengadaan; ?></td>
                                             <td><?= $rowRiwayat->jenis_kegiatan; ?></td>
                                             <td><?= $rowRiwayat->isi_permintaan; ?></td>
-                                            <td class="<?= $rowRiwayat->status_persetujuan == '2' ? 'alert-success' : 'alert-warning' ?>"><?= $rowRiwayat->keterangan_persetujuan; ?></td>
-                                            <td><?= $rowRiwayat->tgl_kirim == null ? '' : date('d M Y', strtotime($rowRiwayat->tgl_kirim)); ?></td>
-                                            <td><?= $rowRiwayat->tgl_kirim == null ? '' : date('d M Y', strtotime($rowRiwayat->tgl_terkirim)); ?></td>
-                                            <td><?= $rowRiwayat->tgl_kirim == null ? '' : date('d M Y', strtotime($rowRiwayat->tgl_terima)); ?></td>
-                                            <td class="<?= $rowRiwayat->status_kirim == '2' ? 'alert-success' : 'alert-warning' ?>"><?= $rowRiwayat->keterangan_kirim; ?></td>
+                                            <td class="<?= $rowRiwayat->status_persetujuan == '2' ? 'alert-success' : 'alert-warning' ?>"><?= $rowRiwayat->keterangan_persetujuan . "<br/>" . $tgl_persetujuan . ""; ?></td>
+                                            <td class="<?= $rowRiwayat->status_kirim == '2' ? 'alert-success' : 'alert-warning' ?>"><?= $rowRiwayat->keterangan_kirim . "<br/>" . $tgl_distribusi . ""; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

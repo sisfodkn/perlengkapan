@@ -15,6 +15,7 @@ class Properties extends BaseConfig
     public $tombol_tolak = "Tolak";
     public $tombol_kirim = "Kirim";
     public $tombol_terkirim = "Terkirim";
+    public $tombol_terima = "Terima";
 
     // Label
     public $nip = "NIP / NRP";
@@ -49,8 +50,8 @@ class Properties extends BaseConfig
     public $status = "Status";
     public $randis = "Kendaraan Dinas";
     public $keperluan = "Keperluan";
-    public $persetujuan = "Persetujuan";
-    public $kirim = "Pengiriman";
+    public $status_persetujuan = "Status Persetujuan";
+    public $status_kirim = "Status Pengiriman";
 
     // Label Tanggal
     public $tgl_pengajuan = "Tanggal Pengajuan";

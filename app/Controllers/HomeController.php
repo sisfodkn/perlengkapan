@@ -25,20 +25,23 @@ class HomeController extends BaseController
         ) {
             $totalPengadaanMasuk = $this->permintaanPengadaanModel->getAllPendingRequest();
             $totalPengadaanPerluDikirim = $this->distribusiPermintaanPengadaanModel->getTotalPendingStatus();
+            $listStatusPengadaan = $this->distribusiPermintaanPengadaanModel->getAllPendingStatus();
         } else {
             $totalPengadaanMasuk = "";
             $totalPengadaanPerluDikirim = "";
+            $listStatusPengadaan = "";
         }
         $data = [
             'activeMenu'            => 'dashboard',
             // Dashboard Pengadaan
             'totalPengadaanMasuk'   => $totalPengadaanMasuk,
             'totalPengadaanPerluDikirim' => $totalPengadaanPerluDikirim,
+            'listStatusPengadaan' => $listStatusPengadaan,
 
             // Dashboard Pengadaan untuk User
             // Pengadaan
-            'permintaan'            => $this->permintaanPengadaanModel->getListPendingRequestUnit(session()->get('id_unit'), session()->get('id_subunit')),
-            'totalReqPengadaanUser' => $this->permintaanPengadaanModel->getPendingRequest(session()->get('id_unit'), session()->get('id_subunit')),
+            'permintaan'            => $this->distribusiPermintaanPengadaanModel->getAllPendingUnit(session()->get('id_unit'), session()->get('id_subunit')),
+            'totalReqPengadaanUser' => $this->distribusiPermintaanPengadaanModel->getTotalPendingUnit(session()->get('id_unit'), session()->get('id_subunit')),
             'totalCompletePengadaanUser' => $this->permintaanPengadaanModel->getCompleteRequest(session()->get('id_unit'), session()->get('id_subunit')),
 
             // Peminjaman
@@ -57,5 +60,18 @@ class HomeController extends BaseController
     {
         $data['activeMenu'] = 'bmn-pendahuluan';
         return view("blank", $data);
+    }
+
+    public function terima($id)
+    {
+        $idDecryption = $this->decrypt($id);
+        $dataDist = $this->distribusiPermintaanPengadaanModel->find($idDecryption);
+
+        $now = date("Y/m/d H:i:s");
+        $this->distribusiPermintaanPengadaanModel->update($idDecryption, [
+            'tgl_terima' => $now,
+            'status' => '3'
+        ]);
+        return redirect()->to(base_url("/"));
     }
 }

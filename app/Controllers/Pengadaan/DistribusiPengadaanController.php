@@ -16,7 +16,7 @@ class DistribusiPengadaanController extends BaseController
     {
         $data = [
             'activeMenu' => 'distribusi-pengadaan',
-            'dataDistList' => $this->distribusiPermintaanPengadaanModel->findPendingStatus()
+            'dataDistList' => $this->distribusiPermintaanPengadaanModel->findPendingDistribusi()
         ];
         return view("pengadaan/dataDistribusi", $data);
     }

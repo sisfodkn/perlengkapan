@@ -46,6 +46,14 @@ class DistribusiPermintaanPengadaanModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    public function findByReqId($reqId)
+    {
+        $query = $this->db->query("SELECT id
+            FROM $this->table
+            WHERE $this->table.id_permintaan_pengadaan = $reqId");
+        return $query->getFirstRow();
+    }
+
     public function getTotalPendingStatus()
     {
         $query = $this->db->query("SELECT count(*) AS total
@@ -54,7 +62,43 @@ class DistribusiPermintaanPengadaanModel extends Model
         return $query->getFirstRow();
     }
 
-    public function findPendingStatus()
+    public function getAllPendingStatus()
+    {
+        $sql = "SELECT permintaan_pengadaan.tgl_pengajuan,
+            sub_unit.nama_subunit,
+            permintaan_pengadaan.tipe_pengadaan,
+            permintaan_pengadaan.jenis_kegiatan,
+            permintaan_pengadaan.isi_permintaan,
+            permintaan_pengadaan.tgl_persetujuan_subbag,
+            permintaan_pengadaan.tgl_persetujuan_bag,
+            permintaan_pengadaan.status AS status_persetujuan,
+            (CASE permintaan_pengadaan.status
+                WHEN 0 THEN 'Belum Disetujui'
+                WHEN 1 THEN 'Disetujui Subbag'
+                WHEN 2 THEN 'Disetujui Kabag'
+                WHEN 3 THEN 'Disetujui Karoum'
+                ELSE ''
+            END) AS keterangan_persetujuan,
+            distribusi_permintaan_pengadaan.tgl_kirim,
+            distribusi_permintaan_pengadaan.tgl_terkirim,
+            distribusi_permintaan_pengadaan.tgl_terima,
+            distribusi_permintaan_pengadaan.status AS status_kirim,
+            (CASE distribusi_permintaan_pengadaan.status
+                WHEN 0 THEN 'Perlu Dikirim'
+                WHEN 1 THEN 'Sedang Dikirim'
+                WHEN 2 THEN 'Sudah Terkirim'
+                WHEN 3 THEN 'Sudah Diterima'
+                ELSE 'Belum Dapat Dikirim'
+            END) AS keterangan_kirim
+        FROM distribusi_permintaan_pengadaan
+        JOIN permintaan_pengadaan ON permintaan_pengadaan.id = distribusi_permintaan_pengadaan.id_permintaan_pengadaan
+        LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id
+        WHERE distribusi_permintaan_pengadaan.tgl_terkirim IS NULL";
+        $query = $this->db->query($sql);
+        return $query->getResult();
+    }
+
+    public function findPendingDistribusi()
     {
         $query = $this->db->query("SELECT $this->table.id,
             permintaan_pengadaan.tgl_pengajuan,
@@ -65,14 +109,11 @@ class DistribusiPermintaanPengadaanModel extends Model
             $this->table.tgl_kirim,
             $this->table.status,
             (CASE $this->table.status
-                WHEN 0 THEN
-                    'Perlu Dikirim'
-                WHEN 1 THEN
-                    'Sedang Dikirim'
-                WHEN 2 THEN
-                    'Sudah Terkirim'
-                WHEN 3 THEN
-                    'Sudah Diterima'
+                WHEN 0 THEN 'Perlu Dikirim'
+                WHEN 1 THEN 'Sedang Dikirim'
+                WHEN 2 THEN 'Sudah Terkirim'
+                WHEN 3 THEN 'Sudah Diterima'
+                ELSE ''
             END) AS keterangan
             FROM $this->table
             JOIN permintaan_pengadaan ON permintaan_pengadaan.id = $this->table.id_permintaan_pengadaan
@@ -91,35 +132,91 @@ class DistribusiPermintaanPengadaanModel extends Model
             permintaan_pengadaan.tipe_pengadaan,
             permintaan_pengadaan.jenis_kegiatan,
             permintaan_pengadaan.isi_permintaan,
+            permintaan_pengadaan.tgl_persetujuan_subbag,
+            permintaan_pengadaan.tgl_persetujuan_bag,
             permintaan_pengadaan.status AS status_persetujuan,
             (CASE permintaan_pengadaan.status
-                WHEN 0 THEN
-                    'Belum Disetujui'
-                WHEN 1 THEN
-                    'Disetujui Subbag'
-                WHEN 2 THEN
-                    'Disetujui Kabag'
-                WHEN 3 THEN
-                    'Disetujui Karoum'
+                WHEN 0 THEN 'Belum Disetujui'
+                WHEN 1 THEN 'Disetujui Subbag'
+                WHEN 2 THEN 'Disetujui Kabag'
+                WHEN 3 THEN 'Disetujui Karoum'
+                ELSE ''
             END) AS keterangan_persetujuan,
             distribusi_permintaan_pengadaan.tgl_kirim,
             distribusi_permintaan_pengadaan.tgl_terkirim,
             distribusi_permintaan_pengadaan.tgl_terima,
             distribusi_permintaan_pengadaan.status AS status_kirim,
             (CASE distribusi_permintaan_pengadaan.status
-                WHEN 0 THEN
-                    'Perlu Dikirim'
-                WHEN 1 THEN
-                    'Sedang Dikirim'
-                WHEN 2 THEN
-                    'Sudah Terkirim'
-                WHEN 3 THEN
-                    'Sudah Diterima'
+                WHEN 0 THEN 'Perlu Dikirim'
+                WHEN 1 THEN 'Sedang Dikirim'
+                WHEN 2 THEN 'Sudah Terkirim'
+                WHEN 3 THEN 'Sudah Diterima'
+                ELSE 'Belum Dapat Dikirim'
             END) AS keterangan_kirim
         FROM distribusi_permintaan_pengadaan
         JOIN permintaan_pengadaan ON permintaan_pengadaan.id = distribusi_permintaan_pengadaan.id_permintaan_pengadaan
-        LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id";
+        LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id
+        WHERE distribusi_permintaan_pengadaan.tgl_terkirim IS NOT NULL";
         $query = $this->db->query($sql);
+        return $query->getResult();
+    }
+
+    public function getTotalPendingUnit($id_unit, $id_subunit)
+    {
+        $query = $this->db->query("SELECT count(*) AS total 
+            FROM distribusi_permintaan_pengadaan
+            JOIN permintaan_pengadaan ON permintaan_pengadaan.id = distribusi_permintaan_pengadaan.id_permintaan_pengadaan
+            LEFT JOIN unit ON permintaan_pengadaan.id_unit = unit.id
+            LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id
+            WHERE permintaan_pengadaan.id_unit = '$id_unit'
+            AND permintaan_pengadaan.id_subunit = '$id_subunit'
+            AND distribusi_permintaan_pengadaan.tgl_terima IS NULL");
+        return $query->getFirstRow();
+    }
+
+    public function getAllPendingUnit($id_unit, $id_subunit)
+    {
+        $query = $this->db->query("SELECT distribusi_permintaan_pengadaan.id,
+            permintaan_pengadaan.tgl_pengajuan,
+            sub_unit.nama_subunit,
+            pegawai.nama_pegawai,
+            permintaan_pengadaan.tipe_pengadaan,
+            permintaan_pengadaan.jenis_kegiatan,
+            permintaan_pengadaan.isi_permintaan,
+            permintaan_pengadaan.tgl_persetujuan_subbag,
+            permintaan_pengadaan.tgl_persetujuan_bag,
+            distribusi_permintaan_pengadaan.tgl_kirim,
+            distribusi_permintaan_pengadaan.tgl_terkirim,
+            distribusi_permintaan_pengadaan.tgl_terima,
+            permintaan_pengadaan.status AS status_persetujuan,
+            distribusi_permintaan_pengadaan.status AS status_kirim,
+            (CASE
+                WHEN distribusi_permintaan_pengadaan.status IS NULL
+                    THEN (CASE
+                            WHEN permintaan_pengadaan.status = '0' 
+                                THEN 'Belum Disetujui'
+                            WHEN permintaan_pengadaan.status = '1' 
+                                THEN 'Disetujui Subbag'
+                            WHEN permintaan_pengadaan.status = '2' 
+                                THEN 'Disetujui Kabag & Menunggu Dikirim'
+                        END)
+                WHEN distribusi_permintaan_pengadaan.status IS NOT NULL
+                    THEN (CASE
+                            WHEN distribusi_permintaan_pengadaan.status = '0' 
+                                THEN 'Disetujui Kabag & Menunggu Dikirim'
+                            WHEN distribusi_permintaan_pengadaan.status = '1' 
+                                THEN 'Sedang Dikirim'
+                            WHEN distribusi_permintaan_pengadaan.status = '2' 
+                                THEN 'Sudah Terkirim'
+                        END)
+            END) AS keterangan
+        FROM distribusi_permintaan_pengadaan
+        JOIN permintaan_pengadaan ON permintaan_pengadaan.id = distribusi_permintaan_pengadaan.id_permintaan_pengadaan
+        LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id
+        JOIN pegawai ON pegawai.id = permintaan_pengadaan.id_pegawai
+        WHERE permintaan_pengadaan.id_unit = '$id_unit'
+        AND permintaan_pengadaan.id_subunit = '$id_subunit'
+        AND distribusi_permintaan_pengadaan.tgl_terima IS NULL");
         return $query->getResult();
     }
 }
