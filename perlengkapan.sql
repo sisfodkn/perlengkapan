@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 04, 2022 at 07:13 PM
+-- Generation Time: Aug 07, 2022 at 05:34 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -54,6 +54,33 @@ CREATE TABLE `detail_permintaan_pengadaan` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `distribusi_permintaan_pengadaan`
+--
+
+CREATE TABLE `distribusi_permintaan_pengadaan` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `id_permintaan_pengadaan` int(10) UNSIGNED NOT NULL,
+  `status` varchar(2) DEFAULT NULL,
+  `tgl_kirim` datetime DEFAULT NULL,
+  `tgl_terkirim` datetime DEFAULT NULL,
+  `tgl_terima` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `distribusi_permintaan_pengadaan`
+--
+
+INSERT INTO `distribusi_permintaan_pengadaan` (`id`, `id_permintaan_pengadaan`, `status`, `tgl_kirim`, `tgl_terkirim`, `tgl_terima`) VALUES
+(1, 5, '3', '2022-08-06 23:26:34', '2022-08-06 23:31:29', '2022-08-07 10:32:54'),
+(2, 6, '0', NULL, NULL, NULL),
+(3, 7, '0', NULL, NULL, NULL),
+(4, 9, '0', NULL, NULL, NULL),
+(9, 8, '0', NULL, NULL, NULL),
+(10, 10, '3', '2022-08-07 10:06:15', '2022-08-07 10:12:32', '2022-08-07 10:31:33');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `distribusi_randis`
 --
 
@@ -69,7 +96,8 @@ CREATE TABLE `distribusi_randis` (
 
 INSERT INTO `distribusi_randis` (`id`, `id_kendaraan_dinas`, `id_pegawai`) VALUES
 (1, 2, 9),
-(2, 3, 3);
+(2, 3, 3),
+(3, 6, 13);
 
 -- --------------------------------------------------------
 
@@ -87,8 +115,8 @@ CREATE TABLE `gedung` (
 --
 
 INSERT INTO `gedung` (`id`, `nama_gedung`) VALUES
-(1, 'Merdeka Barat 15'),
-(2, 'Juanda 36');
+(1, 'Gedung Dewan Ketahanan Nasional Jl. Medan Merdeka Barat 15 Jakarta Pusat Lantai 3,4 dan 5 A, 5B'),
+(2, 'Dewan Ketahanan Nasional Jl. Ir H. Juanda 36 Jakarta Pusat Lantai 4 dan 5 ');
 
 -- --------------------------------------------------------
 
@@ -119,7 +147,8 @@ INSERT INTO `jabatan` (`id`, `nama_jabatan`) VALUES
 (11, 'Pengelola Instalasi TI'),
 (12, 'Prakom Ahli Muda'),
 (13, 'Analis SDM Aparatur'),
-(14, 'Analis Kepegawaian Ahli Muda');
+(14, 'Analis Kepegawaian Ahli Muda'),
+(15, 'Analis Persandian');
 
 -- --------------------------------------------------------
 
@@ -160,7 +189,8 @@ CREATE TABLE `kegiatan` (
 INSERT INTO `kegiatan` (`id`, `jenis_kegiatan`) VALUES
 (1, 'Bulanan'),
 (2, 'Rapat Kerja Terbatas'),
-(3, 'Kelompok Kerja Khusus');
+(3, 'Kelompok Kerja Khusus'),
+(4, 'Kunjungan dari BKN');
 
 -- --------------------------------------------------------
 
@@ -185,7 +215,9 @@ CREATE TABLE `kendaraan_dinas` (
 INSERT INTO `kendaraan_dinas` (`id`, `nopol`, `tahun_pengadaan`, `merk_kendaraan`, `tipe_kendaraan`, `id_jenis_operasional`, `keterangan`) VALUES
 (2, 'B1234CD', '2014', 'Suzuki Phanter', 'mobil', 3, 'Mobil Suzuki Phanter'),
 (3, 'B1234EF', '2015', 'Toyota Altis', 'mobil', 2, 'Mobil Toyota Altis'),
-(4, 'B1234GH', '2018', 'HIACE', 'bus', 1, 'Mobil Hiace 1');
+(4, 'B1234GH', '2018', 'HIACE', 'bus', 1, 'Mobil Hiace 1'),
+(5, 'B1235GH', '2018', 'HIACE', 'bus', 1, 'Mobil Hiace 2'),
+(6, 'B1111AB', '2020', 'Bus Wantannas', 'bus', 3, '');
 
 -- --------------------------------------------------------
 
@@ -247,7 +279,36 @@ INSERT INTO `pegawai` (`id`, `nip_nrp`, `nama_pegawai`, `pangkat`, `id_jabatan`,
 (11, '196911271988031001', 'Suntama', '', 10, 6, 5),
 (13, '197709122006041004', 'Dedy Purwadi, A.Md', '', 12, 8, 1),
 (14, '198704092019021001', 'Haryo Sasmito, S.E.', '', 13, 6, 4),
-(15, '197410302009011001', 'Reno Ardiansyah, S.Kom.', '', 14, 6, 4);
+(15, '197410302009011001', 'Reno Ardiansyah, S.Kom.', '', 14, 6, 4),
+(19, '199307232019022005', 'Nadia Talita Putri, S.I.P.', '', 15, 6, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `peminjaman_randis`
+--
+
+CREATE TABLE `peminjaman_randis` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `id_pegawai` int(10) UNSIGNED NOT NULL,
+  `id_randis` int(10) UNSIGNED NOT NULL,
+  `tgl_pengajuan` datetime NOT NULL,
+  `tgl_peminjaman` datetime NOT NULL,
+  `tgl_pengembalian` datetime NOT NULL,
+  `keperluan` varchar(500) DEFAULT NULL,
+  `tgl_persetujuan_subbag` datetime DEFAULT NULL,
+  `tgl_persetujuan_bag` datetime DEFAULT NULL,
+  `tgl_persetujuan_karo` datetime DEFAULT NULL,
+  `status` varchar(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `peminjaman_randis`
+--
+
+INSERT INTO `peminjaman_randis` (`id`, `id_pegawai`, `id_randis`, `tgl_pengajuan`, `tgl_peminjaman`, `tgl_pengembalian`, `keperluan`, `tgl_persetujuan_subbag`, `tgl_persetujuan_bag`, `tgl_persetujuan_karo`, `status`) VALUES
+(1, 15, 4, '2022-08-05 00:00:00', '2022-08-15 00:00:00', '2022-08-19 00:00:00', 'Untuk Pulang Kampung', NULL, NULL, NULL, '0'),
+(2, 14, 4, '2022-08-05 00:00:00', '2022-08-15 00:00:00', '2022-08-16 00:00:00', 'Jalan jalan', NULL, NULL, NULL, '0');
 
 -- --------------------------------------------------------
 
@@ -276,7 +337,10 @@ CREATE TABLE `permintaan_pengadaan` (
 INSERT INTO `permintaan_pengadaan` (`id`, `id_pegawai`, `id_unit`, `id_subunit`, `tipe_pengadaan`, `jenis_kegiatan`, `isi_permintaan`, `tgl_pengajuan`, `tgl_persetujuan_subbag`, `tgl_persetujuan_bag`, `status`) VALUES
 (5, 14, 6, 4, 'ATK', 'Bulanan', '- Flashdisk 16GB 1pcs\r\n- Kertas A4 1rim', '2022-08-03 00:00:00', '2022-08-03 04:45:53', '2022-08-03 05:35:42', '2'),
 (6, 15, 6, 4, 'ATK', 'Bulanan', '- Ballpoint 1pcs', '2022-07-05 00:00:00', '2022-08-03 05:48:54', '2022-08-03 05:49:54', '2'),
-(7, 14, 6, 4, 'ATK', 'Bulanan', '- Coba 1\r\n- Coba 2\r\n- Coba 3', '2022-08-04 00:00:00', '2022-08-04 11:12:54', '2022-08-04 11:12:54', '2');
+(7, 14, 6, 4, 'ATK', 'Bulanan', '- Coba 1\r\n- Coba 2\r\n- Coba 3', '2022-08-04 00:00:00', '2022-08-04 11:12:54', '2022-08-04 11:12:54', '2'),
+(8, 14, 6, 4, 'Cetakan', 'Kunjungan dari BKN', 'Plakat Wantannas 1pcs', '2022-08-05 00:00:00', '2022-08-07 08:32:22', '2022-08-07 08:32:22', '2'),
+(9, 14, 6, 4, 'ATK', 'Rapat Kerja Terbatas', '- Kertas A4 10rim', '2022-08-05 00:00:00', '2022-08-05 02:10:11', '2022-08-05 02:10:11', '2'),
+(10, 19, 6, 6, 'ATK', 'Bulanan', '- Pensil 1\r\n- Ballpoint 1', '2022-08-07 00:00:00', '2022-08-07 09:04:06', '2022-08-07 09:04:06', '2');
 
 -- --------------------------------------------------------
 
@@ -379,7 +443,10 @@ INSERT INTO `users` (`id`, `username`, `password`, `role`, `id_pegawai`) VALUES
 (8, '196503301990051001', '$2y$10$oTMREt3aaIk4JhNj3WLzluA/w8PcU5DV9/ZyZZ7/bXdUCgl8hNUci', 'Sub BMN', 9),
 (11, '197709122006041004', '$2y$10$EuW.iwQCKxVy3vTojv9FTeyFNqido7kLhuX.Q9Z3jZWEku6QYIKga', 'User', 13),
 (12, '198704092019021001', '$2y$10$Mivw31nVc0YiUxmxojC/8e/hrGA32mTy/hj9IkvLDAFCAufx3IA2m', 'User', 14),
-(13, '197410302009011001', '$2y$10$4xPWNbNc7PVWQnL9GaiEsexPTL/LJpGE/bKCVjlYw0rs3iibmmTqC', 'User', 15);
+(13, '197410302009011001', '$2y$10$4xPWNbNc7PVWQnL9GaiEsexPTL/LJpGE/bKCVjlYw0rs3iibmmTqC', 'User', 15),
+(14, '32378', '$2y$10$DP.8l3XL/CTDKNRQm.R0ium2UFVeSJbvkExxsOTCKw2W30.CM7Ppq', 'User', 4),
+(15, '513119', '$2y$10$FqKTI1RNcGKphXmk6uAGaunB2fSu5NSyIhNWnTLImSmtZbCr8sGDi', 'User', 3),
+(16, '199307232019022005', '$2y$10$7duHwEC56tsTk30qMTyLU.rzTJZg6BgGO8BDimsCMn0Ora6gEGqPe', 'User', 19);
 
 --
 -- Indexes for dumped tables
@@ -389,6 +456,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `role`, `id_pegawai`) VALUES
 -- Indexes for table `atk`
 --
 ALTER TABLE `atk`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `distribusi_permintaan_pengadaan`
+--
+ALTER TABLE `distribusi_permintaan_pengadaan`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -440,6 +513,12 @@ ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `peminjaman_randis`
+--
+ALTER TABLE `peminjaman_randis`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `permintaan_pengadaan`
 --
 ALTER TABLE `permintaan_pengadaan`
@@ -480,10 +559,16 @@ ALTER TABLE `atk`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `distribusi_permintaan_pengadaan`
+--
+ALTER TABLE `distribusi_permintaan_pengadaan`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `distribusi_randis`
 --
 ALTER TABLE `distribusi_randis`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `gedung`
@@ -495,7 +580,7 @@ ALTER TABLE `gedung`
 -- AUTO_INCREMENT for table `jabatan`
 --
 ALTER TABLE `jabatan`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `jenis_operasional`
@@ -507,13 +592,13 @@ ALTER TABLE `jenis_operasional`
 -- AUTO_INCREMENT for table `kegiatan`
 --
 ALTER TABLE `kegiatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `kendaraan_dinas`
 --
 ALTER TABLE `kendaraan_dinas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -525,13 +610,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `peminjaman_randis`
+--
+ALTER TABLE `peminjaman_randis`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `permintaan_pengadaan`
 --
 ALTER TABLE `permintaan_pengadaan`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `ruangan`
@@ -555,7 +646,7 @@ ALTER TABLE `unit`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
