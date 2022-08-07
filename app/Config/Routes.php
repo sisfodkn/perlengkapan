@@ -153,6 +153,9 @@ $routes->match(['get', 'post'], 'save-katruangan/(:any)', 'DataBMN\KatRuanganCon
 $routes->get("/pengadaan-atk-req", "Pengadaan\ReqAtkController::index", ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'atk-req-approve/(:any)', 'Pengadaan\ReqAtkController::save/$1', ["filter" => "auth"]);
 $routes->get("/pengadaan-cetakan-req", "Pengadaan\ReqCetakanController::index", ["filter" => "auth"]);
+$routes->get("/distribusi-pengadaan", "Pengadaan\DistribusiPengadaanController::index", ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'distribusi-pengadaan-kirim/(:any)', 'Pengadaan\DistribusiPengadaanController::kirim/$1', ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'distribusi-pengadaan-terkirim/(:any)', 'Pengadaan\DistribusiPengadaanController::terkirim/$1', ["filter" => "auth"]);
 // Permintaan Masuk - Peminjaman
 $routes->get("/peminjaman-rupat-req", "Peminjaman\ReqRupatController::index", ["filter" => "auth"]);
 $routes->get("/peminjaman-alat-req", "Peminjaman\ReqAlatController::index", ["filter" => "auth"]);
@@ -173,6 +176,12 @@ $routes->match(['get', 'post'], '/save-peminjaman-randis', "Peminjaman\RandisCon
 $routes->get("/pemeliharaan-gedung", "Pemeliharaan\GedungController::index", ["filter" => "auth"]);
 $routes->get("/pemeliharaan-randis", "Pemeliharaan\RandisController::index", ["filter" => "auth"]);
 $routes->get("/pemeliharaan-alat", "Pemeliharaan\AlatController::index", ["filter" => "auth"]);
+
+// Riwayat - User
+$routes->get("/riwayat-pengadaan", "Riwayat\PengadaanController::index", ["filter" => "auth"]);
+// Riwayat - Pengadaan
+$routes->get("/riwayat-pengadaan-req", "Riwayat\ReqPengadaanController::index", ["filter" => "auth"]);
+$routes->match(['get', 'post'], 'atk-req-approve/(:any)', 'Pengadaan\ReqAtkController::save/$1', ["filter" => "auth"]);
 
 /*
  * --------------------------------------------------------------------

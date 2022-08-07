@@ -46,7 +46,7 @@ class RuanganModel extends Model
 
     public function getData()
     {
-        $query = "select ruangan.*, gedung.nama_gedung from ruangan inner join gedung on gedung.id = ruangan.id_gedung order by ruangan.kode_ruangan asc";
+        $query = "select $this->table.*, gedung.nama_gedung from $this->table inner join gedung on gedung.id = $this->table.id_gedung order by $this->table.kode_ruangan asc";
         $data = $this->db->query($query);
         return $data->getResultArray();
     }

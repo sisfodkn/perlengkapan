@@ -57,12 +57,12 @@ class PeminjamanRandisModel extends Model
             pegawai.nama_pegawai,
             kendaraan_dinas.nopol,
             kendaraan_dinas.merk_kendaraan,
-            peminjaman_randis.tgl_pengajuan,
-            peminjaman_randis.tgl_peminjaman,
-            peminjaman_randis.tgl_pengembalian,
-            peminjaman_randis.keperluan,
-            peminjaman_randis.status,
-            (CASE peminjaman_randis.status
+            $this->table.tgl_pengajuan,
+            $this->table.tgl_peminjaman,
+            $this->table.tgl_pengembalian,
+            $this->table.keperluan,
+            $this->table.status,
+            (CASE $this->table.status
                 WHEN 0 THEN
                     'Belum Disetujui'
                 WHEN 1 THEN
@@ -72,24 +72,24 @@ class PeminjamanRandisModel extends Model
                 WHEN 3 THEN
                     'Disetujui Karoum'
             END) AS keterangan
-        FROM peminjaman_randis 
-        LEFT JOIN pegawai ON peminjaman_randis.id_pegawai = pegawai.id
-        LEFT JOIN kendaraan_dinas ON peminjaman_randis.id_randis = kendaraan_dinas.id
-        WHERE peminjaman_randis.id_pegawai = '$id'
-        AND (peminjaman_randis.tgl_persetujuan_subbag IS NULL
-        OR peminjaman_randis.tgl_persetujuan_bag IS NULL
-        OR peminjaman_randis.tgl_persetujuan_karo IS NULL)");
+        FROM $this->table 
+        LEFT JOIN pegawai ON $this->table.id_pegawai = pegawai.id
+        LEFT JOIN kendaraan_dinas ON $this->table.id_randis = kendaraan_dinas.id
+        WHERE $this->table.id_pegawai = '$id'
+        AND ($this->table.tgl_persetujuan_subbag IS NULL
+        OR $this->table.tgl_persetujuan_bag IS NULL
+        OR $this->table.tgl_persetujuan_karo IS NULL)");
         return $query->getResult();
     }
 
     public function getTotalPendingRequest($id)
     {
         $query = $this->db->query("SELECT count(*) AS total 
-        FROM peminjaman_randis 
+        FROM $this->table 
         WHERE id_pegawai = '$id'
-        AND (peminjaman_randis.tgl_persetujuan_subbag IS NULL
-        OR peminjaman_randis.tgl_persetujuan_bag IS NULL
-        OR peminjaman_randis.tgl_persetujuan_karo IS NULL)");
+        AND ($this->table.tgl_persetujuan_subbag IS NULL
+        OR $this->table.tgl_persetujuan_bag IS NULL
+        OR $this->table.tgl_persetujuan_karo IS NULL)");
         return $query->getFirstRow();
     }
 
@@ -99,13 +99,13 @@ class PeminjamanRandisModel extends Model
             pegawai.nama_pegawai,
             kendaraan_dinas.nopol,
             kendaraan_dinas.merk_kendaraan,
-            peminjaman_randis.tgl_pengajuan,
-            peminjaman_randis.tgl_peminjaman,
-            peminjaman_randis.tgl_pengembalian,
-            peminjaman_randis.keperluan,
-            peminjaman_randis.tgl_persetujuan_karo,
-            peminjaman_randis.status,
-            (CASE peminjaman_randis.status
+            $this->table.tgl_pengajuan,
+            $this->table.tgl_peminjaman,
+            $this->table.tgl_pengembalian,
+            $this->table.keperluan,
+            $this->table.tgl_persetujuan_karo,
+            $this->table.status,
+            (CASE $this->table.status
                 WHEN 0 THEN
                     'Belum Disetujui'
                 WHEN 1 THEN
@@ -115,25 +115,25 @@ class PeminjamanRandisModel extends Model
                 WHEN 3 THEN
                     'Disetujui Karoum'
             END) AS keterangan
-        FROM peminjaman_randis 
-        LEFT JOIN pegawai ON peminjaman_randis.id_pegawai = pegawai.id
-        LEFT JOIN kendaraan_dinas ON peminjaman_randis.id_randis = kendaraan_dinas.id
-        WHERE peminjaman_randis.id_pegawai = '$id'
-        AND (peminjaman_randis.tgl_persetujuan_subbag IS NOT NULL
-        OR peminjaman_randis.tgl_persetujuan_bag IS NOT NULL
-        OR peminjaman_randis.tgl_persetujuan_karo IS NOT NULL)
-        ORDER BY peminjaman_randis.tgl_pengajuan DESC");
+        FROM $this->table 
+        LEFT JOIN pegawai ON $this->table.id_pegawai = pegawai.id
+        LEFT JOIN kendaraan_dinas ON $this->table.id_randis = kendaraan_dinas.id
+        WHERE $this->table.id_pegawai = '$id'
+        AND ($this->table.tgl_persetujuan_subbag IS NOT NULL
+        OR $this->table.tgl_persetujuan_bag IS NOT NULL
+        OR $this->table.tgl_persetujuan_karo IS NOT NULL)
+        ORDER BY $this->table.tgl_pengajuan DESC");
         return $query->getResult();
     }
 
     public function getTotalCompleteRequest($id)
     {
         $query = $this->db->query("SELECT count(*) AS total 
-        FROM peminjaman_randis 
+        FROM $this->table 
         WHERE id_pegawai = '$id'
-        AND peminjaman_randis.tgl_persetujuan_subbag IS NOT NULL
-        AND peminjaman_randis.tgl_persetujuan_bag IS NOT NULL
-        AND peminjaman_randis.tgl_persetujuan_karo IS NOT NULL");
+        AND $this->table.tgl_persetujuan_subbag IS NOT NULL
+        AND $this->table.tgl_persetujuan_bag IS NOT NULL
+        AND $this->table.tgl_persetujuan_karo IS NOT NULL");
         return $query->getFirstRow();
     }
 }

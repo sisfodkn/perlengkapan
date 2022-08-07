@@ -49,36 +49,36 @@ class UsersModel extends Model
     public function getAll()
     {
         $query = $this->db->query("SELECT
-            users.id,
-            users.username,
-            users.role,
+            $this->table.id,
+            $this->table.username,
+            $this->table.role,
             pegawai.nama_pegawai
-        FROM users
-        JOIN pegawai ON users.id_pegawai = pegawai.id
-        WHERE users.username != 'admin'");
+        FROM    $this->table
+        JOIN    pegawai ON $this->table.id_pegawai = pegawai.id
+        WHERE   $this->table.username != 'admin'");
         return $query->getResult();
     }
 
     public function findById($id)
     {
         $query = $this->db->query("SELECT
-            users.id,
-            users.username,
-            users.role,
+            $this->table.id,
+            $this->table.username,
+            $this->table.role,
             pegawai.nama_pegawai
-        FROM users
-        JOIN pegawai ON users.id_pegawai = pegawai.id
-        WHERE users.id = '$id'");
+        FROM    $this->table
+        JOIN    pegawai ON $this->table.id_pegawai = pegawai.id
+        WHERE   $this->table.id = '$id'");
         return $query->getFirstRow();
     }
 
     public function findByUsername($username)
     {
         $query = $this->db->query("SELECT 
-            users.id,
-            users.username,
-            users.role,
-            users.id_pegawai,
+            $this->table.id,
+            $this->table.username,
+            $this->table.role,
+            $this->table.id_pegawai,
             pegawai.nip_nrp,
             pegawai.nama_pegawai,
             pegawai.id_jabatan,
@@ -87,21 +87,21 @@ class UsersModel extends Model
             unit.nama_unit,
             pegawai.id_subunit,
             sub_unit.nama_subunit
-        FROM users
-        JOIN        pegawai     ON users.id_pegawai = pegawai.id
+        FROM $this->table
+        JOIN        pegawai     ON $this->table.id_pegawai = pegawai.id
         LEFT JOIN   jabatan     ON pegawai.id_jabatan = jabatan.id
         LEFT JOIN   unit        ON pegawai.id_unit = unit.id
         LEFT JOIN   sub_unit    ON pegawai.id_subunit = sub_unit.id
-        WHERE users.username = '$username'");
+        WHERE $this->table.username = '$username'");
         return $query->getFirstRow();
     }
 
     public function findByIdPegawai($id)
     {
         $query = $this->db->query("SELECT
-            users.id
-        FROM users
-        WHERE users.id_pegawai = '$id'");
+            $this->table.id
+        FROM    $this->table
+        WHERE   $this->table.id_pegawai = '$id'");
         return $query->getFirstRow();
     }
 }

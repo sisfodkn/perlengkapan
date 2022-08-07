@@ -64,13 +64,23 @@
 <script>
     $(function() {
         $("#tableReqPengadaan").DataTable({
-            "responsive": true,
+            "paging": true,
             "lengthChange": false,
             "searching": false,
             "ordering": false,
+            "info": true,
             "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#tableReqPengadaan_wrapper .col-md-6:eq(0)');
+            "responsive": true,
+        });
+        $("#tableReqPeminjamanRandis").DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
         $("#tableReqPengadaanDone").DataTable({
             "responsive": true,
             "lengthChange": false,

@@ -51,7 +51,7 @@ class PegawaiModel extends Model
     {
         $query = $this->db->query("SELECT 
             nama_pegawai
-        FROM pegawai
+        FROM $this->table
         WHERE id_jabatan = '$id'");
         return $query->getResult();
     }
@@ -60,7 +60,7 @@ class PegawaiModel extends Model
     {
         $query = $this->db->query("SELECT 
             nama_pegawai
-        FROM pegawai
+        FROM $this->table
         WHERE id_unit = '$id'");
         return $query->getResult();
     }
@@ -69,7 +69,7 @@ class PegawaiModel extends Model
     {
         $query = $this->db->query("SELECT 
             nama_pegawai
-        FROM pegawai
+        FROM $this->table
         WHERE id_subunit = '$id'");
         return $query->getResult();
     }
@@ -77,25 +77,25 @@ class PegawaiModel extends Model
     public function getAll()
     {
         $query = $this->db->query("SELECT
-            pegawai.id,
-            pegawai.nip_nrp,
-            pegawai.nama_pegawai,
-            pegawai.pangkat,
+            $this->table.id,
+            $this->table.nip_nrp,
+            $this->table.nama_pegawai,
+            $this->table.pangkat,
             jabatan.nama_jabatan,
             unit.nama_unit,
             sub_unit.nama_subunit
-        FROM pegawai
-        JOIN jabatan ON pegawai.id_jabatan = jabatan.id
-        JOIN unit ON pegawai.id_unit = unit.id
-        LEFT JOIN sub_unit ON pegawai.id_subunit = sub_unit.id
-        ORDER BY pegawai.id_unit");
+        FROM $this->table
+        JOIN jabatan ON $this->table.id_jabatan = jabatan.id
+        JOIN unit ON $this->table.id_unit = unit.id
+        LEFT JOIN sub_unit ON $this->table.id_subunit = sub_unit.id
+        ORDER BY $this->table.id_unit");
         return $query->getResult();
     }
 
     public function getPegawaiNoUsers()
     {
         $query = $this->db->query("SELECT *
-        FROM pegawai
+        FROM $this->table
         WHERE id NOT IN (
             SELECT users.id_pegawai
             FROM users )");
@@ -106,38 +106,38 @@ class PegawaiModel extends Model
     {
         $query = $this->db->query("SELECT
             count(*) AS total
-        FROM pegawai");
+        FROM $this->table");
         return $query->getFirstRow();
     }
 
     public function getAllNoDist()
     {
         $query = $this->db->query("SELECT
-            pegawai.id,
-            pegawai.nama_pegawai,
+            $this->table.id,
+            $this->table.nama_pegawai,
             jabatan.nama_jabatan,
             unit.nama_unit
-        FROM pegawai
-        JOIN jabatan ON pegawai.id_jabatan = jabatan.id
-        JOIN unit ON pegawai.id_unit = unit.id
-        WHERE pegawai.id NOT IN (SELECT id_pegawai FROM distribusi_randis)
-        ORDER BY pegawai.nama_pegawai");
+        FROM $this->table
+        JOIN jabatan ON $this->table.id_jabatan = jabatan.id
+        JOIN unit ON $this->table.id_unit = unit.id
+        WHERE $this->table.id NOT IN (SELECT id_pegawai FROM distribusi_randis)
+        ORDER BY $this->table.nama_pegawai");
         return $query->getResult();
     }
 
     public function getCurrentAndNoDist($currentId)
     {
         $query = $this->db->query("SELECT
-            pegawai.id,
-            pegawai.nama_pegawai,
+            $this->table.id,
+            $this->table.nama_pegawai,
             jabatan.nama_jabatan,
             unit.nama_unit
-        FROM pegawai
-        JOIN jabatan ON pegawai.id_jabatan = jabatan.id
-        JOIN unit ON pegawai.id_unit = unit.id
-        WHERE pegawai.id NOT IN (SELECT id_pegawai FROM distribusi_randis)
-        OR pegawai.id = '$currentId'
-        ORDER BY pegawai.nama_pegawai");
+        FROM $this->table
+        JOIN jabatan ON $this->table.id_jabatan = jabatan.id
+        JOIN unit ON $this->table.id_unit = unit.id
+        WHERE $this->table.id NOT IN (SELECT id_pegawai FROM distribusi_randis)
+        OR $this->table.id = '$currentId'
+        ORDER BY $this->table.nama_pegawai");
         return $query->getResult();
     }
 }

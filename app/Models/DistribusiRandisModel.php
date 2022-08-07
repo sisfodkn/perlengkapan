@@ -46,17 +46,17 @@ class DistribusiRandisModel extends Model
     public function getAll()
     {
         $query = $this->db->query("SELECT
-            distribusi_randis.id,
-            distribusi_randis.id_kendaraan_dinas,
-            distribusi_randis.id_pegawai,
+            $this->table.id,
+            $this->table.id_kendaraan_dinas,
+            $this->table.id_pegawai,
             pegawai.nama_pegawai,
             jabatan.nama_jabatan,
             kendaraan_dinas.nopol,
             kendaraan_dinas.merk_kendaraan
         FROM
-            distribusi_randis
-        JOIN kendaraan_dinas ON kendaraan_dinas.id = distribusi_randis.id_kendaraan_dinas
-        JOIN pegawai ON pegawai.id = distribusi_randis.id_pegawai
+            $this->table
+        JOIN kendaraan_dinas ON kendaraan_dinas.id = $this->table.id_kendaraan_dinas
+        JOIN pegawai ON pegawai.id = $this->table.id_pegawai
         JOIN jabatan ON jabatan.id = pegawai.id_jabatan");
         return $query->getResult();
     }
@@ -66,7 +66,7 @@ class DistribusiRandisModel extends Model
         $query = $this->db->query("SELECT
             *
         FROM
-            distribusi_randis
+            $this->table
         WHERE id_kendaraan_dinas = '$idRandis'
         AND id_pegawai = '$idPegawai'");
         return $query->getFirstRow();

@@ -16,8 +16,7 @@ class ReqAtkController extends BaseController
     {
         $data = [
             'activeMenu' => 'pengadaan-atk-req',
-            'reqAtkList' => $this->permintaanPengadaanModel->getAllListPendingRequest(),
-            'riwayatReqAtkList' => $this->permintaanPengadaanModel->getRiwayatPengadaan()
+            'reqAtkList' => $this->permintaanPengadaanModel->getAllListPendingRequest()
         ];
         return view("pengadaan/dataReqAtk", $data);
     }

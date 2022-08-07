@@ -13,6 +13,8 @@ class Properties extends BaseConfig
     public $tombol_delete = "Delete";
     public $tombol_setuju = "Setuju";
     public $tombol_tolak = "Tolak";
+    public $tombol_kirim = "Kirim";
+    public $tombol_terkirim = "Terkirim";
 
     // Label
     public $nip = "NIP / NRP";
@@ -31,10 +33,6 @@ class Properties extends BaseConfig
     public $ulangPassword = "Ulangi Password";
     public $role = "Role";
     public $kegiatan = "Kegiatan";
-    public $tgl_pengajuan = "Tanggal Pengajuan";
-    public $tgl_peminjaman = "Tanggal Peminjaman";
-    public $tgl_pengembalian = "Tanggal Pengembalian";
-    public $tgl_persetujuan = "Tanggal Persetujuan";
     public $daftar_permintaan = "Daftar Permintaan";
     public $tipe_pengadaan = "Tipe Pengadaan";
     public $jenis_kegiatan = "Jenis Kegiatan";
@@ -51,6 +49,17 @@ class Properties extends BaseConfig
     public $status = "Status";
     public $randis = "Kendaraan Dinas";
     public $keperluan = "Keperluan";
+    public $persetujuan = "Persetujuan";
+    public $kirim = "Pengiriman";
+
+    // Label Tanggal
+    public $tgl_pengajuan = "Tanggal Pengajuan";
+    public $tgl_peminjaman = "Tanggal Peminjaman";
+    public $tgl_pengembalian = "Tanggal Pengembalian";
+    public $tgl_persetujuan = "Tanggal Persetujuan";
+    public $tgl_kirim = "Tanggal Dikirim";
+    public $tgl_terkirim = "Tanggal Terkirim";
+    public $tgl_terima = "Tanggal Diterima";
 
     // Role
     public $roleAdmin = "Administrator";
@@ -208,7 +217,8 @@ class Properties extends BaseConfig
     // Menu Pengadaan masuk
     public $menuPengadaanReq = [
         'pengadaan-atk-req',
-        'pengadaan-cetakan-req'
+        'pengadaan-cetakan-req',
+        'distribusi-pengadaan'
     ];
 
     // Menu Peminjaman masuk
@@ -236,5 +246,15 @@ class Properties extends BaseConfig
         'pemeliharaan-gedung',
         'pemeliharaan-randis',
         'pemeliharaan-alat'
+    ];
+
+    // Menu Riwayat
+    public $menuRiwayatPengadaan = [
+        'riwayat-pengadaan'
+    ];
+
+    // Menu Riwayat
+    public $menuRiwayatPengadaanReq = [
+        'riwayat-pengadaan-req'
     ];
 }

@@ -56,15 +56,15 @@ class PermintaanPengadaanModel extends Model
     {
         switch (session()->get('role')) {
             case session()->get('props')->roleSubPengadaan:
-                $where = "WHERE permintaan_pengadaan.tgl_persetujuan_subbag IS NULL";
+                $where = "WHERE $this->table.tgl_persetujuan_subbag IS NULL";
                 break;
             case session()->get('props')->roleKabag:
-                $where = "WHERE permintaan_pengadaan.tgl_persetujuan_subbag IS NULL
-                OR permintaan_pengadaan.tgl_persetujuan_bag IS NULL";
+                $where = "WHERE $this->table.tgl_persetujuan_subbag IS NULL
+                OR $this->table.tgl_persetujuan_bag IS NULL";
                 break;
         }
         $sql = "SELECT count(*) AS total 
-            FROM permintaan_pengadaan " . $where;
+            FROM $this->table " . $where;
         $query = $this->db->query("$sql");
         return $query->getFirstRow();
     }
@@ -73,15 +73,15 @@ class PermintaanPengadaanModel extends Model
     {
         switch (session()->get('role')) {
             case session()->get('props')->roleSubPengadaan:
-                $where = "WHERE permintaan_pengadaan.tgl_persetujuan_subbag IS NOT NULL";
+                $where = "WHERE $this->table.tgl_persetujuan_subbag IS NOT NULL";
                 break;
             case session()->get('props')->roleKabag:
-                $where = "WHERE permintaan_pengadaan.tgl_persetujuan_subbag IS NOT NULL
-                OR permintaan_pengadaan.tgl_persetujuan_bag IS NOT NULL";
+                $where = "WHERE $this->table.tgl_persetujuan_subbag IS NOT NULL
+                OR $this->table.tgl_persetujuan_bag IS NOT NULL";
                 break;
         }
         $sql = "SELECT count(*) AS total 
-            FROM permintaan_pengadaan " . $where;
+            FROM $this->table " . $where;
         $query = $this->db->query("$sql");
         return $query->getFirstRow();
     }
@@ -89,11 +89,11 @@ class PermintaanPengadaanModel extends Model
     public function getPendingRequest($id_unit, $id_subunit)
     {
         $query = $this->db->query("SELECT count(*) AS total 
-        FROM permintaan_pengadaan 
+        FROM $this->table 
         WHERE id_unit = '$id_unit'
         AND id_subunit = '$id_subunit'
-        AND (permintaan_pengadaan.tgl_persetujuan_subbag IS NULL
-        OR permintaan_pengadaan.tgl_persetujuan_bag IS NULL)");
+        AND ($this->table.tgl_persetujuan_subbag IS NULL
+        OR $this->table.tgl_persetujuan_bag IS NULL)");
         return $query->getFirstRow();
     }
 
@@ -101,12 +101,12 @@ class PermintaanPengadaanModel extends Model
     {
         $query = $this->db->query("SELECT
             pegawai.nama_pegawai,
-            permintaan_pengadaan.tipe_pengadaan,
-            permintaan_pengadaan.jenis_kegiatan,
-            permintaan_pengadaan.isi_permintaan,
-            permintaan_pengadaan.tgl_pengajuan,
-            permintaan_pengadaan.status,
-            (CASE permintaan_pengadaan.status
+            $this->table.tipe_pengadaan,
+            $this->table.jenis_kegiatan,
+            $this->table.isi_permintaan,
+            $this->table.tgl_pengajuan,
+            $this->table.status,
+            (CASE $this->table.status
                 WHEN 0 THEN
                     'Belum Disetujui'
                 WHEN 1 THEN
@@ -116,14 +116,14 @@ class PermintaanPengadaanModel extends Model
                 WHEN 3 THEN
                     'Disetujui Karoum'
             END) AS keterangan
-        FROM permintaan_pengadaan 
-        LEFT JOIN pegawai ON permintaan_pengadaan.id_pegawai = pegawai.id
-        LEFT JOIN unit ON permintaan_pengadaan.id_unit = unit.id
-        LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id
-        WHERE permintaan_pengadaan.id_unit = '$id_unit'
-        AND permintaan_pengadaan.id_subunit = '$id_subunit'
-        AND (permintaan_pengadaan.tgl_persetujuan_subbag IS NULL
-        OR permintaan_pengadaan.tgl_persetujuan_bag IS NULL)");
+        FROM $this->table 
+        LEFT JOIN pegawai ON $this->table.id_pegawai = pegawai.id
+        LEFT JOIN unit ON $this->table.id_unit = unit.id
+        LEFT JOIN sub_unit ON $this->table.id_subunit = sub_unit.id
+        WHERE $this->table.id_unit = '$id_unit'
+        AND $this->table.id_subunit = '$id_subunit'
+        AND ($this->table.tgl_persetujuan_subbag IS NULL
+        OR $this->table.tgl_persetujuan_bag IS NULL)");
         return $query->getResult();
     }
 
@@ -131,22 +131,22 @@ class PermintaanPengadaanModel extends Model
     {
         switch (session()->get('role')) {
             case session()->get('props')->roleSubPengadaan:
-                $where = "WHERE permintaan_pengadaan.tgl_persetujuan_subbag IS NULL";
+                $where = "WHERE $this->table.tgl_persetujuan_subbag IS NULL";
                 break;
             case session()->get('props')->roleKabag:
-                $where = "WHERE permintaan_pengadaan.tgl_persetujuan_bag IS NULL";
+                $where = "WHERE $this->table.tgl_persetujuan_bag IS NULL";
                 break;
         }
         $sql = "SELECT
-            permintaan_pengadaan.id,
+            $this->table.id,
             unit.nama_unit,
             pegawai.nama_pegawai,
-            permintaan_pengadaan.tipe_pengadaan,
-            permintaan_pengadaan.jenis_kegiatan,
-            permintaan_pengadaan.isi_permintaan,
-            permintaan_pengadaan.tgl_pengajuan,
-            permintaan_pengadaan.status,
-            (CASE permintaan_pengadaan.status
+            $this->table.tipe_pengadaan,
+            $this->table.jenis_kegiatan,
+            $this->table.isi_permintaan,
+            $this->table.tgl_pengajuan,
+            $this->table.status,
+            (CASE $this->table.status
                 WHEN 0 THEN
                     'Belum Disetujui'
                 WHEN 1 THEN
@@ -156,10 +156,10 @@ class PermintaanPengadaanModel extends Model
                 WHEN 3 THEN
                     'Disetujui Karoum'
             END) AS keterangan
-        FROM permintaan_pengadaan 
-        LEFT JOIN pegawai ON permintaan_pengadaan.id_pegawai = pegawai.id
-        LEFT JOIN unit ON permintaan_pengadaan.id_unit = unit.id
-        LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id " . $where;
+        FROM $this->table 
+        LEFT JOIN pegawai ON $this->table.id_pegawai = pegawai.id
+        LEFT JOIN unit ON $this->table.id_unit = unit.id
+        LEFT JOIN sub_unit ON $this->table.id_subunit = sub_unit.id " . $where;
         $query = $this->db->query($sql);
         return $query->getResult();
     }
@@ -168,59 +168,22 @@ class PermintaanPengadaanModel extends Model
     {
         $query = $this->db->query("SELECT
             count(*) AS total 
-        FROM permintaan_pengadaan 
-        LEFT JOIN pegawai ON permintaan_pengadaan.id_pegawai = pegawai.id
-        LEFT JOIN unit ON permintaan_pengadaan.id_unit = unit.id
-        LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id
-        WHERE permintaan_pengadaan.status = '0'");
-        return $query->getResult();
-    }
-
-    public function getRiwayatPengadaan()
-    {
-        switch (session()->get('role')) {
-            case session()->get('props')->roleSubPengadaan:
-                $where = "WHERE permintaan_pengadaan.tgl_persetujuan_subbag IS NOT NULL";
-                break;
-            case session()->get('props')->roleKabag:
-                $where = "WHERE permintaan_pengadaan.tgl_persetujuan_bag IS NOT NULL";
-                break;
-        }
-        $sql = "SELECT
-            unit.nama_unit,
-            pegawai.nama_pegawai,
-            permintaan_pengadaan.tipe_pengadaan,
-            permintaan_pengadaan.jenis_kegiatan,
-            permintaan_pengadaan.isi_permintaan,
-            permintaan_pengadaan.tgl_pengajuan,
-            permintaan_pengadaan.tgl_persetujuan_bag,
-            permintaan_pengadaan.status,
-            (CASE permintaan_pengadaan.status
-                WHEN 0 THEN
-                    'Belum Disetujui'
-                WHEN 1 THEN
-                    'Disetujui Subbag'
-                WHEN 2 THEN
-                    'Disetujui Kabag'
-                WHEN 3 THEN
-                    'Disetujui Karoum'
-            END) AS keterangan
-        FROM permintaan_pengadaan 
-        LEFT JOIN pegawai ON permintaan_pengadaan.id_pegawai = pegawai.id
-        LEFT JOIN unit ON permintaan_pengadaan.id_unit = unit.id
-        LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id " . $where;
-        $query = $this->db->query($sql);
+        FROM $this->table 
+        LEFT JOIN pegawai ON $this->table.id_pegawai = pegawai.id
+        LEFT JOIN unit ON $this->table.id_unit = unit.id
+        LEFT JOIN sub_unit ON $this->table.id_subunit = sub_unit.id
+        WHERE $this->table.status = '0'");
         return $query->getResult();
     }
 
     public function getCompleteRequest($id_unit, $id_subunit)
     {
         $query = $this->db->query("SELECT count(*) AS total 
-        FROM permintaan_pengadaan 
+        FROM $this->table 
         WHERE id_unit = '$id_unit'
         AND id_subunit = '$id_subunit'
-        AND permintaan_pengadaan.tgl_persetujuan_subbag IS NOT NULL
-        AND permintaan_pengadaan.tgl_persetujuan_bag IS NOT NULL");
+        AND $this->table.tgl_persetujuan_subbag IS NOT NULL
+        AND $this->table.tgl_persetujuan_bag IS NOT NULL");
         return $query->getFirstRow();
     }
 
@@ -228,21 +191,21 @@ class PermintaanPengadaanModel extends Model
     {
         $query = $this->db->query("SELECT
             pegawai.nama_pegawai,
-            permintaan_pengadaan.tipe_pengadaan,
-            permintaan_pengadaan.jenis_kegiatan,
-            permintaan_pengadaan.isi_permintaan,
-            permintaan_pengadaan.tgl_persetujuan_subbag,
-            permintaan_pengadaan.tgl_persetujuan_bag,
-            permintaan_pengadaan.tgl_pengajuan
-        FROM permintaan_pengadaan 
-        LEFT JOIN pegawai ON permintaan_pengadaan.id_pegawai = pegawai.id
-        LEFT JOIN unit ON permintaan_pengadaan.id_unit = unit.id
-        LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id
-        WHERE permintaan_pengadaan.id_unit = '$id_unit'
-        AND permintaan_pengadaan.id_subunit = '$id_subunit'
-        AND permintaan_pengadaan.tgl_persetujuan_subbag IS NOT NULL
-        AND permintaan_pengadaan.tgl_persetujuan_bag IS NOT NULL
-        ORDER BY permintaan_pengadaan.tgl_pengajuan DESC");
+            $this->table.tipe_pengadaan,
+            $this->table.jenis_kegiatan,
+            $this->table.isi_permintaan,
+            $this->table.tgl_persetujuan_subbag,
+            $this->table.tgl_persetujuan_bag,
+            $this->table.tgl_pengajuan
+        FROM $this->table 
+        LEFT JOIN pegawai ON $this->table.id_pegawai = pegawai.id
+        LEFT JOIN unit ON $this->table.id_unit = unit.id
+        LEFT JOIN sub_unit ON $this->table.id_subunit = sub_unit.id
+        WHERE $this->table.id_unit = '$id_unit'
+        AND $this->table.id_subunit = '$id_subunit'
+        AND $this->table.tgl_persetujuan_subbag IS NOT NULL
+        AND $this->table.tgl_persetujuan_bag IS NOT NULL
+        ORDER BY $this->table.tgl_pengajuan DESC");
         return $query->getResult();
     }
 
@@ -250,7 +213,7 @@ class PermintaanPengadaanModel extends Model
     {
         $query = $this->db->query("SELECT 
             *
-        FROM permintaan_pengadaan
+        FROM $this->table
         WHERE jenis_kegiatan = '$jenis'");
         return $query->getResult();
     }

@@ -50,59 +50,59 @@ class RandisModel extends Model
     public function getAll()
     {
         $query = $this->db->query("SELECT
-            kendaraan_dinas.id,
-            kendaraan_dinas.nopol,
-            kendaraan_dinas.tahun_pengadaan,
-            kendaraan_dinas.merk_kendaraan,
-            kendaraan_dinas.tipe_kendaraan,
+            $this->table.id,
+            $this->table.nopol,
+            $this->table.tahun_pengadaan,
+            $this->table.merk_kendaraan,
+            $this->table.tipe_kendaraan,
             jenis_operasional.jenis_operasional,
-            kendaraan_dinas.keterangan
-        FROM kendaraan_dinas
-        JOIN jenis_operasional ON kendaraan_dinas.id_jenis_operasional = jenis_operasional.id
-        ORDER BY kendaraan_dinas.id");
+            $this->table.keterangan
+        FROM $this->table
+        JOIN jenis_operasional ON $this->table.id_jenis_operasional = jenis_operasional.id
+        ORDER BY $this->table.id");
         return $query->getResult();
     }
 
     public function getAllNoDist()
     {
         $query = $this->db->query("SELECT
-            kendaraan_dinas.id,
-            kendaraan_dinas.nopol,
-            kendaraan_dinas.merk_kendaraan
-        FROM kendaraan_dinas
-        JOIN jenis_operasional ON kendaraan_dinas.id_jenis_operasional = jenis_operasional.id
-        WHERE kendaraan_dinas.id NOT IN (SELECT id_kendaraan_dinas FROM distribusi_randis)
-        AND kendaraan_dinas.id_jenis_operasional != 1
-        ORDER BY kendaraan_dinas.id");
+            $this->table.id,
+            $this->table.nopol,
+            $this->table.merk_kendaraan
+        FROM $this->table
+        JOIN jenis_operasional ON $this->table.id_jenis_operasional = jenis_operasional.id
+        WHERE $this->table.id NOT IN (SELECT id_kendaraan_dinas FROM distribusi_randis)
+        AND $this->table.id_jenis_operasional != 1
+        ORDER BY $this->table.id");
         return $query->getResult();
     }
 
     public function getCurrentAndNoDist($currentId)
     {
         $query = $this->db->query("SELECT
-            kendaraan_dinas.id,
-            kendaraan_dinas.nopol,
-            kendaraan_dinas.merk_kendaraan
-        FROM kendaraan_dinas
-        JOIN jenis_operasional ON kendaraan_dinas.id_jenis_operasional = jenis_operasional.id
-        WHERE kendaraan_dinas.id NOT IN (SELECT id_kendaraan_dinas FROM distribusi_randis)
-        OR kendaraan_dinas.id = '$currentId'
-        AND kendaraan_dinas.id_jenis_operasional != 1
-        ORDER BY kendaraan_dinas.id");
+            $this->table.id,
+            $this->table.nopol,
+            $this->table.merk_kendaraan
+        FROM $this->table
+        JOIN jenis_operasional ON $this->table.id_jenis_operasional = jenis_operasional.id
+        WHERE $this->table.id NOT IN (SELECT id_kendaraan_dinas FROM distribusi_randis)
+        OR $this->table.id = '$currentId'
+        AND $this->table.id_jenis_operasional != 1
+        ORDER BY $this->table.id");
         return $query->getResult();
     }
 
     public function findRandisPerkantoran()
     {
         $query = $this->db->query("SELECT
-            kendaraan_dinas.id,
-            kendaraan_dinas.nopol,
-            kendaraan_dinas.merk_kendaraan
-        FROM kendaraan_dinas
-        JOIN jenis_operasional ON kendaraan_dinas.id_jenis_operasional = jenis_operasional.id
-        WHERE kendaraan_dinas.id NOT IN (SELECT id_kendaraan_dinas FROM distribusi_randis)
-        AND kendaraan_dinas.id_jenis_operasional = 1
-        ORDER BY kendaraan_dinas.id");
+            $this->table.id,
+            $this->table.nopol,
+            $this->table.merk_kendaraan
+        FROM $this->table
+        JOIN jenis_operasional ON $this->table.id_jenis_operasional = jenis_operasional.id
+        WHERE $this->table.id NOT IN (SELECT id_kendaraan_dinas FROM distribusi_randis)
+        AND $this->table.id_jenis_operasional = 1
+        ORDER BY $this->table.id");
         return $query->getResult();
     }
 }

@@ -458,6 +458,12 @@
                                         <p>Cetakan</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a style="padding-left: 30px;" href="<?php echo base_url('distribusi-pengadaan'); ?>" class="nav-link <?php if ($activeMenu == 'distribusi-pengadaan') echo "active" ?>">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Distribusi</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     <?php endif; ?>
@@ -597,6 +603,47 @@
                                 <a style="padding-left: 30px;" href="<?php echo base_url('pemeliharaan-alat'); ?>" class="nav-link <?php if ($activeMenu == 'pemeliharaan-alat') echo "active" ?>">
                                     <i class="far fa-dot-circle nav-icon"></i>
                                     <p>Alat & Mesin</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+                <li class="nav-header">Riwayat Transaksi</li>
+                <li class="nav-item <?php if (in_array($activeMenu, session()->get('props')->menuRiwayatPengadaan)) echo "menu-open" ?>">
+                    <a href="#" class="nav-link <?php if (in_array($activeMenu, session()->get('props')->menuRiwayatPengadaan)) echo "active" ?>">
+                        <i class="nav-icon fa-solid fa-hourglass"></i>
+                        <p>
+                            Riwayat User
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a style="padding-left: 30px;" href="<?php echo base_url('riwayat-pengadaan'); ?>" class="nav-link <?php if ($activeMenu == 'riwayat-pengadaan') echo "active" ?>">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Pengadaan</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <?php if (
+                    session()->get('role') == session()->get('props')->roleKabag ||
+                    session()->get('role') == session()->get('props')->roleSubPengadaan
+                ) : ?>
+                    <li class="nav-item <?php if (in_array($activeMenu, session()->get('props')->menuRiwayatPengadaanReq)) echo "menu-open" ?>">
+                        <a href="#" class="nav-link <?php if (in_array($activeMenu, session()->get('props')->menuRiwayatPengadaanReq)) echo "active" ?>">
+                            <i class="nav-icon fa-solid fa-hourglass"></i>
+                            <p>
+                                Riwayat Sub Pengadaan
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a style="padding-left: 30px;" href="<?php echo base_url('riwayat-pengadaan-req'); ?>" class="nav-link <?php if ($activeMenu == 'riwayat-pengadaan-req') echo "active" ?>">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>Pengadaan</p>
                                 </a>
                             </li>
                         </ul>
