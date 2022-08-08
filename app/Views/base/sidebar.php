@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="<?php echo base_url(); ?>" class="brand-link">
         <img src="<?php echo base_url(); ?>/dist/img/logo-wtn.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light" style="padding-left: 3px;">SILAPER</span>
+        <span class="brand-text font-weight-light" style="padding-left: 3px;">SIPANDU</span>
         <br />
         <!-- <span class="brand-text font-weight-light" style="padding-left: 50px;">Perlengkapan</span>
         <br />
@@ -42,12 +42,6 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?php echo base_url('anggaran-umum'); ?>" style="padding-left: 30px;" class="nav-link <?php if ($activeMenu == session()->get('props')->menuAnggaranUmum) echo "active" ?>">
-                                <i class="far fa-dot-circle nav-icon"></i>
-                                <p>Umum</p>
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a href="<?php echo base_url('anggaran-dipa'); ?>" style="padding-left: 30px;" class="nav-link <?php if ($activeMenu == session()->get('props')->menuAnggaranDipa) echo "active" ?>">
                                 <i class="far fa-dot-circle nav-icon"></i>
@@ -483,7 +477,6 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-
                                 <?php if (
                                     session()->get('role') == session()->get('props')->roleKabag ||
                                     session()->get('role') == session()->get('props')->roleSubRumga
@@ -635,7 +628,7 @@
                         <a href="#" class="nav-link <?php if (in_array($activeMenu, session()->get('props')->menuRiwayatPengadaanReq)) echo "active" ?>">
                             <i class="nav-icon fa-solid fa-hourglass"></i>
                             <p>
-                                Riwayat Sub Pengadaan
+                                Riwayat Pengadaan
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -644,6 +637,30 @@
                                 <a style="padding-left: 30px;" href="<?php echo base_url('riwayat-pengadaan-req'); ?>" class="nav-link <?php if ($activeMenu == 'riwayat-pengadaan-req') echo "active" ?>">
                                     <i class="far fa-dot-circle nav-icon"></i>
                                     <p>Pengadaan</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+
+                <?php if (
+                    session()->get('role') == session()->get('props')->roleKaro ||
+                    session()->get('role') == session()->get('props')->roleKabag ||
+                    session()->get('role') == session()->get('props')->roleSubBMN
+                ) : ?>
+                    <li class="nav-item <?php if (in_array($activeMenu, session()->get('props')->menuRiwayaPeminjamanReq)) echo "menu-open" ?>">
+                        <a href="#" class="nav-link <?php if (in_array($activeMenu, session()->get('props')->menuRiwayaPeminjamanReq)) echo "active" ?>">
+                            <i class="nav-icon fa-solid fa-hourglass"></i>
+                            <p>
+                                Riwayat Peminjaman
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a style="padding-left: 30px;" href="<?php echo base_url('riwayat-peminjaman-randis-req'); ?>" class="nav-link <?php if ($activeMenu == 'riwayat-peminjaman-randis-req') echo "active" ?>">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>Kendaraan Dinas</p>
                                 </a>
                             </li>
                         </ul>

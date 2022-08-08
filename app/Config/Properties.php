@@ -76,7 +76,6 @@ class Properties extends BaseConfig
     public $menuAnggaranDipa = 'anggaran-dipa';
     public $menuAnggaranRealisasi = 'anggaran-realisasi';
     public $menuAnggaran = [
-        'anggaran-umum',
         'anggaran-dipa',
         'anggaran-realisasi',
     ];
@@ -257,5 +256,10 @@ class Properties extends BaseConfig
     // Menu Riwayat
     public $menuRiwayatPengadaanReq = [
         'riwayat-pengadaan-req'
+    ];
+
+    // Menu Riwayat
+    public $menuRiwayaPeminjamanReq = [
+        'riwayat-peminjaman-randis-req'
     ];
 }

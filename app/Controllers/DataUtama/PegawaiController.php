@@ -76,6 +76,7 @@ class PegawaiController extends BaseController
                 'id_unit' => $unit,
                 'id_subunit' => $subUnit
             ]);
+            return redirect()->to(base_url("input-pegawai"));
         } else {
             $this->pegawaiModel->update($id, [
                 'nip_nrp' => $nip,
@@ -85,8 +86,8 @@ class PegawaiController extends BaseController
                 'id_unit' => $unit,
                 'id_subunit' => $subUnit
             ]);
+            return redirect()->to(base_url("data-pegawai"));
         }
-        return redirect()->to(base_url("data-pegawai"));
     }
 
     public function delete($id)

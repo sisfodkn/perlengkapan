@@ -18,12 +18,13 @@ class RandisController extends BaseController
     {
         $data = [
             'activeMenu'    => 'randis-kendaraan-data',
-            'randis'       => $this->randisModel->getAll()
+            'randis'       => $this->randisModel->getAll(),
+            'randisJabatan'       => $this->randisModel->getAllJabatan(),
+            'randisKabag'       => $this->randisModel->getAllKabag(),
+            'randisSubbag'       => $this->randisModel->getAllSubbag(),
+            'randisPerkantoran'       => $this->randisModel->getAllPerkantoran()
         ];
         return view("dataRandis/dataRandis", $data);
-
-        $data['activeMenu'] = 'randis-kendaraan-data';
-        return view("blank", $data);
     }
 
     public function add()
@@ -69,6 +70,7 @@ class RandisController extends BaseController
                 'id_jenis_operasional' => $jenisOps,
                 'keterangan' => $keterangan
             ]);
+            return redirect()->to(base_url("input-randis"));
         } else {
             $this->randisModel->update($id, [
                 'nopol' => $nopol,
@@ -78,7 +80,7 @@ class RandisController extends BaseController
                 'id_jenis_operasional' => $jenisOps,
                 'keterangan' => $keterangan
             ]);
+            return redirect()->to(base_url("data-randis"));
         }
-        return redirect()->to(base_url("data-randis"));
     }
 }

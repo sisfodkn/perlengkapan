@@ -98,7 +98,8 @@ class PegawaiModel extends Model
         FROM $this->table
         WHERE id NOT IN (
             SELECT users.id_pegawai
-            FROM users )");
+            FROM users )
+        ORDER BY $this->table.nama_pegawai");
         return $query->getResult();
     }
 

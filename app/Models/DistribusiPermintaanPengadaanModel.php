@@ -93,7 +93,8 @@ class DistribusiPermintaanPengadaanModel extends Model
         FROM distribusi_permintaan_pengadaan
         JOIN permintaan_pengadaan ON permintaan_pengadaan.id = distribusi_permintaan_pengadaan.id_permintaan_pengadaan
         LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id
-        WHERE distribusi_permintaan_pengadaan.tgl_terkirim IS NULL";
+        WHERE distribusi_permintaan_pengadaan.tgl_terima IS NULL
+        ORDER BY permintaan_pengadaan.tgl_pengajuan DESC";
         $query = $this->db->query($sql);
         return $query->getResult();
     }
@@ -156,7 +157,35 @@ class DistribusiPermintaanPengadaanModel extends Model
         FROM distribusi_permintaan_pengadaan
         JOIN permintaan_pengadaan ON permintaan_pengadaan.id = distribusi_permintaan_pengadaan.id_permintaan_pengadaan
         LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id
-        WHERE distribusi_permintaan_pengadaan.tgl_terkirim IS NOT NULL";
+        WHERE distribusi_permintaan_pengadaan.tgl_terkirim IS NOT NULL
+        ORDER BY permintaan_pengadaan.tgl_pengajuan DESC";
+        $query = $this->db->query($sql);
+        return $query->getResult();
+    }
+
+    public function getRiwayatPengadaanPengguna($id_subunit)
+    {
+        $sql = "SELECT permintaan_pengadaan.tgl_pengajuan,
+            sub_unit.nama_subunit,
+            permintaan_pengadaan.tipe_pengadaan,
+            permintaan_pengadaan.jenis_kegiatan,
+            permintaan_pengadaan.isi_permintaan,
+            permintaan_pengadaan.tgl_persetujuan_subbag,
+            permintaan_pengadaan.tgl_persetujuan_bag,
+            permintaan_pengadaan.status AS status_persetujuan,
+            'Disetujui Kabag' AS keterangan_persetujuan,
+            distribusi_permintaan_pengadaan.tgl_kirim,
+            distribusi_permintaan_pengadaan.tgl_terkirim,
+            distribusi_permintaan_pengadaan.tgl_terima,
+            distribusi_permintaan_pengadaan.status AS status_kirim,
+            'Sudah Diterima' AS keterangan_kirim
+        FROM distribusi_permintaan_pengadaan
+        JOIN permintaan_pengadaan ON permintaan_pengadaan.id = distribusi_permintaan_pengadaan.id_permintaan_pengadaan
+        LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id
+        WHERE permintaan_pengadaan.id_subunit = '$id_subunit'
+        AND distribusi_permintaan_pengadaan.tgl_terima IS NOT NULL
+        AND distribusi_permintaan_pengadaan.status = '3'
+        ORDER BY permintaan_pengadaan.tgl_pengajuan DESC";
         $query = $this->db->query($sql);
         return $query->getResult();
     }
@@ -165,12 +194,14 @@ class DistribusiPermintaanPengadaanModel extends Model
     {
         $query = $this->db->query("SELECT count(*) AS total 
             FROM distribusi_permintaan_pengadaan
-            JOIN permintaan_pengadaan ON permintaan_pengadaan.id = distribusi_permintaan_pengadaan.id_permintaan_pengadaan
+            RIGHT JOIN permintaan_pengadaan ON permintaan_pengadaan.id = distribusi_permintaan_pengadaan.id_permintaan_pengadaan
             LEFT JOIN unit ON permintaan_pengadaan.id_unit = unit.id
             LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id
             WHERE permintaan_pengadaan.id_unit = '$id_unit'
             AND permintaan_pengadaan.id_subunit = '$id_subunit'
-            AND distribusi_permintaan_pengadaan.tgl_terima IS NULL");
+            AND IF(permintaan_pengadaan.tgl_persetujuan_bag IS NULL, 
+                permintaan_pengadaan.tgl_persetujuan_bag IS NULL, 
+                distribusi_permintaan_pengadaan.tgl_terima IS NULL)");
         return $query->getFirstRow();
     }
 
@@ -211,12 +242,14 @@ class DistribusiPermintaanPengadaanModel extends Model
                         END)
             END) AS keterangan
         FROM distribusi_permintaan_pengadaan
-        JOIN permintaan_pengadaan ON permintaan_pengadaan.id = distribusi_permintaan_pengadaan.id_permintaan_pengadaan
+        RIGHT JOIN permintaan_pengadaan ON permintaan_pengadaan.id = distribusi_permintaan_pengadaan.id_permintaan_pengadaan
         LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id
         JOIN pegawai ON pegawai.id = permintaan_pengadaan.id_pegawai
         WHERE permintaan_pengadaan.id_unit = '$id_unit'
         AND permintaan_pengadaan.id_subunit = '$id_subunit'
-        AND distribusi_permintaan_pengadaan.tgl_terima IS NULL");
+        AND IF(permintaan_pengadaan.tgl_persetujuan_bag IS NULL, 
+                permintaan_pengadaan.tgl_persetujuan_bag IS NULL, 
+                distribusi_permintaan_pengadaan.tgl_terima IS NULL)");
         return $query->getResult();
     }
 }

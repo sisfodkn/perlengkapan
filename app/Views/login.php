@@ -17,9 +17,19 @@
 </head>
 
 <body class="hold-transition login-page">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <img src="<?php echo base_url(); ?>/dist/img/logo-wtn.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="max-width: 100%; height: 150px;">
+                <br />
+                <br />
+                <h1><b>SIPANDU</b></h1>
+                <h3><b><i>Sistem Informasi Layanan Perlengkapan Terpadu</i></b></h3>
+            </div>
+        </div>
+    </div>
     <div class="login-box">
         <div class="login-logo">
-            <a href="<?php echo base_url('login'); ?>"><b>Layanan Perlengkapan Terpadu</b></a>
         </div>
         <!-- /.login-logo -->
         <div class="card">

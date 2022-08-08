@@ -52,7 +52,15 @@ class PermintaanPengadaanModel extends Model
     protected $afterDelete    = [];
     protected $where = "";
 
-    public function getAllPendingRequest()
+    public function findByReqId($reqId)
+    {
+        $query = $this->db->query("SELECT id
+            FROM $this->table
+            WHERE $this->table.id_permintaan_pengadaan = $reqId");
+        return $query->getFirstRow();
+    }
+
+    public function getTotalPendingRequest()
     {
         switch (session()->get('role')) {
             case session()->get('props')->roleSubPengadaan:
@@ -161,18 +169,6 @@ class PermintaanPengadaanModel extends Model
         LEFT JOIN unit ON $this->table.id_unit = unit.id
         LEFT JOIN sub_unit ON $this->table.id_subunit = sub_unit.id " . $where;
         $query = $this->db->query($sql);
-        return $query->getResult();
-    }
-
-    public function getTotalPendingRequest()
-    {
-        $query = $this->db->query("SELECT
-            count(*) AS total 
-        FROM $this->table 
-        LEFT JOIN pegawai ON $this->table.id_pegawai = pegawai.id
-        LEFT JOIN unit ON $this->table.id_unit = unit.id
-        LEFT JOIN sub_unit ON $this->table.id_subunit = sub_unit.id
-        WHERE $this->table.status = '0'");
         return $query->getResult();
     }
 

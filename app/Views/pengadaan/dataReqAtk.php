@@ -31,7 +31,7 @@ echo view('base/sidebar', $data);
             <div class="row">
                 <div class="col-12">
                     <div class="card card-warning">
-                        <div class="card-header">
+                        <div class="card-header" style="background-color:#DAF7A6">
                             <h3 class="card-title">
                                 <h3 class="card-title">Permintaan Masuk</h3>
                             </h3>

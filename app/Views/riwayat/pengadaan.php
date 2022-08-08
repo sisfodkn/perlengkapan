@@ -52,7 +52,7 @@ echo view('base/sidebar', $data);
                                 </thead>
                                 <tbody>
                                     <?php
-                                    foreach ($riwayatReqPengadaanList as $rowRiwayat) :
+                                    foreach ($riwayatPengadaanList as $rowRiwayat) :
                                     ?>
                                         <tr>
                                             <?php if (!empty($rowRiwayat->tgl_persetujuan_bag)) {

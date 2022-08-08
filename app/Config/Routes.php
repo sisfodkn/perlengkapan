@@ -38,12 +38,14 @@ $routes->set404Override();
 
 // Users
 $routes->match(['get', 'post'], 'login', 'DataUtama\UsersController::login', ["filter" => "noauth"]);
-$routes->get("/", "HomeController::index", ["filter" => "auth"]);
 $routes->match(['get', 'post'], 'terima-distribusi-pengadaan/(:any)', 'HomeController::terima/$1', ["filter" => "auth"]);
 $routes->get('logout', 'DataUtama\UsersController::logout');
 
+// Dashboard
+$routes->get("/", "HomeController::index", ["filter" => "auth"]);
+$routes->get("/dashboard-pengguna", "HomeController::indexPengguna", ["filter" => "auth"]);
+
 // Struktur Anggaran
-$routes->get("/anggaran-umum", "AnggaranController::umum", ["filter" => "auth"]);
 $routes->get("/anggaran-dipa", "AnggaranController::dipa", ["filter" => "auth"]);
 $routes->get("/realisasi-anggaran", "AnggaranController::realisasi", ["filter" => "auth"]);
 

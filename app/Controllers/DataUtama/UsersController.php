@@ -64,13 +64,14 @@ class UsersController extends BaseController
                 'role' => $role,
                 'id_pegawai' => $idPegawai
             ]);
+            return redirect()->to(base_url("input-user"));
         } else {
             $this->usersModel->update($id, [
                 'password' => password_hash($password, PASSWORD_DEFAULT),
                 'role' => $role
             ]);
+            return redirect()->to(base_url("data-user"));
         }
-        return redirect()->to(base_url("data-user"));
     }
 
     public function login()

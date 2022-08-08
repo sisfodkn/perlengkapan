@@ -20,7 +20,8 @@ class RandisModel extends Model
         'merk_kendaraan',
         'tipe_kendaraan',
         'id_jenis_operasional',
-        'keterangan'
+        'keterangan',
+        'status'
     ];
 
     // Dates
@@ -59,7 +60,75 @@ class RandisModel extends Model
             $this->table.keterangan
         FROM $this->table
         JOIN jenis_operasional ON $this->table.id_jenis_operasional = jenis_operasional.id
-        ORDER BY $this->table.id");
+        ORDER BY $this->table.nopol");
+        return $query->getResult();
+    }
+
+    public function getAllJabatan()
+    {
+        $query = $this->db->query("SELECT
+            $this->table.id,
+            $this->table.nopol,
+            $this->table.tahun_pengadaan,
+            $this->table.merk_kendaraan,
+            $this->table.tipe_kendaraan,
+            jenis_operasional.jenis_operasional,
+            $this->table.keterangan
+        FROM $this->table
+        JOIN jenis_operasional ON $this->table.id_jenis_operasional = jenis_operasional.id
+        WHERE $this->table.id_jenis_operasional = '2'
+        ORDER BY $this->table.nopol");
+        return $query->getResult();
+    }
+
+    public function getAllKabag()
+    {
+        $query = $this->db->query("SELECT
+            $this->table.id,
+            $this->table.nopol,
+            $this->table.tahun_pengadaan,
+            $this->table.merk_kendaraan,
+            $this->table.tipe_kendaraan,
+            jenis_operasional.jenis_operasional,
+            $this->table.keterangan
+        FROM $this->table
+        JOIN jenis_operasional ON $this->table.id_jenis_operasional = jenis_operasional.id
+        WHERE $this->table.id_jenis_operasional = '3'
+        ORDER BY $this->table.nopol");
+        return $query->getResult();
+    }
+
+    public function getAllSubbag()
+    {
+        $query = $this->db->query("SELECT
+            $this->table.id,
+            $this->table.nopol,
+            $this->table.tahun_pengadaan,
+            $this->table.merk_kendaraan,
+            $this->table.tipe_kendaraan,
+            jenis_operasional.jenis_operasional,
+            $this->table.keterangan
+        FROM $this->table
+        JOIN jenis_operasional ON $this->table.id_jenis_operasional = jenis_operasional.id
+        WHERE $this->table.id_jenis_operasional = '4'
+        ORDER BY $this->table.nopol");
+        return $query->getResult();
+    }
+
+    public function getAllPerkantoran()
+    {
+        $query = $this->db->query("SELECT
+            $this->table.id,
+            $this->table.nopol,
+            $this->table.tahun_pengadaan,
+            $this->table.merk_kendaraan,
+            $this->table.tipe_kendaraan,
+            jenis_operasional.jenis_operasional,
+            $this->table.keterangan
+        FROM $this->table
+        JOIN jenis_operasional ON $this->table.id_jenis_operasional = jenis_operasional.id
+        WHERE $this->table.id_jenis_operasional = '1'
+        ORDER BY $this->table.nopol");
         return $query->getResult();
     }
 
@@ -102,6 +171,8 @@ class RandisModel extends Model
         JOIN jenis_operasional ON $this->table.id_jenis_operasional = jenis_operasional.id
         WHERE $this->table.id NOT IN (SELECT id_kendaraan_dinas FROM distribusi_randis)
         AND $this->table.id_jenis_operasional = 1
+        AND ($this->table.status IS NULL
+        OR $this->table.status = '0')
         ORDER BY $this->table.id");
         return $query->getResult();
     }

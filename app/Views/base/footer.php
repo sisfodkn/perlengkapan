@@ -142,7 +142,183 @@
             "autoWidth": false,
             "responsive": true,
         });
+        $('#tableRandisJabatan').DataTable({
+            "paging": true,
+            "pageLength": 5,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+        $('#tableRandisKabag').DataTable({
+            "paging": true,
+            "pageLength": 5,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+        $('#tableRandisSubbag').DataTable({
+            "paging": true,
+            "pageLength": 5,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+        $('#tableRandisPerkantoran').DataTable({
+            "paging": true,
+            "pageLength": 5,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+        $('#tableRiwayatReqPengadaan').DataTable({
+            "paging": true,
+            "pageLength": 10,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+        $('#tableStatusPengadaan').DataTable({
+            "paging": true,
+            "pageLength": 5,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
     });
+</script>
+
+<script>
+    $(function() {
+        /* ChartJS
+         * -------
+         * Here we will create a few charts using ChartJS
+         */
+
+        //-------------
+        //- PIE CHART -
+        //-------------
+        // Get context with jQuery - using jQuery's .get() method.
+        var pieChartCanvasTW1Perkantoran = $('#pieChartTW1-perkantoran').get(0).getContext('2d')
+        var pieChartCanvasTW1BMN = $('#pieChartTW1-bmn').get(0).getContext('2d')
+        var pieChartCanvasTW1Umum = $('#pieChartTW1-umum').get(0).getContext('2d')
+        var pieChartCanvasTW2Perkantoran = $('#pieChartTW2-perkantoran').get(0).getContext('2d')
+        var pieChartCanvasTW2BMN = $('#pieChartTW2-bmn').get(0).getContext('2d')
+        var pieChartCanvasTW2Umum = $('#pieChartTW2-umum').get(0).getContext('2d')
+        var pieDataTW1Perkantoran = {
+            labels: [
+                'Realisasi',
+                'Sisa Anggaran',
+            ],
+            datasets: [{
+                data: [2597260609, 9052685391],
+                backgroundColor: ['#f56954', '#00a65a'],
+            }]
+        }
+        var pieDataTW1BMN = {
+            labels: [
+                'Realisasi',
+                'Sisa Anggaran',
+            ],
+            datasets: [{
+                data: [3837800, 31762200],
+                backgroundColor: ['#f56954', '#00a65a'],
+            }]
+        }
+        var pieDataTW1Umum = {
+            labels: [
+                'Realisasi',
+                'Sisa Anggaran',
+            ],
+            datasets: [{
+                data: [600000, 18938000],
+                backgroundColor: ['#f56954', '#00a65a'],
+            }]
+        }
+        var pieDataTW2Perkantoran = {
+            labels: [
+                'Realisasi',
+                'Sisa Anggaran',
+            ],
+            datasets: [{
+                data: [5389105424, 6260840576],
+                backgroundColor: ['#f56954', '#00a65a'],
+            }]
+        }
+        var pieDataTW2BMN = {
+            labels: [
+                'Realisasi',
+                'Sisa Anggaran',
+            ],
+            datasets: [{
+                data: [8312800, 27287200],
+                backgroundColor: ['#f56954', '#00a65a'],
+            }]
+        }
+        var pieDataTW2Umum = {
+            labels: [
+                'Realisasi',
+                'Sisa Anggaran',
+            ],
+            datasets: [{
+                data: [1675385, 17862615],
+                backgroundColor: ['#f56954', '#00a65a'],
+            }]
+        }
+        var pieOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+        }
+        //Create pie or douhnut chart
+        // You can switch between pie and douhnut using the method below.
+        new Chart(pieChartCanvasTW1Perkantoran, {
+            type: 'pie',
+            data: pieDataTW1Perkantoran,
+            options: pieOptions
+        })
+        new Chart(pieChartCanvasTW1BMN, {
+            type: 'pie',
+            data: pieDataTW1BMN,
+            options: pieOptions
+        })
+        new Chart(pieChartCanvasTW1Umum, {
+            type: 'pie',
+            data: pieDataTW1Umum,
+            options: pieOptions
+        })
+        new Chart(pieChartCanvasTW2Perkantoran, {
+            type: 'pie',
+            data: pieDataTW2Perkantoran,
+            options: pieOptions
+        })
+        new Chart(pieChartCanvasTW2BMN, {
+            type: 'pie',
+            data: pieDataTW2BMN,
+            options: pieOptions
+        })
+        new Chart(pieChartCanvasTW2Umum, {
+            type: 'pie',
+            data: pieDataTW2Umum,
+            options: pieOptions
+        })
+    })
 </script>
 
 <!-- jquery-validation -->
