@@ -182,9 +182,10 @@ $routes->get("/pemeliharaan-alat", "Pemeliharaan\AlatController::index", ["filte
 
 // Riwayat - User
 $routes->get("/riwayat-pengadaan", "Riwayat\PengadaanController::index", ["filter" => "auth"]);
+$routes->get("/riwayat-pinjam-randis", "Riwayat\PeminjamanRandisController::index", ["filter" => "auth"]);
 // Riwayat - Pengadaan
 $routes->get("/riwayat-pengadaan-req", "Riwayat\ReqPengadaanController::index", ["filter" => "auth"]);
-$routes->match(['get', 'post'], 'atk-req-approve/(:any)', 'Pengadaan\ReqAtkController::save/$1', ["filter" => "auth"]);
+$routes->get("/riwayat-peminjaman-randis-req", "Riwayat\ReqPeminjamanRandisController::index", ["filter" => "auth"]);
 
 /*
  * --------------------------------------------------------------------

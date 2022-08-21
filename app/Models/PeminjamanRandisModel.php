@@ -205,4 +205,45 @@ class PeminjamanRandisModel extends Model
         AND $this->table.tgl_persetujuan_karo IS NOT NULL");
         return $query->getFirstRow();
     }
+
+    public function getRiwayatPengguna($idPeg)
+    {
+        $query = $this->db->query("SELECT peminjaman_randis.tgl_pengajuan,
+            pegawai.nama_pegawai,
+            kendaraan_dinas.nopol,
+            kendaraan_dinas.merk_kendaraan,
+            peminjaman_randis.tgl_peminjaman,
+            peminjaman_randis.tgl_pengembalian,
+            peminjaman_randis.keperluan,
+            peminjaman_randis.tgl_persetujuan_karo,
+            'Disetujui Karoum' AS keterangan
+        FROM peminjaman_randis
+        JOIN pegawai ON peminjaman_randis.id_pegawai = pegawai.id
+        JOIN kendaraan_dinas ON peminjaman_randis.id_randis = kendaraan_dinas.id
+        WHERE peminjaman_randis.status = 3
+        AND peminjaman_randis.tgl_persetujuan_karo IS NOT NULL
+        AND peminjaman_randis.id_pegawai = '$idPeg'
+        ORDER BY peminjaman_randis.tgl_pengajuan");
+        return $query->getResult();
+    }
+
+    public function getAllRiwayat()
+    {
+        $query = $this->db->query("SELECT peminjaman_randis.tgl_pengajuan,
+            pegawai.nama_pegawai,
+            kendaraan_dinas.nopol,
+            kendaraan_dinas.merk_kendaraan,
+            peminjaman_randis.tgl_peminjaman,
+            peminjaman_randis.tgl_pengembalian,
+            peminjaman_randis.keperluan,
+            peminjaman_randis.tgl_persetujuan_karo,
+            'Disetujui Karoum' AS keterangan
+        FROM peminjaman_randis
+        JOIN pegawai ON peminjaman_randis.id_pegawai = pegawai.id
+        JOIN kendaraan_dinas ON peminjaman_randis.id_randis = kendaraan_dinas.id
+        WHERE peminjaman_randis.status = 3
+        AND peminjaman_randis.tgl_persetujuan_karo IS NOT NULL
+        ORDER BY peminjaman_randis.tgl_pengajuan");
+        return $query->getResult();
+    }
 }

@@ -46,20 +46,16 @@ class ReqAtkController extends BaseController
                         'tgl_persetujuan_bag' => $now,
                         'status' => '2'
                     ]);
-                    $this->distribusiPermintaanPengadaanModel->insert([
-                        'id_permintaan_pengadaan' => $idDecryption,
-                        'status' => '0'
-                    ]);
                 } else {
                     $this->permintaanPengadaanModel->update($idDecryption, [
                         'tgl_persetujuan_bag' => $now,
                         'status' => '2'
                     ]);
-                    $dataReq = $this->distribusiPermintaanPengadaanModel->findByReqId($idDecryption);
-                    $this->distribusiPermintaanPengadaanModel->update($dataReq->id, [
-                        'status' => '0'
-                    ]);
                 }
+                $this->distribusiPermintaanPengadaanModel->insert([
+                    'id_permintaan_pengadaan' => $idDecryption,
+                    'status' => '0'
+                ]);
                 break;
         }
         return redirect()->to(base_url("pengadaan-atk-req"));

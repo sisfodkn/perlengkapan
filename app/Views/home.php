@@ -29,7 +29,7 @@ echo view('base/sidebar', $data);
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <div class="text-center">
+          <!-- <div class="text-center">
             <img src="<?php echo base_url(); ?>/dist/img/logo-wtn.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="max-width: 100%; height: 200px;">
             <br />
             <br />
@@ -40,7 +40,7 @@ echo view('base/sidebar', $data);
             <h1>DEWAN KETAHANAN NASIONAL RI</h1>
             <br />
             <br />
-          </div>
+          </div> -->
         </div>
       </div>
       <?php if (
@@ -133,7 +133,7 @@ echo view('base/sidebar', $data);
                   ) : ?>
                     <div class="col-12">
                       <div class="card-header bg-success">
-                        <h3 class="card-title">Status Pengadaan</h3>
+                        <h3 class="card-title">Pengadaan Masih Diproses</h3>
                       </div>
                       <!-- /.card-header -->
                       <div class="card-body">

@@ -126,7 +126,7 @@ class DistribusiPermintaanPengadaanModel extends Model
         return $query->getResult();
     }
 
-    public function getRiwayatPengadaan()
+    public function getAllRiwayat()
     {
         $sql = "SELECT permintaan_pengadaan.tgl_pengajuan,
             sub_unit.nama_subunit,
@@ -157,13 +157,13 @@ class DistribusiPermintaanPengadaanModel extends Model
         FROM distribusi_permintaan_pengadaan
         JOIN permintaan_pengadaan ON permintaan_pengadaan.id = distribusi_permintaan_pengadaan.id_permintaan_pengadaan
         LEFT JOIN sub_unit ON permintaan_pengadaan.id_subunit = sub_unit.id
-        WHERE distribusi_permintaan_pengadaan.tgl_terkirim IS NOT NULL
+        WHERE distribusi_permintaan_pengadaan.tgl_terima IS NOT NULL
         ORDER BY permintaan_pengadaan.tgl_pengajuan DESC";
         $query = $this->db->query($sql);
         return $query->getResult();
     }
 
-    public function getRiwayatPengadaanPengguna($id_subunit)
+    public function getRiwayatPengguna($id_subunit)
     {
         $sql = "SELECT permintaan_pengadaan.tgl_pengajuan,
             sub_unit.nama_subunit,

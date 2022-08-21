@@ -249,8 +249,11 @@ class Properties extends BaseConfig
     ];
 
     // Menu Riwayat
-    public $menuRiwayatPengadaan = [
+    public $menuRiwayatUser = [
         'riwayat-pengadaan'
+    ];
+    public $menuRiwayatPeminjaman = [
+        'riwayat-pinjam-randis'
     ];
 
     // Menu Riwayat

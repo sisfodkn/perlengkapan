@@ -16,7 +16,7 @@ class PengadaanController extends BaseController
     {
         $data = [
             'activeMenu' => 'riwayat-pengadaan',
-            'riwayatPengadaanList' => $this->distribusiPermintaanPengadaanModel->getRiwayatPengadaanPengguna(session()->get('id_subunit'))
+            'riwayatPengadaanList' => $this->distribusiPermintaanPengadaanModel->getRiwayatPengguna(session()->get('id_subunit'))
         ];
         return view("riwayat/pengadaan", $data);
     }

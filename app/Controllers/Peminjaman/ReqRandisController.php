@@ -70,9 +70,9 @@ class ReqRandisController extends BaseController
                         'status' => '3'
                     ]);
                 }
-                $this->randisModel->update($dataReqRandis['id_randis'], [
-                    'status' => '1'
-                ]);
+                // $this->randisModel->update($dataReqRandis['id_randis'], [
+                //     'status' => '1'
+                // ]);
                 break;
         }
         return redirect()->to(base_url("peminjaman-randis-req"));

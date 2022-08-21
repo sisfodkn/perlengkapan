@@ -16,7 +16,7 @@ class ReqPengadaanController extends BaseController
     {
         $data = [
             'activeMenu' => 'riwayat-pengadaan-req',
-            'riwayatReqPengadaanList' => $this->distribusiPermintaanPengadaanModel->getRiwayatPengadaan()
+            'riwayatReqPengadaanList' => $this->distribusiPermintaanPengadaanModel->getAllRiwayat()
         ];
         return view("riwayat/reqPengadaan", $data);
     }

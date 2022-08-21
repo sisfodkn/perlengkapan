@@ -23,7 +23,8 @@
                 <img src="<?php echo base_url(); ?>/dist/img/logo-wtn.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="max-width: 100%; height: 150px;">
                 <br />
                 <br />
-                <h1><b>SIPANDU</b></h1>
+                <h2><b>Selamat Datang di</b></h2>
+                <h1><b>TEMAN PANDU</b></h1>
                 <h3><b><i>Sistem Informasi Layanan Perlengkapan Terpadu</i></b></h3>
             </div>
         </div>

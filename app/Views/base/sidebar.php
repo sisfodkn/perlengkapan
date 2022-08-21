@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="<?php echo base_url(); ?>" class="brand-link">
         <img src="<?php echo base_url(); ?>/dist/img/logo-wtn.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light" style="padding-left: 3px;">SIPANDU</span>
+        <span class="brand-text font-weight-light" style="padding-left: 3px;">TEMAN PANDU</span>
         <br />
         <!-- <span class="brand-text font-weight-light" style="padding-left: 50px;">Perlengkapan</span>
         <br />
@@ -602,8 +602,8 @@
                     </li>
                 <?php endif; ?>
                 <li class="nav-header">Riwayat Transaksi</li>
-                <li class="nav-item <?php if (in_array($activeMenu, session()->get('props')->menuRiwayatPengadaan)) echo "menu-open" ?>">
-                    <a href="#" class="nav-link <?php if (in_array($activeMenu, session()->get('props')->menuRiwayatPengadaan)) echo "active" ?>">
+                <li class="nav-item <?php if (in_array($activeMenu, session()->get('props')->menuRiwayatUser)) echo "menu-open" ?>">
+                    <a href="#" class="nav-link <?php if (in_array($activeMenu, session()->get('props')->menuRiwayatUser)) echo "active" ?>">
                         <i class="nav-icon fa-solid fa-hourglass"></i>
                         <p>
                             Riwayat User
@@ -616,6 +616,21 @@
                                 <i class="far fa-dot-circle nav-icon"></i>
                                 <p>Pengadaan</p>
                             </a>
+                        </li>
+                        <li class="nav-item <?php if (in_array($activeMenu, session()->get('props')->menuRiwayatPeminjaman)) echo "menu-open" ?>">
+                            <a href="#" style="padding-left: 30px;" class="nav-link <?php if (in_array($activeMenu, session()->get('props')->menuRiwayatPeminjaman)) echo "active" ?>">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Peminjaman</p>
+                                <i class="right fas fa-angle-left"></i>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a style="padding-left: 40px;" href="<?php echo base_url('riwayat-pinjam-randis'); ?>" class="nav-link <?php if ($activeMenu == 'riwayat-pinjam-randis') echo "active" ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Kendaraan Dinas</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>

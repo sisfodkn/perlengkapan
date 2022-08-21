@@ -202,6 +202,26 @@
             "autoWidth": false,
             "responsive": true,
         });
+        $('#tableRiwayatPeminjamanRandis').DataTable({
+            "paging": true,
+            "pageLength": 5,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+        $('#tableRiwayatReqPeminjamanRandis').DataTable({
+            "paging": true,
+            "pageLength": 5,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
     });
 </script>
 
