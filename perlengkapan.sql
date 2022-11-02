@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2022 at 04:58 PM
+-- Generation Time: Nov 02, 2022 at 02:26 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -708,7 +708,7 @@ INSERT INTO `pegawai` (`id`, `nip_nrp`, `nama_pegawai`, `pangkat`, `id_jabatan`,
 (117, '198512132019021002', 'Genanto Atmadiredja, S.E.', 'Penata Muda / III.a', 123, 7, 7),
 (118, '199505222019022004', 'Tisa Siti Rachmawati, S.E.', 'Penata Muda / III.a', 124, 7, 8),
 (119, '199612022019022002', 'Sofyanti Astri, S.E.', 'Penata Muda / III.a', 125, 7, 9),
-(120, 'Pitra', 'Pitra Nervie', 'Honorer', 126, 6, 6),
+(120, 'pitra', 'Pitra Nervie', 'Honorer', 126, 6, 6),
 (121, '199506232019022002', 'Karina Dewi, S.H.', 'Penata Muda / III.a', 127, 6, 4),
 (122, '199307232019022005', 'Nadia Talita Putri, S.I.P.', 'Penata Muda / III.a', 128, 6, 6),
 (123, '199406272019022003', 'Fauziah Nurunnajmi, S.E.', 'Penata Muda / III.a', 129, 8, 3),
@@ -749,27 +749,27 @@ INSERT INTO `pegawai` (`id`, `nip_nrp`, `nama_pegawai`, `pangkat`, `id_jabatan`,
 (162, '31980110111176', 'Yandi Irawan', 'Serka', 172, 6, 5),
 (163, '197710042008101001', 'Rusmanto', 'Pengatur Muda Tk. I / II.b', 173, 6, 6),
 (164, '108618', 'Subono ', 'Serda Apm', 174, 6, 4),
-(165, '-', 'Andi Suhandi', 'Honorer', 175, 6, 5),
-(166, '-', 'Akmal', 'Honorer', 176, 6, 5),
-(167, '-', 'Eko Mendi Sugana', 'Honorer', 177, 6, 5),
-(168, '-', 'Urip Muhammad Subekti', 'Honorer', 178, 6, 5),
-(169, '-', 'Sulfi Adi Lestyono', 'Honorer', 179, 6, 5),
-(170, 'Sujai ', 'Sujai Triana', 'Honorer', 180, 6, 5),
-(171, 'Wahyu', 'Wahyu Suroso', 'Honorer', 181, 6, 5),
-(172, 'Dani', 'Dani Saepul Anwar', 'Honorer', 182, 6, 5),
-(173, 'Galih', 'Galih Prakuso', 'Honorer', 183, 6, 5),
-(174, 'Masykur ', 'Achmad Masykur R', 'Honorer', 184, 6, 5),
-(175, 'Sabrina', 'Sabrina Rizkiani', 'Honorer', 185, 6, 5),
-(176, 'Jefri', 'Jefri Jaka P', 'Honorer', 186, 6, 5),
-(177, 'Heru ', 'Heru Prasetiyo', 'Honorer', 187, 6, 5),
-(178, 'Doni', 'Ahmad Romadonia', 'Honorer', 188, 6, 5),
-(179, 'Dicky ', 'Dicky Ariyanda', 'Honorer', 189, 6, 5),
-(180, 'Yuly', 'Yuly Setiyadi', 'Honorer', 190, 6, 5),
-(181, '-', 'Agus Cahyo Santoso', 'Honorer', 191, 6, 5),
-(183, 'Oman', 'Oman Romansyah ', 'Honorer', 193, 6, 6),
-(184, 'Jatmiko', 'Jatmiko', 'Honorer', 194, 6, 5),
-(185, 'Wahyu ', 'Wahyu Wardiwana', 'Honorer', 195, 6, 6),
-(186, 'Firdi ', 'Dalila Firdi Nerizal Pratama', 'Honorer', 196, 6, 6);
+(165, 'andi', 'Andi Suhandi', 'Honorer', 175, 6, 5),
+(166, 'akmal', 'Akmal', 'Honorer', 176, 6, 5),
+(167, 'eko', 'Eko Mendi Sugana', 'Honorer', 177, 6, 5),
+(168, 'urip', 'Urip Muhammad Subekti', 'Honorer', 178, 6, 5),
+(169, 'sulfi', 'Sulfi Adi Lestyono', 'Honorer', 179, 6, 5),
+(170, 'sujai', 'Sujai Triana', 'Honorer', 180, 6, 5),
+(171, 'suroso', 'Wahyu Suroso', 'Honorer', 181, 6, 5),
+(172, 'dani', 'Dani Saepul Anwar', 'Honorer', 182, 6, 5),
+(173, 'galih', 'Galih Prakuso', 'Honorer', 183, 6, 5),
+(174, 'masykur', 'Achmad Masykur R', 'Honorer', 184, 6, 5),
+(175, 'sabrina', 'Sabrina Rizkiani', 'Honorer', 185, 6, 5),
+(176, 'jefri', 'Jefri Jaka P', 'Honorer', 186, 6, 5),
+(177, 'heru ', 'Heru Prasetiyo', 'Honorer', 187, 6, 5),
+(178, 'doni', 'Ahmad Romadonia', 'Honorer', 188, 6, 5),
+(179, 'dicky ', 'Dicky Ariyanda', 'Honorer', 189, 6, 5),
+(180, 'yuly', 'Yuly Setiyadi', 'Honorer', 190, 6, 5),
+(181, 'agus', 'Agus Cahyo Santoso', 'Honorer', 191, 6, 5),
+(183, 'oman', 'Oman Romansyah ', 'Honorer', 193, 6, 6),
+(184, 'jatmiko', 'Jatmiko', 'Honorer', 194, 6, 5),
+(185, 'wahyu', 'Wahyu Wardiwana', 'Honorer', 195, 6, 6),
+(186, 'firdi', 'Dalila Firdi Nerizal Pratama', 'Honorer', 196, 6, 6);
 
 -- --------------------------------------------------------
 
@@ -965,9 +965,9 @@ INSERT INTO `users` (`id`, `username`, `password`, `role`, `id_pegawai`) VALUES
 (13, '197410302009011001', '$2y$10$4xPWNbNc7PVWQnL9GaiEsexPTL/LJpGE/bKCVjlYw0rs3iibmmTqC', 'User', 15),
 (14, '32378', '$2y$10$DP.8l3XL/CTDKNRQm.R0ium2UFVeSJbvkExxsOTCKw2W30.CM7Ppq', 'User', 4),
 (15, '513119', '$2y$10$FqKTI1RNcGKphXmk6uAGaunB2fSu5NSyIhNWnTLImSmtZbCr8sGDi', 'User', 3),
-(17, '196604231993011', '$2y$10$GU7UL/gkD1wILtIRm3lrOO3zn3x/9iGo1tjVum2G7KyKmiZFs9F0G', 'User', 99),
-(18, '196808101995011', '$2y$10$5FsEQc6n.qqbh0kZzam.t.qTUIkRBcc89K9wmbd4Ebi2QuPuVMgpC', 'User', 100),
-(19, '196711201989101', '$2y$10$e5UXEofYsGQBF7YNaYN/k.p/8jyyxGLTcAQ4cqo4VyeMuxyC8PKWe', 'User', 96),
+(17, '196604231993011001', '$2y$10$GU7UL/gkD1wILtIRm3lrOO3zn3x/9iGo1tjVum2G7KyKmiZFs9F0G', 'User', 99),
+(18, '196808101995011001', '$2y$10$5FsEQc6n.qqbh0kZzam.t.qTUIkRBcc89K9wmbd4Ebi2QuPuVMgpC', 'User', 100),
+(19, '196711201989101001', '$2y$10$e5UXEofYsGQBF7YNaYN/k.p/8jyyxGLTcAQ4cqo4VyeMuxyC8PKWe', 'User', 96),
 (20, '65030622', '$2y$10$vjPQQjv2GkEyLiL9mZPEiOVPKt8UBvnPF9Hr4Pr6l2G5S1Gp3d8cm', 'User', 5),
 (21, '196412161987031002', '$2y$10$wg3hhqNyp2F2hZc.tB0zgutJIdzFPTOABPc80WdcW3SIzvY19p01a', 'User', 20),
 (22, '198512132019021002', '$2y$10$yxMCXbmXlUayWTNS.Fv9R.wiHKf9qZPOCpsg.7baiIbz1teJhpN1e', 'User', 117),
@@ -985,16 +985,17 @@ INSERT INTO `users` (`id`, `username`, `password`, `role`, `id_pegawai`) VALUES
 (34, '197711241998031001', '$2y$10$Zn0Mhp.cJcg7s1BlnrnY3uCS5N3jS4TBVFiisdua2a8UWY7UXv1MW', 'User', 112),
 (35, '198103262009012003', '$2y$10$nrm0HOwO.fCru.ydLPSVHO6a9XpoxeAY7Zyy5MmNM/xV/dR6HfvEi', 'User', 95),
 (36, '198701272006042001', '$2y$10$JvFgDL2jmsWwYFAtgRVd4uZ0H8CySF7Td/LoC3kbngjBQ9jIjQ/qu', 'User', 110),
-(37, 'NIP. 197508182007011', '$2y$10$r7muDcAhsAw7Z//ZulL15.ITEn.CGEvM1IYhufRaJXvF/r0IArm1G', 'User', 156),
+(37, '197508182007011004', '$2y$10$r7muDcAhsAw7Z//ZulL15.ITEn.CGEvM1IYhufRaJXvF/r0IArm1G', 'User', 156),
 (38, '196803131989101001', '$2y$10$K0NBtZ.G.meo7ra/2yfZiO87QSTc1TkCO62ICmDwZnKUEkJbAGdiS', 'User', 98),
 (39, '197309092006042003', '$2y$10$80F4/1ANYWW9HJZM51MVaecVKW1WxOBcI4fDKRei7vKwGLP2CXLrm', 'User', 88),
 (40, '198402072006042002', '$2y$10$ka4PZhuXuXbxIIUGtiDXw.Gg1RtVF3asaylyL6Mx.iR4aAspb6Yc6', 'User', 106),
 (41, '196906121999031001', '$2y$10$fESSMgbsykAcwvaQQsAvAu66VoO/.PL2yLHVKhhFt.ZEDcZMMygoK', 'User', 113),
-(42, 'NIP. 198502122008101', '$2y$10$YzySCgMX90WM8v7HXiS69.xsE9v.03AcX0WXxMV3wH3g16NLQ5VZ.', 'User', 155),
+(42, '198502122008101001', '$2y$10$YzySCgMX90WM8v7HXiS69.xsE9v.03AcX0WXxMV3wH3g16NLQ5VZ.', 'User', 155),
 (43, '198603232019022002', '$2y$10$ncFGof8F1RQ8d/ewaahy1OHJmfhKIY.lS1J0m4KHMo3kiGk4pgyQ.', 'User', 130),
 (44, '197705161998031001', '$2y$10$UyDFcFaRzqFPgml0lu1nzO0m9h11XJvqPzgTp0ue.rMTxPtN6Ziny', 'User', 126),
 (45, '11050013800465', '$2y$10$PwIJiB4vn5M49K0HntQ5/ulE.3JL.oQrMUWJwQlZefpt8TlxssSTS', 'User', 80),
-(46, 'NIP.1977100420081010', '$2y$10$ZPFAg603EP2pk7xYH1sco.2HAV/Z33pmQYoSmYyY3PNuGc4tZ1cPa', 'User', 163);
+(46, '197710042008101001', '$2y$10$ZPFAg603EP2pk7xYH1sco.2HAV/Z33pmQYoSmYyY3PNuGc4tZ1cPa', 'User', 163),
+(47, '196911271988031001', '$2y$10$lmk0Je0zY8kTUypUwReWz.78OHpKyzrm6HQPbyNCqmioRBrNL6LxS', 'Sub Rumga', 97);
 
 --
 -- Indexes for dumped tables
@@ -1206,7 +1207,7 @@ ALTER TABLE `unit`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 DELIMITER $$
 --
